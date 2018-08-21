@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.3.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="arrclient" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background-main.png" translatesAutoresizingMaskIntoConstraints="NO" id="nYC-1A-Ca0">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="nYC-1A-Ca0" secondAttribute="height" multiplier="1:1" id="GAi-v4-9js"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UE9-Fs-oLJ">
+                                <rect key="frame" x="112.66666666666669" y="471" width="150" height="150"/>
+                                <color key="backgroundColor" red="0.61184423575129532" green="0.61184423575129532" blue="0.61184423575129532" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="rKB-nG-8yh"/>
+                                    <constraint firstAttribute="width" constant="150" id="umA-yN-amL"/>
+                                </constraints>
+                                <state key="normal" image="play.png"/>
+                                <connections>
+                                    <action selector="playButtonClicked" destination="BYZ-38-t0r" eventType="touchUpInside" id="s5k-SJ-rh6"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lørdag 42. testember" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGD-J7-Pa1">
+                                <rect key="frame" x="16" y="416" width="343" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="343" id="upt-wD-16d"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="nYC-1A-Ca0" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="8hl-Xx-SPL"/>
+                            <constraint firstItem="UE9-Fs-oLJ" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="135" id="EoI-mU-qyp"/>
+                            <constraint firstItem="UE9-Fs-oLJ" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Gox-TQ-FaN"/>
+                            <constraint firstItem="UE9-Fs-oLJ" firstAttribute="top" secondItem="fGD-J7-Pa1" secondAttribute="bottom" constant="34" id="S7v-9c-JpF"/>
+                            <constraint firstItem="fGD-J7-Pa1" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="cKm-dq-j9Z"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nYC-1A-Ca0" secondAttribute="trailing" id="er9-af-daQ"/>
+                            <constraint firstItem="nYC-1A-Ca0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="m3w-48-81L"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="infoLabel" destination="fGD-J7-Pa1" id="pmk-1P-aSE"/>
+                        <outlet property="playButton" destination="UE9-Fs-oLJ" id="idS-dT-eb7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="31.199999999999999" y="32.512315270935964"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="background-main.png" width="1600" height="1600"/>
+        <image name="play.png" width="234" height="233"/>
+    </resources>
+</document>
