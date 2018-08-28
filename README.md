@@ -1,5 +1,4 @@
-Joakims Rikskringkasting Listening Client
-#########################################
+# Joakims Rikskringkasting Listening Client
 
 This is the companion app written to exclusively work with [JRK Server](https://github.com/pimms/jrk_server)
 
