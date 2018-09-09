@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:arrclient.xcodeproj">
+      location = "self:/Users/pimms/code/jrk/client/jrkclient.xcodeproj">
    </FileRef>
 </Workspace>

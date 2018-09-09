@@ -53,17 +53,17 @@
 		1938986021261A050043B4B5 /* jrk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jrk.png; sourceTree = "<group>"; };
 		193BC966211F81C6004FF315 /* arrclient.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = arrclient.entitlements; sourceTree = "<group>"; };
 		193BC968211F81C6004FF315 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		19C81F12211F527F00BD920E /* arrclient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = arrclient.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		19C81F12211F527F00BD920E /* jrkclient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jrkclient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19C81F15211F527F00BD920E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19C81F17211F527F00BD920E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		19C81F1A211F527F00BD920E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		19C81F1C211F528000BD920E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		19C81F1F211F528000BD920E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		19C81F21211F528000BD920E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		19C81F26211F528000BD920E /* arrclientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = arrclientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		19C81F26211F528000BD920E /* jrkclientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jrkclientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		19C81F2A211F528000BD920E /* arrclientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = arrclientTests.swift; sourceTree = "<group>"; };
 		19C81F2C211F528000BD920E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		19C81F31211F528000BD920E /* arrclientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = arrclientUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		19C81F31211F528000BD920E /* jrkclientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jrkclientUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		19C81F35211F528000BD920E /* arrclientUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = arrclientUITests.swift; sourceTree = "<group>"; };
 		19C81F37211F528000BD920E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19E986AA212C71A4006A6976 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
@@ -133,9 +133,9 @@
 		19C81F13211F527F00BD920E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				19C81F12211F527F00BD920E /* arrclient.app */,
-				19C81F26211F528000BD920E /* arrclientTests.xctest */,
-				19C81F31211F528000BD920E /* arrclientUITests.xctest */,
+				19C81F12211F527F00BD920E /* jrkclient.app */,
+				19C81F26211F528000BD920E /* jrkclientTests.xctest */,
+				19C81F31211F528000BD920E /* jrkclientUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -180,9 +180,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		19C81F11211F527F00BD920E /* arrclient */ = {
+		19C81F11211F527F00BD920E /* jrkclient */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 19C81F3A211F528000BD920E /* Build configuration list for PBXNativeTarget "arrclient" */;
+			buildConfigurationList = 19C81F3A211F528000BD920E /* Build configuration list for PBXNativeTarget "jrkclient" */;
 			buildPhases = (
 				19C81F0E211F527F00BD920E /* Sources */,
 				19C81F0F211F527F00BD920E /* Frameworks */,
@@ -192,14 +192,14 @@
 			);
 			dependencies = (
 			);
-			name = arrclient;
+			name = jrkclient;
 			productName = arrclient;
-			productReference = 19C81F12211F527F00BD920E /* arrclient.app */;
+			productReference = 19C81F12211F527F00BD920E /* jrkclient.app */;
 			productType = "com.apple.product-type.application";
 		};
-		19C81F25211F528000BD920E /* arrclientTests */ = {
+		19C81F25211F528000BD920E /* jrkclientTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 19C81F3D211F528000BD920E /* Build configuration list for PBXNativeTarget "arrclientTests" */;
+			buildConfigurationList = 19C81F3D211F528000BD920E /* Build configuration list for PBXNativeTarget "jrkclientTests" */;
 			buildPhases = (
 				19C81F22211F528000BD920E /* Sources */,
 				19C81F23211F528000BD920E /* Frameworks */,
@@ -210,14 +210,14 @@
 			dependencies = (
 				19C81F28211F528000BD920E /* PBXTargetDependency */,
 			);
-			name = arrclientTests;
+			name = jrkclientTests;
 			productName = arrclientTests;
-			productReference = 19C81F26211F528000BD920E /* arrclientTests.xctest */;
+			productReference = 19C81F26211F528000BD920E /* jrkclientTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		19C81F30211F528000BD920E /* arrclientUITests */ = {
+		19C81F30211F528000BD920E /* jrkclientUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 19C81F40211F528000BD920E /* Build configuration list for PBXNativeTarget "arrclientUITests" */;
+			buildConfigurationList = 19C81F40211F528000BD920E /* Build configuration list for PBXNativeTarget "jrkclientUITests" */;
 			buildPhases = (
 				19C81F2D211F528000BD920E /* Sources */,
 				19C81F2E211F528000BD920E /* Frameworks */,
@@ -228,9 +228,9 @@
 			dependencies = (
 				19C81F33211F528000BD920E /* PBXTargetDependency */,
 			);
-			name = arrclientUITests;
+			name = jrkclientUITests;
 			productName = arrclientUITests;
-			productReference = 19C81F31211F528000BD920E /* arrclientUITests.xctest */;
+			productReference = 19C81F31211F528000BD920E /* jrkclientUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -264,7 +264,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 19C81F0D211F527F00BD920E /* Build configuration list for PBXProject "arrclient" */;
+			buildConfigurationList = 19C81F0D211F527F00BD920E /* Build configuration list for PBXProject "jrkclient" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -277,9 +277,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				19C81F11211F527F00BD920E /* arrclient */,
-				19C81F25211F528000BD920E /* arrclientTests */,
-				19C81F30211F528000BD920E /* arrclientUITests */,
+				19C81F11211F527F00BD920E /* jrkclient */,
+				19C81F25211F528000BD920E /* jrkclientTests */,
+				19C81F30211F528000BD920E /* jrkclientUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -352,12 +352,12 @@
 /* Begin PBXTargetDependency section */
 		19C81F28211F528000BD920E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 19C81F11211F527F00BD920E /* arrclient */;
+			target = 19C81F11211F527F00BD920E /* jrkclient */;
 			targetProxy = 19C81F27211F528000BD920E /* PBXContainerItemProxy */;
 		};
 		19C81F33211F528000BD920E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 19C81F11211F527F00BD920E /* arrclient */;
+			target = 19C81F11211F527F00BD920E /* jrkclient */;
 			targetProxy = 19C81F32211F528000BD920E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -550,7 +550,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/arrclient.app/arrclient";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/jrkclient.app/jrkclient";
 			};
 			name = Debug;
 		};
@@ -570,7 +570,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/arrclient.app/arrclient";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/jrkclient.app/jrkclient";
 			};
 			name = Release;
 		};
@@ -615,7 +615,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		19C81F0D211F527F00BD920E /* Build configuration list for PBXProject "arrclient" */ = {
+		19C81F0D211F527F00BD920E /* Build configuration list for PBXProject "jrkclient" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				19C81F38211F528000BD920E /* Debug */,
@@ -624,7 +624,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		19C81F3A211F528000BD920E /* Build configuration list for PBXNativeTarget "arrclient" */ = {
+		19C81F3A211F528000BD920E /* Build configuration list for PBXNativeTarget "jrkclient" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				19C81F3B211F528000BD920E /* Debug */,
@@ -633,7 +633,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		19C81F3D211F528000BD920E /* Build configuration list for PBXNativeTarget "arrclientTests" */ = {
+		19C81F3D211F528000BD920E /* Build configuration list for PBXNativeTarget "jrkclientTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				19C81F3E211F528000BD920E /* Debug */,
@@ -642,7 +642,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		19C81F40211F528000BD920E /* Build configuration list for PBXNativeTarget "arrclientUITests" */ = {
+		19C81F40211F528000BD920E /* Build configuration list for PBXNativeTarget "jrkclientUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				19C81F41211F528000BD920E /* Debug */,
