@@ -26,3 +26,6 @@ DerivedData/
 # Resources that the user must add
 arrclient/assets/background-main.png
 arrclient/assets/AppConfig.plist
+
+/Pods
+Podfile.lock

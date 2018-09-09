@@ -1,6 +1,7 @@
 import UIKit
 import AVKit
 import MediaPlayer
+import VBFPopFlatButton
 
 class ViewController: UIViewController {
     private let infoRetriever: InfoRetriever = InfoRetriever()
@@ -12,11 +13,37 @@ class ViewController: UIViewController {
     var infoLabel: UILabel?
     @IBOutlet
     var seasonLabel: UILabel?
+    @IBOutlet
+    var buttonParentView: UIView?
+    
+    private var playPauseButton: VBFPopFlatButton?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.infoLabel?.text = nil
         self.seasonLabel?.text = nil
+        
+        createPlayPauseButton()
+    }
+    
+    private func createPlayPauseButton() {
+        let root = self.buttonParentView!.frame
+        let frame = CGRect(x: root.width / 4,
+                           y: root.height / 4,
+                           width: root.width / 2,
+                           height: root.height / 2)
+        
+        playPauseButton = VBFPopFlatButton.init(frame: frame,
+                                          buttonType: .buttonForwardType,
+                                          buttonStyle: .buttonRoundedStyle,
+                                          animateToInitialState: false)
+        playPauseButton?.roundBackgroundColor = UIColor.darkGray
+        playPauseButton?.lineRadius = 4.0
+        playPauseButton?.lineThickness = 4.0
+        playPauseButton?.setTintColor(UIColor.white, for: .normal)
+        playPauseButton?.setTintColor(UIColor.gray, for: .highlighted)
+        playPauseButton?.addTarget(self, action: #selector(playButtonClicked), for: .touchUpInside)
+        self.buttonParentView!.addSubview(playPauseButton!)
     }
     
     override func viewDidLoad() {
@@ -53,8 +80,10 @@ class ViewController: UIViewController {
         jrkPlayer.togglePlayPause()
         if (jrkPlayer.isPlaying()) {
             playButton?.setImage(UIImage(named: "pause.png"), for: .normal)
+            playPauseButton?.animate(to: .buttonPausedType)
         } else {
             playButton?.setImage(UIImage(named: "play.png"), for: .normal)
+            playPauseButton?.animate(to: .buttonForwardType)
         }
     }
 }
