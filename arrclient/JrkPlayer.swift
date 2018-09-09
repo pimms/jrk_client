@@ -11,7 +11,7 @@ import AVKit
 import MediaPlayer
 
 class JrkPlayer {
-    private var player: AVPlayer?
+    private var player: AVPlayer
     private var playing = false
     private var activatedSession = false
     private let audioSession = AVAudioSession.sharedInstance()
@@ -23,8 +23,8 @@ class JrkPlayer {
         let url = URLProvider.streamURL()
         
         do {
-            let item = AVPlayerItem(url: url)
-            player = AVPlayer(playerItem: item)
+            let playerItem = AVPlayerItem(url: url)
+            player = AVPlayer(playerItem: playerItem)
             try audioSession.setCategory(AVAudioSessionCategoryPlayback, mode: AVAudioSessionModeDefault)
             
             commandCenter.playCommand.addTarget { event in
@@ -58,10 +58,10 @@ class JrkPlayer {
         
         if (playing) {
             print("Pausing")
-            player!.pause()
+            player.pause()
         } else {
             print("Playing")
-            player!.play()
+            player.play()
         }
         
         playing = !playing
