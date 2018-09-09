@@ -13,7 +13,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="arrclient" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="jrkclient" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -37,11 +37,20 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lørdag 42. testember" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGD-J7-Pa1">
-                                <rect key="frame" x="16" y="416" width="343" height="21"/>
+                                <rect key="frame" x="16" y="396" width="343" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="343" id="upt-wD-16d"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="season schmeason" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2X2-mh-olM">
+                                <rect key="frame" x="16" y="420" width="343" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="343" id="Rhk-tx-r4r"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -51,16 +60,19 @@
                             <constraint firstItem="nYC-1A-Ca0" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="8hl-Xx-SPL"/>
                             <constraint firstItem="UE9-Fs-oLJ" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="135" id="EoI-mU-qyp"/>
                             <constraint firstItem="UE9-Fs-oLJ" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Gox-TQ-FaN"/>
-                            <constraint firstItem="UE9-Fs-oLJ" firstAttribute="top" secondItem="fGD-J7-Pa1" secondAttribute="bottom" constant="34" id="S7v-9c-JpF"/>
+                            <constraint firstItem="UE9-Fs-oLJ" firstAttribute="top" secondItem="fGD-J7-Pa1" secondAttribute="bottom" constant="54" id="S7v-9c-JpF"/>
                             <constraint firstItem="fGD-J7-Pa1" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="cKm-dq-j9Z"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nYC-1A-Ca0" secondAttribute="trailing" id="er9-af-daQ"/>
                             <constraint firstItem="nYC-1A-Ca0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="m3w-48-81L"/>
+                            <constraint firstItem="2X2-mh-olM" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="s9q-Ji-FR5"/>
+                            <constraint firstItem="2X2-mh-olM" firstAttribute="top" secondItem="fGD-J7-Pa1" secondAttribute="bottom" constant="3" id="utf-mB-qei"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="infoLabel" destination="fGD-J7-Pa1" id="pmk-1P-aSE"/>
                         <outlet property="playButton" destination="UE9-Fs-oLJ" id="idS-dT-eb7"/>
+                        <outlet property="seasonLabel" destination="2X2-mh-olM" id="3Je-7p-Jw2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

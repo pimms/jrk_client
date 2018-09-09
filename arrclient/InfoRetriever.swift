@@ -2,10 +2,15 @@ import Foundation
 
 class EpisodeInfo: NSObject {
     var name: String?
+    var season: String?
     
     init(fromMap map: [String: AnyObject]) {
         if let name = map["name"] as? String {
             self.name = name
+        }
+        
+        if let season = map["season"] as? String {
+            self.season = season
         }
     }
 }

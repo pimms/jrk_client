@@ -24,7 +24,7 @@ class URLProvider {
     
     static func infoURL() -> URL {
         let root = instance.getRootURL()
-        return URL(string: root + "/live/currentinfo")!
+        return URL(string: root + "/live/nowPlaying")!
     }
     
     static func streamURL() -> URL {

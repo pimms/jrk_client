@@ -16,10 +16,13 @@ class ViewController: UIViewController {
     var playButton: UIButton?
     @IBOutlet
     var infoLabel: UILabel?
+    @IBOutlet
+    var seasonLabel: UILabel?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.infoLabel?.text = nil
+        self.seasonLabel?.text = nil
     }
     
     override func viewDidLoad() {
@@ -75,10 +78,11 @@ class ViewController: UIViewController {
     
     func updatePlayerInfo(_ info: EpisodeInfo?) {
         self.infoLabel?.text = info?.name
+        self.seasonLabel?.text = info?.season
         
-        nowPlaying.nowPlayingInfo = [MPMediaItemPropertyTitle: info?.name,
+        nowPlaying.nowPlayingInfo = [MPMediaItemPropertyTitle: info?.name as Any,
                                      MPMediaItemPropertyArtist: "Radioresepsjonen",
-                                     MPMediaItemPropertyAlbumTitle: "JRK - Alltid Radioresepsjonen",
+                                     MPMediaItemPropertyAlbumTitle: info?.season as Any,
                                      MPNowPlayingInfoPropertyIsLiveStream: true]
     }
     
