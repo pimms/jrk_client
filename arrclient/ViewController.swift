@@ -3,12 +3,10 @@ import AVKit
 import MediaPlayer
 import VBFPopFlatButton
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, JrkPlayerDelegate {
     private let infoRetriever: InfoRetriever = InfoRetriever()
     private let jrkPlayer = JrkPlayer()
     
-    @IBOutlet
-    var playButton: UIButton?
     @IBOutlet
     var infoLabel: UILabel?
     @IBOutlet
@@ -24,6 +22,7 @@ class ViewController: UIViewController {
         self.seasonLabel?.text = nil
         
         createPlayPauseButton()
+        jrkPlayer.setDelegate(self)
     }
     
     private func createPlayPauseButton() {
@@ -48,9 +47,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        playButton?.layer.cornerRadius = 75
-        playButton?.clipsToBounds = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -78,12 +74,16 @@ class ViewController: UIViewController {
     @IBAction
     func playButtonClicked() {
         jrkPlayer.togglePlayPause()
-        if (jrkPlayer.isPlaying()) {
-            playButton?.setImage(UIImage(named: "pause.png"), for: .normal)
+    }
+    
+    // -- JrkPlayerDelegate -- //
+    func jrkPlayerStateChanged(state: JrkPlayerState) {
+        if (state == .playing) {
             playPauseButton?.animate(to: .buttonPausedType)
-        } else {
-            playButton?.setImage(UIImage(named: "play.png"), for: .normal)
+        } else if (state == .readyToPlay) {
             playPauseButton?.animate(to: .buttonForwardType)
+        } else {
+            print("TODO: Handle JrkPlayerState \(state) properly!")
         }
     }
 }

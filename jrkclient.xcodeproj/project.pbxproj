@@ -15,6 +15,7 @@
 		1938986121261A050043B4B5 /* jrk.png in Resources */ = {isa = PBXBuildFile; fileRef = 1938986021261A050043B4B5 /* jrk.png */; };
 		193BC969211F81C6004FF315 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 193BC968211F81C6004FF315 /* AudioToolbox.framework */; };
 		194CC9F12145937A00BF1381 /* JrkPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194CC9F02145937A00BF1381 /* JrkPlayer.swift */; };
+		194CC9F62146FF9F00BF1381 /* AVPlayer+isPlaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194CC9F52146FF9F00BF1381 /* AVPlayer+isPlaying.swift */; };
 		19C81F16211F527F00BD920E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C81F15211F527F00BD920E /* AppDelegate.swift */; };
 		19C81F18211F527F00BD920E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C81F17211F527F00BD920E /* ViewController.swift */; };
 		19C81F1B211F527F00BD920E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19C81F19211F527F00BD920E /* Main.storyboard */; };
@@ -61,6 +62,7 @@
 		193BC966211F81C6004FF315 /* arrclient.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = arrclient.entitlements; sourceTree = "<group>"; };
 		193BC968211F81C6004FF315 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		194CC9F02145937A00BF1381 /* JrkPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JrkPlayer.swift; sourceTree = "<group>"; };
+		194CC9F52146FF9F00BF1381 /* AVPlayer+isPlaying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayer+isPlaying.swift"; sourceTree = "<group>"; };
 		19C81F12211F527F00BD920E /* jrkclient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jrkclient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19C81F15211F527F00BD920E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19C81F17211F527F00BD920E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -142,15 +144,24 @@
 		194CC9EF2145929200BF1381 /* source */ = {
 			isa = PBXGroup;
 			children = (
+				194CC9F42146FF9100BF1381 /* extensions */,
 				19C81F15211F527F00BD920E /* AppDelegate.swift */,
 				19C81F17211F527F00BD920E /* ViewController.swift */,
 				1938985C21260CD20043B4B5 /* InfoRetriever.swift */,
-				1938985E21260F020043B4B5 /* NSObject+jsonInit.swift */,
 				19E986AA212C71A4006A6976 /* AppConfig.swift */,
 				19E986B0212C75B0006A6976 /* URLProvider.swift */,
 				194CC9F02145937A00BF1381 /* JrkPlayer.swift */,
 			);
 			name = source;
+			sourceTree = "<group>";
+		};
+		194CC9F42146FF9100BF1381 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1938985E21260F020043B4B5 /* NSObject+jsonInit.swift */,
+				194CC9F52146FF9F00BF1381 /* AVPlayer+isPlaying.swift */,
+			);
+			name = extensions;
 			sourceTree = "<group>";
 		};
 		19C81F09211F527F00BD920E = {
@@ -466,6 +477,7 @@
 			files = (
 				1938985D21260CD20043B4B5 /* InfoRetriever.swift in Sources */,
 				19E986AB212C71A4006A6976 /* AppConfig.swift in Sources */,
+				194CC9F62146FF9F00BF1381 /* AVPlayer+isPlaying.swift in Sources */,
 				19E986B1212C75B0006A6976 /* URLProvider.swift in Sources */,
 				19C81F18211F527F00BD920E /* ViewController.swift in Sources */,
 				19C81F16211F527F00BD920E /* AppDelegate.swift in Sources */,
