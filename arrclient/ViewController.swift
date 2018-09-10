@@ -12,6 +12,8 @@ class ViewController: UIViewController, JrkPlayerDelegate {
     @IBOutlet
     var seasonLabel: UILabel?
     @IBOutlet
+    var debugLabel: UILabel?
+    @IBOutlet
     var buttonParentView: UIView?
     
     private var playPauseButton: VBFPopFlatButton?
@@ -33,9 +35,9 @@ class ViewController: UIViewController, JrkPlayerDelegate {
                            height: root.height / 2)
         
         playPauseButton = VBFPopFlatButton.init(frame: frame,
-                                          buttonType: .buttonForwardType,
+                                          buttonType: FlatButtonType.buttonCloseType,
                                           buttonStyle: .buttonRoundedStyle,
-                                          animateToInitialState: false)
+                                          animateToInitialState: true)
         playPauseButton?.roundBackgroundColor = UIColor.darkGray
         playPauseButton?.lineRadius = 4.0
         playPauseButton?.lineThickness = 4.0
@@ -78,13 +80,19 @@ class ViewController: UIViewController, JrkPlayerDelegate {
     
     // -- JrkPlayerDelegate -- //
     func jrkPlayerStateChanged(state: JrkPlayerState) {
-        if (state == .playing) {
+        switch state {
+        case .playing:
             playPauseButton?.animate(to: .buttonPausedType)
-        } else if (state == .readyToPlay) {
+            break
+        case .readyToPlay:
             playPauseButton?.animate(to: .buttonForwardType)
-        } else {
-            print("TODO: Handle JrkPlayerState \(state) properly!")
+            break
+        case .unableToPlay:
+            playPauseButton?.animate(to: .buttonCloseType)
+            break
         }
+        
+        debugLabel?.text = String(describing: state)
     }
 }
 

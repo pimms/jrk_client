@@ -27,6 +27,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lørdag 42. testember" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGD-J7-Pa1">
                                 <rect key="frame" x="16" y="400.66666666666669" width="343" height="21"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="cZm-VA-EKa"/>
                                     <constraint firstAttribute="width" constant="343" id="upt-wD-16d"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -37,6 +38,7 @@
                                 <rect key="frame" x="16" y="429" width="343" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="343" id="Rhk-tx-r4r"/>
+                                    <constraint firstAttribute="height" constant="18" id="va0-io-doj"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.58480408031088082" green="0.58480408031088082" blue="0.58480408031088082" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="displayP3"/>
@@ -50,12 +52,28 @@
                                     <constraint firstAttribute="width" constant="150" id="EyW-dO-bEd"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="..." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3md-zE-WX0">
+                                <rect key="frame" x="16" y="757" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pIB-nC-g4w">
+                                <rect key="frame" x="67.666666666666686" y="695" width="240" height="29"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="X1V-zC-JXU"/>
+                                    <constraint firstAttribute="height" constant="29" id="unY-AB-8RK"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="nYC-1A-Ca0" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="8hl-Xx-SPL"/>
                             <constraint firstItem="aSy-xp-Qbj" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="BwU-ux-GoB"/>
                             <constraint firstItem="fGD-J7-Pa1" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="HBp-SC-sio"/>
+                            <constraint firstItem="pIB-nC-g4w" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="PEs-Og-oUY"/>
                             <constraint firstItem="fGD-J7-Pa1" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="cKm-dq-j9Z"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nYC-1A-Ca0" secondAttribute="trailing" id="er9-af-daQ"/>
                             <constraint firstItem="aSy-xp-Qbj" firstAttribute="top" secondItem="fGD-J7-Pa1" secondAttribute="bottom" constant="33.333333333333314" id="hW6-0q-qUF"/>
@@ -68,6 +86,7 @@
                     </view>
                     <connections>
                         <outlet property="buttonParentView" destination="aSy-xp-Qbj" id="6f1-pC-3yf"/>
+                        <outlet property="debugLabel" destination="3md-zE-WX0" id="0Xv-H4-b2b"/>
                         <outlet property="infoLabel" destination="fGD-J7-Pa1" id="pmk-1P-aSE"/>
                         <outlet property="seasonLabel" destination="2X2-mh-olM" id="3Je-7p-Jw2"/>
                     </connections>

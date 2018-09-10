@@ -94,7 +94,7 @@ class JrkPlayer: NSObject {
     func updateNowPlaying(_ info: EpisodeInfo?) {
         if let info = info {
             nowPlaying.nowPlayingInfo = [MPMediaItemPropertyTitle: info.name as Any,
-                                         MPMediaItemPropertyArtist: "Radioresepsjonen",
+                                         MPMediaItemPropertyArtist: "JRK",
                                          MPMediaItemPropertyAlbumTitle: info.season as Any,
                                          MPNowPlayingInfoPropertyIsLiveStream: true]
         }
