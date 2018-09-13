@@ -7,6 +7,7 @@ target 'jrkclient' do
 
   # Pods for jrkclient
   pod 'VBFPopFlatButton'
+  pod 'DottedProgressBar'
 
   target 'jrkclientTests' do
     inherit! :search_paths
