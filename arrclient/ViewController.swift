@@ -3,12 +3,12 @@ import AVKit
 import MediaPlayer
 
 import VBFPopFlatButton
-import DottedProgressBar
 
-class ViewController: UIViewController, JrkPlayerDelegate {
+class ViewController: UIViewController, JrkPlayerDelegate, PlayButtonDelegate {
     private let infoRetriever: InfoRetriever = InfoRetriever()
-    private let jrkPlayer = JrkPlayer()
     
+    @IBOutlet
+    var jrkPlayer: JrkPlayer?
     @IBOutlet
     var infoLabel: UILabel?
     @IBOutlet
@@ -16,66 +16,12 @@ class ViewController: UIViewController, JrkPlayerDelegate {
     @IBOutlet
     var debugLabel: UILabel?
     @IBOutlet
-    var buttonParentView: UIView?
-    @IBOutlet
-    var infoProgressView: UIView?
-    
-    private var playPauseButton: VBFPopFlatButton?
+    var playButton: PlayButton?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.infoLabel?.text = nil
         self.seasonLabel?.text = nil
-        
-        createPlayPauseButton()
-        createProgressIndicator()
-        jrkPlayer.setDelegate(self)
-    }
-    
-    private func createPlayPauseButton() {
-        let root = self.buttonParentView!.frame
-        let frame = CGRect(x: root.width / 4,
-                           y: root.height / 4,
-                           width: root.width / 2,
-                           height: root.height / 2)
-        
-        playPauseButton = VBFPopFlatButton.init(frame: frame,
-                                          buttonType: FlatButtonType.buttonCloseType,
-                                          buttonStyle: .buttonRoundedStyle,
-                                          animateToInitialState: true)
-        playPauseButton?.roundBackgroundColor = UIColor.darkGray
-        playPauseButton?.lineRadius = 4.0
-        playPauseButton?.lineThickness = 4.0
-        playPauseButton?.setTintColor(UIColor.white, for: .normal)
-        playPauseButton?.setTintColor(UIColor.gray, for: .highlighted)
-        playPauseButton?.addTarget(self, action: #selector(playButtonClicked), for: .touchUpInside)
-        self.buttonParentView!.addSubview(playPauseButton!)
-    }
-    
-    private var progressBar: DottedProgressBar?
-    private var progress = 1
-    private var progressMax = 5
-    private var direction = 1
-    private func createProgressIndicator() {
-        var frame = infoProgressView!.frame
-        frame.origin = CGPoint(x: 0, y: 0)
-        
-        progressBar = DottedProgressBar(frame: frame,
-                                        numberOfDots: progressMax,
-                                        initialProgress: progress)
-        progressBar?.progressChangeAnimationDuration = 0.25
-        progressBar?.pauseBetweenConsecutiveAnimations = 0.0
-        Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(progressLoop), userInfo: nil, repeats: true)
-        infoProgressView!.addSubview(progressBar!)
-    }
-    
-    @objc private func progressLoop() {
-        progress += direction
-        if (progress == 1 || progress == progressMax) {
-            direction = -direction
-        }
-        
-        progressBar?.setProgress(progress, animated: true)
     }
     
     override func viewDidLoad() {
@@ -90,7 +36,7 @@ class ViewController: UIViewController, JrkPlayerDelegate {
     }
     
     func updatePlayerInfo(_ info: EpisodeInfo?) {
-        jrkPlayer.updateNowPlaying(info)
+        jrkPlayer?.updateNowPlaying(info)
         self.infoLabel?.text = info?.name
         self.seasonLabel?.text = info?.season
     }
@@ -99,26 +45,13 @@ class ViewController: UIViewController, JrkPlayerDelegate {
         super.didReceiveMemoryWarning()
     }
 
-    @IBAction
-    func playButtonClicked() {
-        jrkPlayer.togglePlayPause()
+    func playButtonClicked(_ playButton: PlayButton) {
+        jrkPlayer?.togglePlayPause()
     }
     
     // -- JrkPlayerDelegate -- //
     func jrkPlayerStateChanged(state: JrkPlayerState) {
-        switch state {
-        case .playing, .buffering:
-            playPauseButton?.animate(to: .buttonPausedType)
-            break
-        case .paused, .stopped:
-            playPauseButton?.animate(to: .buttonForwardType)
-            break
-        case .unableToPlay:
-            playPauseButton?.animate(to: .buttonCloseType)
-            break
-        }
-        
-        debugLabel?.text = String(describing: state)
+        debugLabel?.text = state.toString()
     }
 }
 

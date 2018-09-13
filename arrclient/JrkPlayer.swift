@@ -4,27 +4,51 @@ import MediaPlayer
 import KDEAudioPlayer
 
 
-enum JrkPlayerState {
+@objc enum JrkPlayerState: Int {
     case buffering
     case stopped
     case unableToPlay
     case paused
     case playing
+    
+    func toString() -> String {
+        switch (self) {
+        case .buffering:
+            return "buffering"
+        case .stopped:
+            return "stopped"
+        case .unableToPlay:
+            return "unableToPlay"
+        case .paused:
+            return "paused"
+        case .playing:
+            return "playing"
+        }
+    }
 }
 
-protocol JrkPlayerDelegate {
-    func jrkPlayerStateChanged(state: JrkPlayerState)
+@objc protocol JrkPlayerDelegate {
+    @objc func jrkPlayerStateChanged(state: JrkPlayerState)
 }
 
 class JrkPlayer: NSObject, AudioPlayerDelegate {
-    private let player: AudioPlayer
+    @IBOutlet
+    var delegate1: JrkPlayerDelegate?
+    @IBOutlet
+    var delegate2: JrkPlayerDelegate?
+    var delegates: [JrkPlayerDelegate?] {
+        get {
+            return [delegate1, delegate2]
+        }
+    }
+    
+    private var player: AudioPlayer
     private var audioItem: AudioItem
     private let audioSession = AVAudioSession.sharedInstance()
     
     private let commandCenter = MPRemoteCommandCenter.shared()
     private let nowPlaying = MPNowPlayingInfoCenter.default()
     
-    private var delegate: JrkPlayerDelegate?
     private var playerState: JrkPlayerState = .stopped
     
     
@@ -38,6 +62,7 @@ class JrkPlayer: NSObject, AudioPlayerDelegate {
         initializeAudioSessionCategory()
         initializeCommandCenter()
         initializeAppLifecycleCallbacks()
+        initializeDelegateKVO()
     }
     
     deinit {
@@ -70,9 +95,13 @@ class JrkPlayer: NSObject, AudioPlayerDelegate {
         }
     }
     
-    func setDelegate(_ delegate: JrkPlayerDelegate) {
-        self.delegate = delegate
-        self.delegate?.jrkPlayerStateChanged(state: playerState)
+    private func initializeDelegateKVO() {
+        self.addObserver(self, forKeyPath: "delegate1", options: [], context: nil)
+        self.addObserver(self, forKeyPath: "delegate2", options: [], context: nil)
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        callDelegates()
     }
     
     func updateNowPlaying(_ info: EpisodeInfo?) {
@@ -106,21 +135,26 @@ class JrkPlayer: NSObject, AudioPlayerDelegate {
 
     private func setPlayerState(_ state: JrkPlayerState) {
         if (state != playerState) {
-            print("Changing player state to \(state)")
             playerState = state
-            delegate?.jrkPlayerStateChanged(state: state)
+            callDelegates()
         }
+    }
+    
+    private func callDelegates() {
+        delegates.forEach({ delegate in
+            delegate?.jrkPlayerStateChanged(state: playerState)
+        })
     }
     
     
     // -- app lifecycle -- //
     private func initializeAppLifecycleCallbacks() {
-        NotificationCenter.default.addObserver(self, selector:#selector(appWillEnterBackground),
-                                               name: NSNotification.Name.UIApplicationWillResignActive,
+        NotificationCenter.default.addObserver(self, selector:#selector(appDidEnterBackground),
+                                               name: NSNotification.Name.UIApplicationDidEnterBackground,
                                                object: nil)
     }
     
-    @objc private func appWillEnterBackground() {
+    @objc private func appDidEnterBackground() {
         if (playerState != .playing && playerState != .buffering) {
             print("App is unfocused and we're not actively playing – stopping player")
             player.stop()
@@ -151,6 +185,6 @@ class JrkPlayer: NSObject, AudioPlayerDelegate {
     }
     
     func audioPlayer(_ audioPlayer: AudioPlayer, didLoad range: TimeRange, for item: AudioItem) {
-        print("rangeload: \(range)")
+        // print("rangeload: \(range)")
     }
 }

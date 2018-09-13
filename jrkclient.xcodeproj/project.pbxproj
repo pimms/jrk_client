@@ -16,6 +16,8 @@
 		193BC969211F81C6004FF315 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 193BC968211F81C6004FF315 /* AudioToolbox.framework */; };
 		194CC9F12145937A00BF1381 /* JrkPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194CC9F02145937A00BF1381 /* JrkPlayer.swift */; };
 		194CC9F62146FF9F00BF1381 /* AVPlayer+isPlaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194CC9F52146FF9F00BF1381 /* AVPlayer+isPlaying.swift */; };
+		19BA9DA3214AEA4200BD31D6 /* BufferIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BA9DA2214AEA4200BD31D6 /* BufferIndicatorView.swift */; };
+		19BA9DA5214AEDA600BD31D6 /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BA9DA4214AEDA600BD31D6 /* PlayButton.swift */; };
 		19C81F16211F527F00BD920E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C81F15211F527F00BD920E /* AppDelegate.swift */; };
 		19C81F18211F527F00BD920E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C81F17211F527F00BD920E /* ViewController.swift */; };
 		19C81F1B211F527F00BD920E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19C81F19211F527F00BD920E /* Main.storyboard */; };
@@ -63,6 +65,8 @@
 		193BC968211F81C6004FF315 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		194CC9F02145937A00BF1381 /* JrkPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JrkPlayer.swift; sourceTree = "<group>"; };
 		194CC9F52146FF9F00BF1381 /* AVPlayer+isPlaying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayer+isPlaying.swift"; sourceTree = "<group>"; };
+		19BA9DA2214AEA4200BD31D6 /* BufferIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BufferIndicatorView.swift; sourceTree = "<group>"; };
+		19BA9DA4214AEDA600BD31D6 /* PlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
 		19C81F12211F527F00BD920E /* jrkclient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jrkclient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19C81F15211F527F00BD920E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19C81F17211F527F00BD920E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -151,6 +155,8 @@
 				19E986AA212C71A4006A6976 /* AppConfig.swift */,
 				19E986B0212C75B0006A6976 /* URLProvider.swift */,
 				194CC9F02145937A00BF1381 /* JrkPlayer.swift */,
+				19BA9DA2214AEA4200BD31D6 /* BufferIndicatorView.swift */,
+				19BA9DA4214AEDA600BD31D6 /* PlayButton.swift */,
 			);
 			name = source;
 			sourceTree = "<group>";
@@ -478,12 +484,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1938985D21260CD20043B4B5 /* InfoRetriever.swift in Sources */,
+				19BA9DA5214AEDA600BD31D6 /* PlayButton.swift in Sources */,
 				19E986AB212C71A4006A6976 /* AppConfig.swift in Sources */,
 				194CC9F62146FF9F00BF1381 /* AVPlayer+isPlaying.swift in Sources */,
 				19E986B1212C75B0006A6976 /* URLProvider.swift in Sources */,
 				19C81F18211F527F00BD920E /* ViewController.swift in Sources */,
 				19C81F16211F527F00BD920E /* AppDelegate.swift in Sources */,
 				1938985F21260F020043B4B5 /* NSObject+jsonInit.swift in Sources */,
+				19BA9DA3214AEA4200BD31D6 /* BufferIndicatorView.swift in Sources */,
 				194CC9F12145937A00BF1381 /* JrkPlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

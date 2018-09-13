@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--ViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="jrkclient" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" userLabel="ViewController" customClass="ViewController" customModule="jrkclient" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -44,57 +44,60 @@
                                 <color key="textColor" red="0.58480408031088082" green="0.58480408031088082" blue="0.58480408031088082" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aSy-xp-Qbj" userLabel="Button Parent View">
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aSy-xp-Qbj" userLabel="PlayButton" customClass="PlayButton" customModule="jrkclient" customModuleProvider="target">
                                 <rect key="frame" x="112.66666666666669" y="455" width="150" height="150"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="5qC-oN-dCl"/>
                                     <constraint firstAttribute="width" constant="150" id="EyW-dO-bEd"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="hz9-NZ-eWQ"/>
+                                </connections>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="..." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3md-zE-WX0">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3md-zE-WX0">
                                 <rect key="frame" x="16" y="757" width="343" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="xOj-oF-vWE"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pIB-nC-g4w">
-                                <rect key="frame" x="67.666666666666686" y="695" width="240" height="29"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="X1V-zC-JXU"/>
-                                    <constraint firstAttribute="height" constant="29" id="unY-AB-8RK"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="nYC-1A-Ca0" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="8hl-Xx-SPL"/>
                             <constraint firstItem="aSy-xp-Qbj" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="BwU-ux-GoB"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3md-zE-WX0" secondAttribute="trailing" constant="16" id="C15-Qe-Aes"/>
                             <constraint firstItem="fGD-J7-Pa1" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="HBp-SC-sio"/>
-                            <constraint firstItem="pIB-nC-g4w" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="PEs-Og-oUY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3md-zE-WX0" secondAttribute="bottom" id="TWb-5M-0it"/>
                             <constraint firstItem="fGD-J7-Pa1" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="cKm-dq-j9Z"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nYC-1A-Ca0" secondAttribute="trailing" id="er9-af-daQ"/>
                             <constraint firstItem="aSy-xp-Qbj" firstAttribute="top" secondItem="fGD-J7-Pa1" secondAttribute="bottom" constant="33.333333333333314" id="hW6-0q-qUF"/>
                             <constraint firstItem="2X2-mh-olM" firstAttribute="top" secondItem="fGD-J7-Pa1" secondAttribute="bottom" constant="7.3333333333333144" id="k3y-vg-lB5"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="pIB-nC-g4w" secondAttribute="bottom" constant="54" id="la8-JI-MjE"/>
                             <constraint firstItem="nYC-1A-Ca0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="m3w-48-81L"/>
                             <constraint firstItem="2X2-mh-olM" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="s9q-Ji-FR5"/>
                             <constraint firstItem="2X2-mh-olM" firstAttribute="top" secondItem="fGD-J7-Pa1" secondAttribute="bottom" constant="7.3333333333333144" id="utf-mB-qei"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="pIB-nC-g4w" secondAttribute="bottom" constant="54" id="y8P-mj-CoX"/>
+                            <constraint firstItem="3md-zE-WX0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="uu9-Ex-QnF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="buttonParentView" destination="aSy-xp-Qbj" id="6f1-pC-3yf"/>
                         <outlet property="debugLabel" destination="3md-zE-WX0" id="0Xv-H4-b2b"/>
                         <outlet property="infoLabel" destination="fGD-J7-Pa1" id="pmk-1P-aSE"/>
-                        <outlet property="infoProgressView" destination="pIB-nC-g4w" id="Qgh-RZ-6o6"/>
+                        <outlet property="jrkPlayer" destination="ed9-SS-ItV" id="xvp-eb-6hy"/>
+                        <outlet property="playButton" destination="aSy-xp-Qbj" id="wzE-9F-duR"/>
                         <outlet property="seasonLabel" destination="2X2-mh-olM" id="3Je-7p-Jw2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <customObject id="ed9-SS-ItV" userLabel="JrkPlayer" customClass="JrkPlayer" customModule="jrkclient" customModuleProvider="target">
+                    <connections>
+                        <outlet property="delegate1" destination="aSy-xp-Qbj" id="3aS-Mk-GOs"/>
+                        <outlet property="delegate2" destination="BYZ-38-t0r" id="qRS-2U-9gD"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="31.199999999999999" y="32.512315270935964"/>
         </scene>
