@@ -82,6 +82,7 @@
                             <constraint firstItem="nYC-1A-Ca0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="m3w-48-81L"/>
                             <constraint firstItem="2X2-mh-olM" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="s9q-Ji-FR5"/>
                             <constraint firstItem="2X2-mh-olM" firstAttribute="top" secondItem="fGD-J7-Pa1" secondAttribute="bottom" constant="7.3333333333333144" id="utf-mB-qei"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="pIB-nC-g4w" secondAttribute="bottom" constant="54" id="y8P-mj-CoX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -89,6 +90,7 @@
                         <outlet property="buttonParentView" destination="aSy-xp-Qbj" id="6f1-pC-3yf"/>
                         <outlet property="debugLabel" destination="3md-zE-WX0" id="0Xv-H4-b2b"/>
                         <outlet property="infoLabel" destination="fGD-J7-Pa1" id="pmk-1P-aSE"/>
+                        <outlet property="infoProgressView" destination="pIB-nC-g4w" id="Qgh-RZ-6o6"/>
                         <outlet property="seasonLabel" destination="2X2-mh-olM" id="3Je-7p-Jw2"/>
                     </connections>
                 </viewController>

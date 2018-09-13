@@ -1,7 +1,9 @@
 import UIKit
 import AVKit
 import MediaPlayer
+
 import VBFPopFlatButton
+import DottedProgressBar
 
 class ViewController: UIViewController, JrkPlayerDelegate {
     private let infoRetriever: InfoRetriever = InfoRetriever()
@@ -15,6 +17,8 @@ class ViewController: UIViewController, JrkPlayerDelegate {
     var debugLabel: UILabel?
     @IBOutlet
     var buttonParentView: UIView?
+    @IBOutlet
+    var infoProgressView: UIView?
     
     private var playPauseButton: VBFPopFlatButton?
     
@@ -24,6 +28,7 @@ class ViewController: UIViewController, JrkPlayerDelegate {
         self.seasonLabel?.text = nil
         
         createPlayPauseButton()
+        createProgressIndicator()
         jrkPlayer.setDelegate(self)
     }
     
@@ -45,6 +50,32 @@ class ViewController: UIViewController, JrkPlayerDelegate {
         playPauseButton?.setTintColor(UIColor.gray, for: .highlighted)
         playPauseButton?.addTarget(self, action: #selector(playButtonClicked), for: .touchUpInside)
         self.buttonParentView!.addSubview(playPauseButton!)
+    }
+    
+    private var progressBar: DottedProgressBar?
+    private var progress = 1
+    private var progressMax = 5
+    private var direction = 1
+    private func createProgressIndicator() {
+        var frame = infoProgressView!.frame
+        frame.origin = CGPoint(x: 0, y: 0)
+        
+        progressBar = DottedProgressBar(frame: frame,
+                                        numberOfDots: progressMax,
+                                        initialProgress: progress)
+        progressBar?.progressChangeAnimationDuration = 0.25
+        progressBar?.pauseBetweenConsecutiveAnimations = 0.0
+        Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(progressLoop), userInfo: nil, repeats: true)
+        infoProgressView!.addSubview(progressBar!)
+    }
+    
+    @objc private func progressLoop() {
+        progress += direction
+        if (progress == 1 || progress == progressMax) {
+            direction = -direction
+        }
+        
+        progressBar?.setProgress(progress, animated: true)
     }
     
     override func viewDidLoad() {
