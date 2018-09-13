@@ -58,11 +58,6 @@ class ViewController: UIViewController, JrkPlayerDelegate {
         })
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        infoRetriever.stop()
-    }
-    
     func updatePlayerInfo(_ info: EpisodeInfo?) {
         jrkPlayer.updateNowPlaying(info)
         self.infoLabel?.text = info?.name
@@ -81,10 +76,10 @@ class ViewController: UIViewController, JrkPlayerDelegate {
     // -- JrkPlayerDelegate -- //
     func jrkPlayerStateChanged(state: JrkPlayerState) {
         switch state {
-        case .playing:
+        case .playing, .buffering:
             playPauseButton?.animate(to: .buttonPausedType)
             break
-        case .readyToPlay:
+        case .paused, .stopped:
             playPauseButton?.animate(to: .buttonForwardType)
             break
         case .unableToPlay:

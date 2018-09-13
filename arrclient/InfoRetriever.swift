@@ -32,6 +32,17 @@ class InfoRetriever: NSObject {
     private var callback: ((EpisodeInfo?) -> Void)?
     private var task: URLSessionDataTask?
     
+    
+    override init() {
+        super.init()
+        initializeAppLifecycleCallbacks()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    
     func start(_ callback: @escaping (EpisodeInfo?) -> Void) {
         print("Starting info retrieval loop")
         self.callback = callback
@@ -77,5 +88,25 @@ class InfoRetriever: NSObject {
         DispatchQueue.global().asyncAfter(deadline: .now() + 10.0, execute: {
             self.startTask()
         })
+    }
+
+    // -- app lifecycle -- //
+    private func initializeAppLifecycleCallbacks() {
+        NotificationCenter.default.addObserver(self, selector:#selector(appWillEnterBackground),
+                                               name: NSNotification.Name.UIApplicationWillResignActive,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self, selector:#selector(appWillEnterForeground),
+                                               name: NSNotification.Name.UIApplicationWillEnterForeground,
+                                               object: nil)
+    }
+    
+    @objc private func appWillEnterForeground() {
+        if let callback = self.callback {
+            start(callback)
+        }
+    }
+    
+    @objc private func appWillEnterBackground() {
+        stop()
     }
 }

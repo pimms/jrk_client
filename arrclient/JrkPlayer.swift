@@ -1,19 +1,14 @@
-//
-//  JrkPlayer.swift
-//  jrkclient
-//
-//  Created by pimms on 09/09/2018.
-//  Copyright © 2018 pimms. All rights reserved.
-//
-
 import Foundation
 import AVKit
 import MediaPlayer
+import KDEAudioPlayer
 
 
 enum JrkPlayerState {
+    case buffering
+    case stopped
     case unableToPlay
-    case readyToPlay
+    case paused
     case playing
 }
 
@@ -21,31 +16,34 @@ protocol JrkPlayerDelegate {
     func jrkPlayerStateChanged(state: JrkPlayerState)
 }
 
-class JrkPlayer: NSObject {
-    private let PLAYER_STATUS = "status"
-    private let PLAYER_RATE = "rate"
-    private let PLAYER_ERROR = "error"
-    
-    @objc private var player: AVPlayer
+class JrkPlayer: NSObject, AudioPlayerDelegate {
+    private let player: AudioPlayer
+    private var audioItem: AudioItem
     private let audioSession = AVAudioSession.sharedInstance()
     
     private let commandCenter = MPRemoteCommandCenter.shared()
     private let nowPlaying = MPNowPlayingInfoCenter.default()
     
     private var delegate: JrkPlayerDelegate?
-    private var playerState: JrkPlayerState = .unableToPlay
+    private var playerState: JrkPlayerState = .stopped
+    
     
     override init() {
-        let url = URLProvider.streamURL()
-        let playerItem = AVPlayerItem(url: url)
-        player = AVPlayer(playerItem: playerItem)
+        player = AudioPlayer()
+        audioItem = AudioItem(highQualitySoundURL: URLProvider.streamURL())!
         
         super.init()
-        
+        player.delegate = self
+
         initializeAudioSessionCategory()
         initializeCommandCenter()
-        setupPlayerKVOs()
+        initializeAppLifecycleCallbacks()
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     
     private func initializeCommandCenter() {
         commandCenter.playCommand.addTarget { event in
@@ -72,20 +70,6 @@ class JrkPlayer: NSObject {
         }
     }
     
-    private func setupPlayerKVOs() {
-        player.addObserver(self, forKeyPath: PLAYER_STATUS, options: [], context: nil)
-        player.addObserver(self, forKeyPath: PLAYER_RATE, options: [.new], context: nil)
-        player.addObserver(self, forKeyPath: PLAYER_ERROR, options: [], context: nil)
-    }
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        print("Observing change in keyPath: \(keyPath ?? "<nil>")")
-        
-        if (object as? AVPlayer? == player) {
-            checkAVPlayerForState()
-        }
-    }
-    
     func setDelegate(_ delegate: JrkPlayerDelegate) {
         self.delegate = delegate
         self.delegate?.jrkPlayerStateChanged(state: playerState)
@@ -93,53 +77,30 @@ class JrkPlayer: NSObject {
     
     func updateNowPlaying(_ info: EpisodeInfo?) {
         if let info = info {
-            nowPlaying.nowPlayingInfo = [MPMediaItemPropertyTitle: info.name as Any,
-                                         MPMediaItemPropertyArtist: "JRK",
-                                         MPMediaItemPropertyAlbumTitle: info.season as Any,
-                                         MPNowPlayingInfoPropertyIsLiveStream: true]
+            nowPlaying.nowPlayingInfo = [
+                MPMediaItemPropertyTitle: info.name as Any,
+                MPMediaItemPropertyArtist: "JRK",
+                MPMediaItemPropertyAlbumTitle: info.season as Any,
+                MPNowPlayingInfoPropertyIsLiveStream: true
+            ]
+            
+            audioItem.artist = "JRK"
+            audioItem.album = info.season
+            audioItem.title = info.name
         }
+    }
+    
+    func stop() {
+        player.stop()
     }
     
     func togglePlayPause() {
-        // Note that the KVO on the AVPlayer is responsible
-        // for updating the JrkPlayerState!
-        if (playerState == .readyToPlay) {
-            player.play()
+        if (playerState == .stopped) {
+            player.play(item: audioItem)
+        } else if (playerState == .paused) {
+            player.resume()
         } else if (playerState == .playing) {
             player.pause()
-        }
-    }
-    
-    private func checkAVPlayerForState() {
-        var unhandled = false
-        
-        if (player.isPlaying) {
-            // Coolio! :)
-            setPlayerState(.playing)
-        } else if (player.status == .readyToPlay) {
-            setPlayerState(.readyToPlay)
-        } else if (player.status == .failed) {
-            setPlayerState(.unableToPlay)
-        } else {
-            print("Unhandled AVPlayer state!")
-            unhandled = true
-        }
-        
-        if let error = player.error {
-            if (unhandled) {
-                print("Defaulting to .unableToPlay")
-                setPlayerState(.unableToPlay)
-            }
-            print("AVPlayer error: \(error.localizedDescription)")
-        }
-    }
-    
-    
-    private func setActiveSession(_ active: Bool) {
-        do {
-            try audioSession.setActive(active)
-        } catch let err {
-            NSLog("failed to set session active state: \(err)")
         }
     }
 
@@ -149,5 +110,47 @@ class JrkPlayer: NSObject {
             playerState = state
             delegate?.jrkPlayerStateChanged(state: state)
         }
+    }
+    
+    
+    // -- app lifecycle -- //
+    private func initializeAppLifecycleCallbacks() {
+        NotificationCenter.default.addObserver(self, selector:#selector(appWillEnterBackground),
+                                               name: NSNotification.Name.UIApplicationWillResignActive,
+                                               object: nil)
+    }
+    
+    @objc private func appWillEnterBackground() {
+        if (playerState != .playing && playerState != .buffering) {
+            print("App is unfocused and we're not actively playing – stopping player")
+            player.stop()
+        }
+    }
+    
+    
+    // -- AudioPlayerDelegate -- //
+    func audioPlayer(_ audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, to state: AudioPlayerState) {
+        print("Changing state from \(from) to \(state)")
+        switch (state) {
+        case .buffering, .waitingForConnection:
+            setPlayerState(.buffering)
+            break
+        case .paused:
+            setPlayerState(.paused)
+            break
+        case .stopped:
+            setPlayerState(.stopped)
+            break
+        case .playing:
+            setPlayerState(.playing)
+            break
+        case .failed:
+            setPlayerState(.unableToPlay)
+            break
+        }
+    }
+    
+    func audioPlayer(_ audioPlayer: AudioPlayer, didLoad range: TimeRange, for item: AudioItem) {
+        print("rangeload: \(range)")
     }
 }
