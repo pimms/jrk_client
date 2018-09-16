@@ -28,8 +28,6 @@
 		19C81F1B211F527F00BD920E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19C81F19211F527F00BD920E /* Main.storyboard */; };
 		19C81F1D211F528000BD920E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19C81F1C211F528000BD920E /* Assets.xcassets */; };
 		19C81F20211F528000BD920E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19C81F1E211F528000BD920E /* LaunchScreen.storyboard */; };
-		19C81F2B211F528000BD920E /* arrclientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C81F2A211F528000BD920E /* arrclientTests.swift */; };
-		19C81F36211F528000BD920E /* arrclientUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C81F35211F528000BD920E /* arrclientUITests.swift */; };
 		19E986AB212C71A4006A6976 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E986AA212C71A4006A6976 /* AppConfig.swift */; };
 		19E986AD212C71E8006A6976 /* TODO.plist in Resources */ = {isa = PBXBuildFile; fileRef = 19E986AC212C71E8006A6976 /* TODO.plist */; };
 		19E986AF212C7239006A6976 /* AppConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 19E986AE212C7239006A6976 /* AppConfig.plist */; };
@@ -85,11 +83,7 @@
 		19C81F1F211F528000BD920E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		19C81F21211F528000BD920E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19C81F26211F528000BD920E /* jrkclientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jrkclientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		19C81F2A211F528000BD920E /* arrclientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = arrclientTests.swift; sourceTree = "<group>"; };
-		19C81F2C211F528000BD920E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19C81F31211F528000BD920E /* jrkclientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jrkclientUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		19C81F35211F528000BD920E /* arrclientUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = arrclientUITests.swift; sourceTree = "<group>"; };
-		19C81F37211F528000BD920E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19E986AA212C71A4006A6976 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		19E986AC212C71E8006A6976 /* TODO.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TODO.plist; sourceTree = "<group>"; };
 		19E986AE212C7239006A6976 /* AppConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AppConfig.plist; sourceTree = "<group>"; };
@@ -205,8 +199,6 @@
 			isa = PBXGroup;
 			children = (
 				19C81F14211F527F00BD920E /* arrclient */,
-				19C81F29211F528000BD920E /* arrclientTests */,
-				19C81F34211F528000BD920E /* arrclientUITests */,
 				19C81F13211F527F00BD920E /* Products */,
 				193BC967211F81C6004FF315 /* Frameworks */,
 				43E65CB4CD27275EBC9146D9 /* Pods */,
@@ -235,24 +227,6 @@
 				19C81F21211F528000BD920E /* Info.plist */,
 			);
 			path = arrclient;
-			sourceTree = "<group>";
-		};
-		19C81F29211F528000BD920E /* arrclientTests */ = {
-			isa = PBXGroup;
-			children = (
-				19C81F2A211F528000BD920E /* arrclientTests.swift */,
-				19C81F2C211F528000BD920E /* Info.plist */,
-			);
-			path = arrclientTests;
-			sourceTree = "<group>";
-		};
-		19C81F34211F528000BD920E /* arrclientUITests */ = {
-			isa = PBXGroup;
-			children = (
-				19C81F35211F528000BD920E /* arrclientUITests.swift */,
-				19C81F37211F528000BD920E /* Info.plist */,
-			);
-			path = arrclientUITests;
 			sourceTree = "<group>";
 		};
 		43E65CB4CD27275EBC9146D9 /* Pods */ = {
@@ -540,7 +514,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19C81F2B211F528000BD920E /* arrclientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,7 +521,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19C81F36211F528000BD920E /* arrclientUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
