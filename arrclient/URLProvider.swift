@@ -2,24 +2,10 @@ import Foundation
 
 class URLProvider {
     private static let instance: URLProvider = URLProvider()
-    private let appConfig: AppConfig?
-    
-    init() {
-        do {
-            try appConfig = AppConfig()
-        } catch let error {
-            print("Failed to initialize AppConfig: \(error).")
-            appConfig = nil
-        }
-    }
+    private let appConfig = AppConfig()
     
     private func getRootURL() -> String {
-        if (appConfig != nil) {
-            return appConfig!.jrkServerURL()
-        }
-        
-        print("WARNING: No root URL defined!")
-        return ""
+        return appConfig.jrkServerURL()
     }
     
     static func infoURL() -> URL {

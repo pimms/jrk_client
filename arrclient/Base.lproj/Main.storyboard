@@ -103,20 +103,108 @@
             </objects>
             <point key="canvasLocation" x="31.199999999999999" y="32.512315270935964"/>
         </scene>
-        <!--View Controller-->
+        <!--Config View Controller-->
         <scene sceneID="wgI-pr-wq9">
             <objects>
-                <viewController id="QXc-jz-SHR" sceneMemberID="viewController">
+                <viewController id="QXc-jz-SHR" customClass="ConfigViewController" customModule="jrkclient" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WMv-Ts-OZF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show as track" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R2g-Eg-2JO">
+                                <rect key="frame" x="16" y="74" width="343" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="x1J-WY-yEd">
+                                <rect key="frame" x="16" y="106" width="343" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="27" id="lx9-TI-clp"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Episode"/>
+                                    <segment title="Season"/>
+                                    <segment title="Channel"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentedControlChanged:" destination="QXc-jz-SHR" eventType="valueChanged" id="45f-8Z-VaB"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show as album" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qrJ-Ja-2Oo">
+                                <rect key="frame" x="16" y="157" width="343" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Upo-68-3YU">
+                                <rect key="frame" x="16" y="189" width="343" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="27" id="XzX-ZZ-HXQ"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Episode"/>
+                                    <segment title="Season"/>
+                                    <segment title="Channel"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentedControlChanged:" destination="QXc-jz-SHR" eventType="valueChanged" id="WWL-p0-v9f"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show as artist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Bt-C2-8Gd">
+                                <rect key="frame" x="16" y="240" width="343" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1hy-QF-jKP">
+                                <rect key="frame" x="16" y="272" width="343" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="27" id="wrc-gd-a9F"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Episode"/>
+                                    <segment title="Season"/>
+                                    <segment title="Channel"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentedControlChanged:" destination="QXc-jz-SHR" eventType="valueChanged" id="505-PJ-Zkj"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Upo-68-3YU" firstAttribute="leading" secondItem="f3T-nI-Rug" secondAttribute="leading" constant="16" id="49n-nM-ccB"/>
+                            <constraint firstItem="f3T-nI-Rug" firstAttribute="trailing" secondItem="Upo-68-3YU" secondAttribute="trailing" constant="16" id="56S-pW-5L8"/>
+                            <constraint firstItem="f3T-nI-Rug" firstAttribute="trailing" secondItem="x1J-WY-yEd" secondAttribute="trailing" constant="16" id="6mY-yF-5wS"/>
+                            <constraint firstItem="f3T-nI-Rug" firstAttribute="trailing" secondItem="1hy-QF-jKP" secondAttribute="trailing" constant="16" id="DpB-bg-fuD"/>
+                            <constraint firstItem="qrJ-Ja-2Oo" firstAttribute="leading" secondItem="f3T-nI-Rug" secondAttribute="leading" constant="16" id="FSh-tE-QyT"/>
+                            <constraint firstItem="R2g-Eg-2JO" firstAttribute="top" secondItem="f3T-nI-Rug" secondAttribute="top" constant="30" id="HZQ-Bh-M6T"/>
+                            <constraint firstItem="x1J-WY-yEd" firstAttribute="leading" secondItem="f3T-nI-Rug" secondAttribute="leading" constant="16" id="KjN-gX-zzH"/>
+                            <constraint firstItem="f3T-nI-Rug" firstAttribute="trailing" secondItem="qrJ-Ja-2Oo" secondAttribute="trailing" constant="16" id="QGh-kM-HDU"/>
+                            <constraint firstItem="f3T-nI-Rug" firstAttribute="trailing" secondItem="R2g-Eg-2JO" secondAttribute="trailing" constant="16" id="Tno-tk-W4c"/>
+                            <constraint firstItem="Upo-68-3YU" firstAttribute="top" secondItem="qrJ-Ja-2Oo" secondAttribute="bottom" constant="8" id="c4x-ux-LYa"/>
+                            <constraint firstItem="0Bt-C2-8Gd" firstAttribute="top" secondItem="Upo-68-3YU" secondAttribute="bottom" constant="24" id="cFx-Nj-sUa"/>
+                            <constraint firstItem="1hy-QF-jKP" firstAttribute="top" secondItem="0Bt-C2-8Gd" secondAttribute="bottom" constant="8" id="e1i-2T-Iu7"/>
+                            <constraint firstItem="x1J-WY-yEd" firstAttribute="top" secondItem="R2g-Eg-2JO" secondAttribute="bottom" constant="8" id="fH9-bn-Fhm"/>
+                            <constraint firstItem="R2g-Eg-2JO" firstAttribute="leading" secondItem="f3T-nI-Rug" secondAttribute="leading" constant="16" id="g9h-Lf-oyf"/>
+                            <constraint firstItem="0Bt-C2-8Gd" firstAttribute="leading" secondItem="f3T-nI-Rug" secondAttribute="leading" constant="16" id="hh8-Ah-R95"/>
+                            <constraint firstItem="1hy-QF-jKP" firstAttribute="leading" secondItem="f3T-nI-Rug" secondAttribute="leading" constant="16" id="r5w-Bh-AkR"/>
+                            <constraint firstItem="qrJ-Ja-2Oo" firstAttribute="top" secondItem="x1J-WY-yEd" secondAttribute="bottom" constant="24" id="wYj-UT-gGW"/>
+                            <constraint firstItem="f3T-nI-Rug" firstAttribute="trailing" secondItem="0Bt-C2-8Gd" secondAttribute="trailing" constant="16" id="ytu-6M-hPC"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="f3T-nI-Rug"/>
                     </view>
+                    <connections>
+                        <outlet property="showAsAlbum" destination="Upo-68-3YU" id="dGd-gU-XH5"/>
+                        <outlet property="showAsArtist" destination="1hy-QF-jKP" id="5hb-wx-Bd4"/>
+                        <outlet property="showAsTrack" destination="x1J-WY-yEd" id="5ho-je-t1Q"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sfz-2f-T08" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="hvL-be-Ky4"/>
             </objects>
-            <point key="canvasLocation" x="-751" y="767"/>
+            <point key="canvasLocation" x="-751.20000000000005" y="766.99507389162568"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="dL0-ba-Ufm">
