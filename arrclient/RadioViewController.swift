@@ -4,7 +4,7 @@ import MediaPlayer
 
 import VBFPopFlatButton
 
-class ViewController: UIViewController, JrkPlayerDelegate, PlayButtonDelegate {
+class RadioViewController: UIViewController, JrkPlayerDelegate, PlayButtonDelegate {
     private let infoRetriever: InfoRetriever = InfoRetriever()
     
     @IBOutlet
