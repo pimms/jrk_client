@@ -13,10 +13,11 @@ class MainViewController : LGSideMenuController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        leftViewWidth = view.frame.width - 150.0
+        leftViewWidth = view.frame.width - 100.0
         
         leftViewPresentationStyle = .slideBelow
         leftViewBackgroundColor = leftViewController?.view.backgroundColor
         rootViewCoverBlurEffectForLeftView = UIBlurEffect(style: .dark)
+        rootViewScaleForLeftView = CGFloat(1.2)
     }
 }
