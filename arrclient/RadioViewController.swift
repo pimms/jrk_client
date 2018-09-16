@@ -36,7 +36,7 @@ class RadioViewController: UIViewController, JrkPlayerDelegate, PlayButtonDelega
     }
     
     func updatePlayerInfo(_ info: EpisodeInfo?) {
-        jrkPlayer?.updateNowPlaying(info)
+        jrkPlayer?.setNowPlaying(info)
         self.infoLabel?.text = info?.name
         self.seasonLabel?.text = info?.season
     }

@@ -9,6 +9,8 @@ target 'jrkclient' do
   pod 'VBFPopFlatButton'
   pod 'KDEAudioPlayer'
   pod 'DottedProgressBar'
+  pod 'LGSideMenuController'
+  pod 'SwiftEventBus', :tag => '3.0.0', :git => 'https://github.com/cesarferreira/SwiftEventBus.git'
 
   target 'jrkclientTests' do
     inherit! :search_paths

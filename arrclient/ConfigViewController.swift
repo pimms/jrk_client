@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SwiftEventBus
 
 class ConfigViewController: UIViewController {
     private let appConfig = AppConfig()
@@ -27,8 +28,8 @@ class ConfigViewController: UIViewController {
     
     @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
         if let key = getDefaultsKey(forControl: sender) {
-            UserDefaults.standard.set(sender.selectedSegmentIndex,
-                                      forKey: key.rawValue)
+            UserDefaults.standard.set(sender.selectedSegmentIndex, forKey: key.rawValue)
+            SwiftEventBus.post(.nowPlayingConfigChangedEvent)
         }
     }
     

@@ -2,6 +2,7 @@ import Foundation
 import AVKit
 import MediaPlayer
 import KDEAudioPlayer
+import SwiftEventBus
 
 
 @objc enum JrkPlayerState: Int {
@@ -45,6 +46,7 @@ class JrkPlayer: NSObject, AudioPlayerDelegate {
     private var player: AudioPlayer
     private var audioItem: AudioItem
     private let audioSession = AVAudioSession.sharedInstance()
+    private var episodeInfo: EpisodeInfo?
     
     private let commandCenter = MPRemoteCommandCenter.shared()
     private let nowPlaying = MPNowPlayingInfoCenter.default()
@@ -63,21 +65,24 @@ class JrkPlayer: NSObject, AudioPlayerDelegate {
         initializeCommandCenter()
         initializeAppLifecycleCallbacks()
         initializeDelegateKVO()
+        
+        SwiftEventBus.onMainThread(self, name: .nowPlayingConfigChangedEvent) { event in
+            self.updateNowPlayingInformation()
+        }
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+        SwiftEventBus.unregister(self)
     }
     
     
     private func initializeCommandCenter() {
         commandCenter.playCommand.addTarget { event in
-            print("MPC Play")
             self.togglePlayPause()
             return MPRemoteCommandHandlerStatus.success
         }
         commandCenter.pauseCommand.addTarget { event in
-            print("MPC Pause")
             self.togglePlayPause()
             return MPRemoteCommandHandlerStatus.success
         }
@@ -104,20 +109,30 @@ class JrkPlayer: NSObject, AudioPlayerDelegate {
         callDelegates()
     }
     
-    func updateNowPlaying(_ info: EpisodeInfo?) {
-        if let info = info {
+    func setNowPlaying(_ info: EpisodeInfo?) {
+        episodeInfo = info
+        updateNowPlayingInformation()
+    }
+
+    
+    private func updateNowPlayingInformation() {
+        if let info = episodeInfo {
+            let appConfig = AppConfig()
+            let nowPlayingData = NowPlayingData(withConfig: appConfig, episodeInfo: info)
+            
             nowPlaying.nowPlayingInfo = [
-                MPMediaItemPropertyTitle: info.name as Any,
-                MPMediaItemPropertyArtist: "JRK",
-                MPMediaItemPropertyAlbumTitle: info.season as Any,
+                MPMediaItemPropertyTitle: nowPlayingData.trackDisplay,
+                MPMediaItemPropertyArtist: nowPlayingData.artistDisplay,
+                MPMediaItemPropertyAlbumTitle: nowPlayingData.albumDisplay,
                 MPNowPlayingInfoPropertyIsLiveStream: true
             ]
             
-            audioItem.artist = "JRK"
-            audioItem.album = info.season
-            audioItem.title = info.name
+            audioItem.artist = nowPlayingData.artistDisplay
+            audioItem.album = nowPlayingData.albumDisplay
+            audioItem.title = nowPlayingData.trackDisplay
         }
     }
+    
     
     func stop() {
         player.stop()
