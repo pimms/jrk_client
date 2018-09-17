@@ -18,6 +18,9 @@ class RadioViewController: UIViewController, JrkPlayerDelegate, PlayButtonDelega
     @IBOutlet
     var playButton: PlayButton?
     
+    @IBOutlet
+    var viewsOmittedFromInitialFade: [UIView]!
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.infoLabel?.text = nil
@@ -26,6 +29,15 @@ class RadioViewController: UIViewController, JrkPlayerDelegate, PlayButtonDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let fadeInDuration = 0.5
+        for subview in view.subviews {
+            if viewsOmittedFromInitialFade.contains(subview) {
+                continue
+            }
+            subview.alpha = 0.0
+            UIView.animate(withDuration: fadeInDuration, animations: { subview.alpha = 1.0 })
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -45,6 +57,8 @@ class RadioViewController: UIViewController, JrkPlayerDelegate, PlayButtonDelega
         super.didReceiveMemoryWarning()
     }
 
+    
+    // -- PlayButtonDelegate -- //
     func playButtonClicked(_ playButton: PlayButton) {
         jrkPlayer?.togglePlayPause()
     }

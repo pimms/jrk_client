@@ -91,6 +91,7 @@
                         <outlet property="jrkPlayer" destination="ed9-SS-ItV" id="xvp-eb-6hy"/>
                         <outlet property="playButton" destination="aSy-xp-Qbj" id="wzE-9F-duR"/>
                         <outlet property="seasonLabel" destination="2X2-mh-olM" id="3Je-7p-Jw2"/>
+                        <outletCollection property="viewsOmittedFromInitialFade" destination="nYC-1A-Ca0" collectionClass="NSMutableArray" id="1cc-dU-eZI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
