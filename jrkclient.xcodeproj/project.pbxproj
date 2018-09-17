@@ -176,6 +176,15 @@
 			name = extensions;
 			sourceTree = "<group>";
 		};
+		195D97992150391600294AAF /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				19C81F19211F527F00BD920E /* Main.storyboard */,
+				19C81F1E211F528000BD920E /* LaunchScreen.storyboard */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		19BF64FE214EA14C004DD3C9 /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -218,12 +227,11 @@
 		19C81F14211F527F00BD920E /* arrclient */ = {
 			isa = PBXGroup;
 			children = (
+				195D97992150391600294AAF /* UI */,
 				193BC966211F81C6004FF315 /* arrclient.entitlements */,
 				194CC9EF2145929200BF1381 /* source */,
 				193898512125F5A10043B4B5 /* assets */,
-				19C81F19211F527F00BD920E /* Main.storyboard */,
 				19C81F1C211F528000BD920E /* Assets.xcassets */,
-				19C81F1E211F528000BD920E /* LaunchScreen.storyboard */,
 				19C81F21211F528000BD920E /* Info.plist */,
 			);
 			path = arrclient;
