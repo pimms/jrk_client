@@ -138,6 +138,14 @@ class JrkPlayer: NSObject, AudioPlayerDelegate {
         player.stop()
     }
     
+    func play() {
+        if (playerState == .stopped) {
+            player.play(item: audioItem)
+        } else if (playerState == .paused) {
+            player.resume()
+        }
+    }
+    
     func togglePlayPause() {
         if (playerState == .stopped) {
             player.play(item: audioItem)

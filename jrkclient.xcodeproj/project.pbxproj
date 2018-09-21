@@ -17,6 +17,7 @@
 		1938985F21260F020043B4B5 /* NSObject+jsonInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1938985E21260F020043B4B5 /* NSObject+jsonInit.swift */; };
 		1938986121261A050043B4B5 /* jrk.png in Resources */ = {isa = PBXBuildFile; fileRef = 1938986021261A050043B4B5 /* jrk.png */; };
 		193BC969211F81C6004FF315 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 193BC968211F81C6004FF315 /* AudioToolbox.framework */; };
+		19488D092153FAAB00E79ED1 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19488D082153FAAA00E79ED1 /* Intents.framework */; };
 		194CC9F12145937A00BF1381 /* JrkPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194CC9F02145937A00BF1381 /* JrkPlayer.swift */; };
 		194CC9F62146FF9F00BF1381 /* AVPlayer+isPlaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194CC9F52146FF9F00BF1381 /* AVPlayer+isPlaying.swift */; };
 		19BA9DA3214AEA4200BD31D6 /* BufferIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BA9DA2214AEA4200BD31D6 /* BufferIndicatorView.swift */; };
@@ -69,6 +70,7 @@
 		1938986021261A050043B4B5 /* jrk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jrk.png; sourceTree = "<group>"; };
 		193BC966211F81C6004FF315 /* arrclient.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = arrclient.entitlements; sourceTree = "<group>"; };
 		193BC968211F81C6004FF315 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		19488D082153FAAA00E79ED1 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		194CC9F02145937A00BF1381 /* JrkPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JrkPlayer.swift; sourceTree = "<group>"; };
 		194CC9F52146FF9F00BF1381 /* AVPlayer+isPlaying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayer+isPlaying.swift"; sourceTree = "<group>"; };
 		19BA9DA2214AEA4200BD31D6 /* BufferIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BufferIndicatorView.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19488D092153FAAB00E79ED1 /* Intents.framework in Frameworks */,
 				193BC969211F81C6004FF315 /* AudioToolbox.framework in Frameworks */,
 				94D804800830664705095770 /* Pods_jrkclient.framework in Frameworks */,
 			);
@@ -141,6 +144,7 @@
 		193BC967211F81C6004FF315 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				19488D082153FAAA00E79ED1 /* Intents.framework */,
 				193BC968211F81C6004FF315 /* AudioToolbox.framework */,
 				AF366E48BB30161F3C368A98 /* Pods_jrkclient.framework */,
 				8E68886A83DE7EAE835568A1 /* Pods_jrkclientTests.framework */,
@@ -327,6 +331,9 @@
 								enabled = 1;
 							};
 							com.apple.InterAppAudio = {
+								enabled = 1;
+							};
+							com.apple.Siri = {
 								enabled = 1;
 							};
 						};
@@ -690,6 +697,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WSQ25TFDK3;
 				INFOPLIST_FILE = arrclient/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -710,6 +718,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WSQ25TFDK3;
 				INFOPLIST_FILE = arrclient/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

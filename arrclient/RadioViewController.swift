@@ -29,6 +29,7 @@ class RadioViewController: UIViewController, JrkPlayerDelegate, PlayButtonDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupSiriActivity()
         
         let fadeInDuration = 0.5
         for subview in view.subviews {
@@ -47,16 +48,28 @@ class RadioViewController: UIViewController, JrkPlayerDelegate, PlayButtonDelega
         })
     }
     
+    
+    private func setupSiriActivity() {
+        let activity = NSUserActivity(activityType: "no.jstien.arrclient.siri.playJrk")
+        activity.title = "Play JRK"
+        // activity.userInfo = ["color" : "red"]
+        activity.isEligibleForSearch = true
+        activity.isEligibleForPrediction = true
+        activity.persistentIdentifier = NSUserActivityPersistentIdentifier("no.jstien.arrclient.siri.playJrk")
+        view.userActivity = activity
+        activity.becomeCurrent()
+    }
+    
+    func onSiriPlayInvocation() {
+        jrkPlayer?.play()
+    }
+    
     func updatePlayerInfo(_ info: EpisodeInfo?) {
         jrkPlayer?.setNowPlaying(info)
         self.infoLabel?.text = info?.name
         self.seasonLabel?.text = info?.season
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
     
     // -- PlayButtonDelegate -- //
     func playButtonClicked(_ playButton: PlayButton) {
