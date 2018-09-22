@@ -35,11 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
-        let viewController = window?.rootViewController as! MainViewController
-        let radioController = viewController.rootViewController as! RadioViewController
-        radioController.onSiriPlayInvocation()
-        print("INVOKED!")
-        
+        JrkPlayer.shared.play()
         return true
     }
 

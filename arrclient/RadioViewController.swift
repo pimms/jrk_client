@@ -4,8 +4,7 @@ import MediaPlayer
 
 import VBFPopFlatButton
 
-class RadioViewController: UIViewController, JrkPlayerDelegate, PlayButtonDelegate {
-    private let infoRetriever: InfoRetriever = InfoRetriever()
+class RadioViewController: UIViewController, JrkPlayerDelegate, PlayButtonDelegate, InfoRetrieverDelegate {
     private let jrkPlayer: JrkPlayer = JrkPlayer.shared
     
     @IBOutlet
@@ -20,6 +19,11 @@ class RadioViewController: UIViewController, JrkPlayerDelegate, PlayButtonDelega
     @IBOutlet
     var viewsOmittedFromInitialFade: [UIView]!
     
+    deinit {
+        jrkPlayer.removeDelegate(self)
+        InfoRetriever.shared.removeDelegate(self)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.infoLabel?.text = nil
@@ -29,6 +33,10 @@ class RadioViewController: UIViewController, JrkPlayerDelegate, PlayButtonDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSiriActivity()
+        
+        jrkPlayer.addDelegate(self)
+        InfoRetriever.shared.addDelegate(self)
+        InfoRetriever.shared.startRetrievalLoop()
         
         let fadeInDuration = 0.5
         for subview in view.subviews {
@@ -42,9 +50,6 @@ class RadioViewController: UIViewController, JrkPlayerDelegate, PlayButtonDelega
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        infoRetriever.start({ info in
-            self.updatePlayerInfo(info)
-        })
     }
     
     
@@ -59,16 +64,12 @@ class RadioViewController: UIViewController, JrkPlayerDelegate, PlayButtonDelega
         activity.becomeCurrent()
     }
     
-    func onSiriPlayInvocation() {
-        jrkPlayer.play()
+    // -- InfoRetrieverDelegate -- //
+    func episodeInfoChanged(_ episodeInfo: EpisodeInfo?) {
+        jrkPlayer.setNowPlaying(episodeInfo)
+        self.infoLabel?.text = episodeInfo?.name
+        self.seasonLabel?.text = episodeInfo?.season
     }
-    
-    func updatePlayerInfo(_ info: EpisodeInfo?) {
-        jrkPlayer.setNowPlaying(info)
-        self.infoLabel?.text = info?.name
-        self.seasonLabel?.text = info?.season
-    }
-    
     
     // -- PlayButtonDelegate -- //
     func playButtonClicked(_ playButton: PlayButton) {

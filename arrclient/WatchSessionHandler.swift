@@ -9,7 +9,7 @@
 import Foundation
 import WatchConnectivity
 
-class WatchSessionHandler: NSObject, WCSessionDelegate {
+class WatchSessionHandler: NSObject, WCSessionDelegate, JrkPlayerDelegate, InfoRetrieverDelegate {
     static let shared = WatchSessionHandler()
     
     private let session = WCSession.default
@@ -21,6 +21,9 @@ class WatchSessionHandler: NSObject, WCSessionDelegate {
         if (isSupported()) {
             session.delegate = self
             session.activate()
+            
+            InfoRetriever.shared.addDelegate(self)
+            JrkPlayer.shared.addDelegate(self)
         }
         
         print("isPaired?: \(session.isPaired), isWatchAppInstalled?: \(session.isWatchAppInstalled)")
@@ -31,7 +34,8 @@ class WatchSessionHandler: NSObject, WCSessionDelegate {
     }
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        print("WCSession activation completed with state: \(activationState)")
+        episodeInfoChanged(InfoRetriever.shared.episodeInfo)
+        jrkPlayerStateChanged(state: JrkPlayer.shared.state)
     }
     
     func sessionDidBecomeInactive(_ session: WCSession) {}
@@ -47,11 +51,50 @@ class WatchSessionHandler: NSObject, WCSessionDelegate {
             } else if (request == "pause") {
                 jrkPlayer.pause()
                 replyHandler(["status": "ok"])
-            } else if (request == "nowPlaying") {
+            } else if (request == "togglePlay") {
+                jrkPlayer.togglePlayPause()
                 replyHandler(["status": "ok"])
+            } else if (request == "status") {
+                replyHandler(handleNowPlayingRequest())
             } else {
-                replyHandler(["status": "failed"])
+                replyHandler(["status": "unrecognized request"])
             }
         }
+    }
+    
+    private func handleNowPlayingRequest() -> [String: Any] {
+        let info = InfoRetriever.shared.episodeInfo
+        let state = JrkPlayer.shared.state
+        return [
+            "status": "ok",
+            "title": info?.name as Any,
+            "subtitle": info?.season as Any,
+            "state": state.toString()
+        ]
+    }
+    
+    // -- InfoRetrieverDelegate -- //
+    func episodeInfoChanged(_ episodeInfo: EpisodeInfo?) {
+        let message = [
+            "type": "nowPlaying",
+            "title": episodeInfo?.name as Any,
+            "subtitle": episodeInfo?.season as Any
+        ]
+        
+        session.sendMessage(message, replyHandler: nil, errorHandler: {error in
+            print("Failed to send message to watch: \(error)")
+        })
+    }
+    
+    // -- JrkPlayerDelegate -- //
+    func jrkPlayerStateChanged(state: JrkPlayerState) {
+        let message = [
+            "type": "jrkState",
+            "state": state.toString()
+        ]
+        
+        session.sendMessage(message, replyHandler: nil, errorHandler: {error in
+            print("Failed to send message to watch: \(error)")
+        })
     }
 }

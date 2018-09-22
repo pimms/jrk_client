@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14313.18" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
-    <device id="watch38" orientation="portrait">
+    <device id="watch42" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -11,16 +11,42 @@
         <!--Interface Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="watchapp" customModuleProvider="target">
+                <controller fullScreen="YES" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="watchapp" customModuleProvider="target">
                     <items>
-                        <button width="1" alignment="left" title="play" id="Jis-UQ-3uJ">
-                            <connections>
-                                <action selector="playButtonClicked" destination="AgC-eL-Hgc" id="Vxe-GF-ejo"/>
-                            </connections>
-                        </button>
+                        <group height="51" alignment="left" id="FkW-Nt-EBx" userLabel="Group - Logo">
+                            <items>
+                                <imageView width="1" height="40" alignment="center" verticalAlignment="bottom" image="jrk-white" contentMode="scaleAspectFit" id="h1d-Li-feP"/>
+                            </items>
+                        </group>
+                        <group width="1" alignment="left" verticalAlignment="center" layout="vertical" id="76E-OA-SnN" userLabel="Group - Labels">
+                            <items>
+                                <label width="1" alignment="left" text="Label" textAlignment="center" id="1ck-fZ-nXA">
+                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                </label>
+                                <label width="1" alignment="left" text="Label" textAlignment="center" id="xYm-kO-Gce">
+                                    <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                </label>
+                            </items>
+                        </group>
+                        <group width="1" alignment="left" verticalAlignment="bottom" id="zH4-CC-rQ2" userLabel="Group - Button">
+                            <items>
+                                <button width="1" alignment="left" title="connecting..." id="Jis-UQ-3uJ">
+                                    <fontDescription key="font" type="system" pointSize="15"/>
+                                    <connections>
+                                        <action selector="playButtonClicked" destination="AgC-eL-Hgc" id="Vxe-GF-ejo"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
                     </items>
+                    <connections>
+                        <outlet property="playPauseButton" destination="Jis-UQ-3uJ" id="KmQ-Pa-X26"/>
+                        <outlet property="subTitleLabel" destination="xYm-kO-Gce" id="HHh-3P-dIS"/>
+                        <outlet property="titleLabel" destination="1ck-fZ-nXA" id="cBF-Ny-hd8"/>
+                    </connections>
                 </controller>
             </objects>
+            <point key="canvasLocation" x="34" y="30.948717948717952"/>
         </scene>
     </scenes>
 </document>

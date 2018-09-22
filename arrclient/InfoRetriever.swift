@@ -25,11 +25,23 @@ func toMap(_ data: Data) -> [String: AnyObject] {
     }
 }
 
+@objc protocol InfoRetrieverDelegate {
+    func episodeInfoChanged(_ episodeInfo: EpisodeInfo?)
+}
+
 class InfoRetriever: NSObject {
-    private var currentName: String? = nil
-    private var shouldLoop = false
+    static let shared = InfoRetriever()
     
-    private var callback: ((EpisodeInfo?) -> Void)?
+    var episodeInfo: EpisodeInfo? {
+        get {
+            return info
+        }
+    }
+    
+    private var delegates: [InfoRetrieverDelegate] = []
+    
+    private var info: EpisodeInfo? = nil
+    private var shouldLoop = false
     private var task: URLSessionDataTask?
     
     
@@ -43,18 +55,29 @@ class InfoRetriever: NSObject {
     }
     
     
-    func start(_ callback: @escaping (EpisodeInfo?) -> Void) {
-        print("Starting info retrieval loop")
-        self.callback = callback
-        self.callback?(nil)
-        shouldLoop = true
-        startTask()
+    func addDelegate(_ delegate: InfoRetrieverDelegate) {
+        removeDelegate(delegate)
+        delegates.append(delegate)
     }
     
-    func stop() {
-        print("Stopping info retrieval loop")
+    func removeDelegate(_ delegate: InfoRetrieverDelegate) {
+        delegates = delegates.filter { $0 !== delegate }
+    }
+    
+    
+    func startRetrievalLoop() {
+        if (!shouldLoop) {
+            print("Starting InfoRetrievalLoop")
+            shouldLoop = true
+            startTask()
+        }
+    }
+    
+    func stopRetrievalLoop() {
+        print("Stopping InfoRetrievalLoop")
         shouldLoop = false
     }
+    
     
     private func startTask() {
         let url = URLProvider.infoURL()
@@ -69,13 +92,13 @@ class InfoRetriever: NSObject {
     private func handleResponse(data: Data?, error: Error?) {
         if (error != nil || data == nil) {
             print("failed to get info :( \(String(describing: error))")
-            self.currentName = nil
-            self.callback?(nil)
+            info = nil
+            dispatchToDelegates()
         } else {
-            let info = EpisodeInfo(fromMap: toMap(data!))
-            
-            if (self.currentName != info.name) {
-                self.callback?(info)                
+            let new = EpisodeInfo(fromMap: toMap(data!))
+            if new.name != info?.name ?? nil {
+                info = new
+                dispatchToDelegates()
             }
         }
         
@@ -90,6 +113,10 @@ class InfoRetriever: NSObject {
         })
     }
 
+    private func dispatchToDelegates() {
+        delegates.forEach { $0.episodeInfoChanged(info) }
+    }
+    
     // -- app lifecycle -- //
     private func initializeAppLifecycleCallbacks() {
         NotificationCenter.default.addObserver(self, selector:#selector(appWillEnterBackground),
@@ -101,12 +128,10 @@ class InfoRetriever: NSObject {
     }
     
     @objc private func appWillEnterForeground() {
-        if let callback = self.callback {
-            start(callback)
-        }
+        startRetrievalLoop()
     }
     
     @objc private func appWillEnterBackground() {
-        stop()
+        stopRetrievalLoop()
     }
 }

@@ -29,7 +29,7 @@ import SwiftEventBus
 }
 
 @objc protocol JrkPlayerDelegate {
-    @objc func jrkPlayerStateChanged(state: JrkPlayerState)
+    func jrkPlayerStateChanged(state: JrkPlayerState)
 }
 
 class JrkPlayer: NSObject, AudioPlayerDelegate {
@@ -46,6 +46,11 @@ class JrkPlayer: NSObject, AudioPlayerDelegate {
     private let nowPlaying = MPNowPlayingInfoCenter.default()
     
     private var playerState: JrkPlayerState = .stopped
+    var state: JrkPlayerState {
+        get {
+            return playerState
+        }
+    }
     
     
     override init() {
