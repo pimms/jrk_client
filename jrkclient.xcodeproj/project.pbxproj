@@ -10,6 +10,7 @@
 		1915514A214EBE4C0029AC79 /* NowPlayingConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19155149214EBE4C0029AC79 /* NowPlayingConfiguration.swift */; };
 		1915514C214ECA620029AC79 /* NowPlayingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1915514B214ECA620029AC79 /* NowPlayingData.swift */; };
 		1915514E214ED2160029AC79 /* EventIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1915514D214ED2160029AC79 /* EventIDs.swift */; };
+		1920491F215658500093352C /* WatchSessionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1920491E215658500093352C /* WatchSessionHandler.swift */; };
 		193898532125F5AF0043B4B5 /* background-main.png in Resources */ = {isa = PBXBuildFile; fileRef = 193898522125F5AF0043B4B5 /* background-main.png */; };
 		193898592125FF900043B4B5 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 193898582125FF900043B4B5 /* play.png */; };
 		1938985B2125FF970043B4B5 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 1938985A2125FF960043B4B5 /* pause.png */; };
@@ -109,6 +110,7 @@
 		19155149214EBE4C0029AC79 /* NowPlayingConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingConfiguration.swift; sourceTree = "<group>"; };
 		1915514B214ECA620029AC79 /* NowPlayingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingData.swift; sourceTree = "<group>"; };
 		1915514D214ED2160029AC79 /* EventIDs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventIDs.swift; sourceTree = "<group>"; };
+		1920491E215658500093352C /* WatchSessionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionHandler.swift; sourceTree = "<group>"; };
 		193898522125F5AF0043B4B5 /* background-main.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-main.png"; sourceTree = "<group>"; };
 		193898582125FF900043B4B5 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = play.png; path = ../../../../../Downloads/play.png; sourceTree = "<group>"; };
 		1938985A2125FF960043B4B5 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pause.png; path = ../../../../../Downloads/pause.png; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 				19155149214EBE4C0029AC79 /* NowPlayingConfiguration.swift */,
 				1915514B214ECA620029AC79 /* NowPlayingData.swift */,
 				1915514D214ED2160029AC79 /* EventIDs.swift */,
+				1920491E215658500093352C /* WatchSessionHandler.swift */,
 			);
 			name = source;
 			sourceTree = "<group>";
@@ -681,6 +684,7 @@
 				19C81F18211F527F00BD920E /* RadioViewController.swift in Sources */,
 				19C81F16211F527F00BD920E /* AppDelegate.swift in Sources */,
 				1938985F21260F020043B4B5 /* NSObject+jsonInit.swift in Sources */,
+				1920491F215658500093352C /* WatchSessionHandler.swift in Sources */,
 				19BA9DA3214AEA4200BD31D6 /* BufferIndicatorView.swift in Sources */,
 				194CC9F12145937A00BF1381 /* JrkPlayer.swift in Sources */,
 			);

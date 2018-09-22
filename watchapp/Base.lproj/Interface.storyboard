@@ -13,7 +13,11 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="watchapp" customModuleProvider="target">
                     <items>
-                        <button width="1" alignment="left" title="play" id="Jis-UQ-3uJ"/>
+                        <button width="1" alignment="left" title="play" id="Jis-UQ-3uJ">
+                            <connections>
+                                <action selector="playButtonClicked" destination="AgC-eL-Hgc" id="Vxe-GF-ejo"/>
+                            </connections>
+                        </button>
                     </items>
                 </controller>
             </objects>
