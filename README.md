@@ -4,6 +4,8 @@ This is the companion app written to exclusively work with [JRK Server](https://
 
 This app is *not* complete, and is missing a few required components for it to work properly. Because copyright.
 
+You also need to generate all the icons. This can be done by running the `scripts/gen-icon.sh`-script.
+
 
 ## Background Image
 

@@ -4,7 +4,7 @@ ios_res=(20 29 40 58 60 76 80 87 120 152 167 180 1024)
 wos_res=(48 55 58 80 87 88 100 172 196 216 1024)
 
 SD="$(dirname "$0")"
-SRC_IMG="$SD/../icons/jrk.png"
+SRC_IMG="$SD/../jrk.png"
 
 IOS_DIR="$SD/../arrclient/Assets.xcassets/AppIcon.appiconset/"
 WOS_DIR="$SD/../watchapp/Assets.xcassets/AppIcon.appiconset/"
