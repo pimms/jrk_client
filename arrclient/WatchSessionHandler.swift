@@ -13,6 +13,7 @@ class WatchSessionHandler: NSObject, WCSessionDelegate {
     static let shared = WatchSessionHandler()
     
     private let session = WCSession.default
+    private let jrkPlayer = JrkPlayer.shared
     
     override init() {
         super.init()
@@ -29,21 +30,28 @@ class WatchSessionHandler: NSObject, WCSessionDelegate {
         return WCSession.isSupported()
     }
     
-    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
-        print("RECEIVED MESSAGE: \(message)")
-        replyHandler(["message" : "Alt kommer til å bli OK! :)"])
-    }
-    
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         print("WCSession activation completed with state: \(activationState)")
     }
     
-    func sessionDidBecomeInactive(_ session: WCSession) {
-        print("WCSession did become active: \(session)")
-    }
+    func sessionDidBecomeInactive(_ session: WCSession) {}
     
-    func sessionDidDeactivate(_ session: WCSession) {
-        print("WCSession did deactivate: \(session)")
-    }
+    func sessionDidDeactivate(_ session: WCSession) {}
     
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
+        if let request = message["request"] as? String {
+            print("Received watch-action request '\(request)'")
+            if (request == "play") {
+                jrkPlayer.play()
+                replyHandler(["status": "ok"])
+            } else if (request == "pause") {
+                jrkPlayer.pause()
+                replyHandler(["status": "ok"])
+            } else if (request == "nowPlaying") {
+                replyHandler(["status": "ok"])
+            } else {
+                replyHandler(["status": "failed"])
+            }
+        }
+    }
 }

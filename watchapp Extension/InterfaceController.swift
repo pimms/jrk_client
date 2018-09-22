@@ -39,10 +39,10 @@ class InterfaceController: WKInterfaceController {
     func playButtonClicked() {
         if (session.isReachable) {
             print("[WATCH] Sending message")
-            session.sendMessage(["action" : "play"], replyHandler: { (response) in
-                print("[WATCH] Received response: %@", response)
+            session.sendMessage(["request" : "play"], replyHandler: { (response) in
+                print("[WATCH] Received response: ", response)
             }, errorHandler: { (error) in
-                print("[WATCH] Error sending message: %@", error)
+                print("[WATCH] Error sending message: ", error)
             })
         }
     }
