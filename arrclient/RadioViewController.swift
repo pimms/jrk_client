@@ -6,9 +6,8 @@ import VBFPopFlatButton
 
 class RadioViewController: UIViewController, JrkPlayerDelegate, PlayButtonDelegate {
     private let infoRetriever: InfoRetriever = InfoRetriever()
+    private let jrkPlayer: JrkPlayer = JrkPlayer.shared
     
-    @IBOutlet
-    var jrkPlayer: JrkPlayer?
     @IBOutlet
     var infoLabel: UILabel?
     @IBOutlet
@@ -61,11 +60,11 @@ class RadioViewController: UIViewController, JrkPlayerDelegate, PlayButtonDelega
     }
     
     func onSiriPlayInvocation() {
-        jrkPlayer?.play()
+        jrkPlayer.play()
     }
     
     func updatePlayerInfo(_ info: EpisodeInfo?) {
-        jrkPlayer?.setNowPlaying(info)
+        jrkPlayer.setNowPlaying(info)
         self.infoLabel?.text = info?.name
         self.seasonLabel?.text = info?.season
     }
@@ -73,7 +72,7 @@ class RadioViewController: UIViewController, JrkPlayerDelegate, PlayButtonDelega
     
     // -- PlayButtonDelegate -- //
     func playButtonClicked(_ playButton: PlayButton) {
-        jrkPlayer?.togglePlayPause()
+        jrkPlayer.togglePlayPause()
     }
     
     // -- JrkPlayerDelegate -- //

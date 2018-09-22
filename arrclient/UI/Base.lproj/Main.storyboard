@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -88,19 +87,12 @@
                     <connections>
                         <outlet property="debugLabel" destination="3md-zE-WX0" id="0Xv-H4-b2b"/>
                         <outlet property="infoLabel" destination="fGD-J7-Pa1" id="pmk-1P-aSE"/>
-                        <outlet property="jrkPlayer" destination="ed9-SS-ItV" id="xvp-eb-6hy"/>
                         <outlet property="playButton" destination="aSy-xp-Qbj" id="wzE-9F-duR"/>
                         <outlet property="seasonLabel" destination="2X2-mh-olM" id="3Je-7p-Jw2"/>
                         <outletCollection property="viewsOmittedFromInitialFade" destination="nYC-1A-Ca0" collectionClass="NSMutableArray" id="1cc-dU-eZI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <customObject id="ed9-SS-ItV" userLabel="JrkPlayer" customClass="JrkPlayer" customModule="jrkclient" customModuleProvider="target">
-                    <connections>
-                        <outlet property="delegate1" destination="aSy-xp-Qbj" id="3aS-Mk-GOs"/>
-                        <outlet property="delegate2" destination="BYZ-38-t0r" id="qRS-2U-9gD"/>
-                    </connections>
-                </customObject>
             </objects>
             <point key="canvasLocation" x="31.199999999999999" y="32.512315270935964"/>
         </scene>

@@ -33,15 +33,9 @@ import SwiftEventBus
 }
 
 class JrkPlayer: NSObject, AudioPlayerDelegate {
-    @IBOutlet
-    var delegate1: JrkPlayerDelegate?
-    @IBOutlet
-    var delegate2: JrkPlayerDelegate?
-    var delegates: [JrkPlayerDelegate?] {
-        get {
-            return [delegate1, delegate2]
-        }
-    }
+    static let shared = JrkPlayer()
+    
+    private var delegates: [JrkPlayerDelegate] = []
     
     private var player: AudioPlayer
     private var audioItem: AudioItem
@@ -109,11 +103,11 @@ class JrkPlayer: NSObject, AudioPlayerDelegate {
         callDelegates()
     }
     
+    
     func setNowPlaying(_ info: EpisodeInfo?) {
         episodeInfo = info
         updateNowPlayingInformation()
     }
-
     
     private func updateNowPlayingInformation() {
         if let info = episodeInfo {
@@ -133,6 +127,14 @@ class JrkPlayer: NSObject, AudioPlayerDelegate {
         }
     }
     
+    func addDelegate(_ delegate: JrkPlayerDelegate) {
+        delegates.append(delegate)
+        delegate.jrkPlayerStateChanged(state: playerState)
+    }
+    
+    func removeDelegate(_ delegate: JrkPlayerDelegate) {
+        delegates = delegates.filter { $0 !== delegate }
+    }
     
     func stop() {
         player.stop()
@@ -165,7 +167,7 @@ class JrkPlayer: NSObject, AudioPlayerDelegate {
     
     private func callDelegates() {
         delegates.forEach({ delegate in
-            delegate?.jrkPlayerStateChanged(state: playerState)
+            delegate.jrkPlayerStateChanged(state: playerState)
         })
     }
     

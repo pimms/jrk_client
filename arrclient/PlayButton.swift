@@ -25,11 +25,13 @@ import VBFPopFlatButton
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         initSubviews()
+        JrkPlayer.shared.addDelegate(self)
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         initSubviews()
+        JrkPlayer.shared.addDelegate(self)
     }
     
     
