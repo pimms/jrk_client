@@ -6,19 +6,7 @@ enum ConfigError: Error {
 }
 
 class AppConfig {
-    private let config: NSDictionary
     private let defaults = UserDefaults.standard
-    
-    init() {
-        let path = Bundle.main.path(forResource: "AppConfig", ofType: "plist")
-        let dict = NSDictionary(contentsOfFile: path!)
-        config = dict!
-    }
-    
-    func jrkServerURL() -> String {
-        return config["jrkServerURL"] as! String
-    }
-
     
     func integer(forKey key: String) -> Int? {
         if let val = defaults.value(forKey: key) as? Int {

@@ -5,8 +5,10 @@ import MediaPlayer
 import VBFPopFlatButton
 
 class RadioViewController: UIViewController, JrkPlayerDelegate, PlayButtonDelegate, InfoRetrieverDelegate {
-    private let jrkPlayer: JrkPlayer = JrkPlayer.shared
+    var streamContext: StreamContext?
     
+    @IBOutlet
+    var imageView: UIImageView?
     @IBOutlet
     var infoLabel: UILabel?
     @IBOutlet
@@ -16,36 +18,26 @@ class RadioViewController: UIViewController, JrkPlayerDelegate, PlayButtonDelega
     @IBOutlet
     var playButton: PlayButton?
     
-    @IBOutlet
-    var viewsOmittedFromInitialFade: [UIView]!
-    
-    deinit {
-        jrkPlayer.removeDelegate(self)
-        InfoRetriever.shared.removeDelegate(self)
+    override func loadView() {
+        super.loadView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.infoLabel?.text = nil
         self.seasonLabel?.text = nil
+        
+        streamContext?.jrkPlayer.addDelegate(self)
+        streamContext?.jrkPlayer.addDelegate(playButton!)
+        streamContext?.infoRetriever.addDelegate(self)
+        streamContext?.infoRetriever.startRetrievalLoop()
+        
+        imageView?.image = streamContext?.streamConfig.mainImage
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSiriActivity()
-        
-        jrkPlayer.addDelegate(self)
-        InfoRetriever.shared.addDelegate(self)
-        InfoRetriever.shared.startRetrievalLoop()
-        
-        let fadeInDuration = 0.5
-        for subview in view.subviews {
-            if viewsOmittedFromInitialFade.contains(subview) {
-                continue
-            }
-            subview.alpha = 0.0
-            UIView.animate(withDuration: fadeInDuration, animations: { subview.alpha = 1.0 })
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -56,7 +48,6 @@ class RadioViewController: UIViewController, JrkPlayerDelegate, PlayButtonDelega
     private func setupSiriActivity() {
         let activity = NSUserActivity(activityType: "no.jstien.arrclient.siri.playJrk")
         activity.title = "Play JRK"
-        // activity.userInfo = ["color" : "red"]
         activity.isEligibleForSearch = true
         activity.isEligibleForPrediction = true
         activity.persistentIdentifier = NSUserActivityPersistentIdentifier("no.jstien.arrclient.siri.playJrk")
@@ -66,14 +57,14 @@ class RadioViewController: UIViewController, JrkPlayerDelegate, PlayButtonDelega
     
     // -- InfoRetrieverDelegate -- //
     func episodeInfoChanged(_ episodeInfo: EpisodeInfo?) {
-        jrkPlayer.setNowPlaying(episodeInfo)
+        streamContext?.jrkPlayer.setNowPlaying(episodeInfo)
         self.infoLabel?.text = episodeInfo?.name
         self.seasonLabel?.text = episodeInfo?.season
     }
     
     // -- PlayButtonDelegate -- //
     func playButtonClicked(_ playButton: PlayButton) {
-        jrkPlayer.togglePlayPause()
+        streamContext?.jrkPlayer.togglePlayPause()
     }
     
     // -- JrkPlayerDelegate -- //

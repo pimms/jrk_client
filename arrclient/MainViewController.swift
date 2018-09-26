@@ -10,6 +10,8 @@ import Foundation
 import LGSideMenuController
 
 class MainViewController : LGSideMenuController {
+    var streamContext: StreamContext? = nil
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -19,5 +21,17 @@ class MainViewController : LGSideMenuController {
         leftViewBackgroundColor = leftViewController?.view.backgroundColor
         rootViewCoverBlurEffectForLeftView = UIBlurEffect(style: .dark)
         rootViewScaleForLeftView = CGFloat(1.2)
+        
+        prepareContext()
+    }
+    
+    private func prepareContext() {
+        if let radioVc = rootViewController as? RadioViewController {
+            radioVc.streamContext = streamContext
+        }
+        
+        if let configVc = leftViewController as? ConfigViewController {
+            configVc.streamContext = streamContext
+        }
     }
 }

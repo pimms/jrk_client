@@ -11,7 +11,7 @@ import UIKit
 import SwiftEventBus
 
 class ConfigViewController: UIViewController {
-    private let appConfig = AppConfig()
+    var streamContext: StreamContext?
     
     @IBOutlet private var showAsTrack: UISegmentedControl?
     @IBOutlet private var showAsAlbum: UISegmentedControl?
@@ -20,7 +20,7 @@ class ConfigViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let conf = NowPlayingConfiguration(fromConfig: appConfig)
+        let conf = NowPlayingConfiguration(fromConfig: streamContext!.appConfig)
         showAsTrack?.selectedSegmentIndex = conf.trackDisplay.rawValue
         showAsAlbum?.selectedSegmentIndex = conf.albumDisplay.rawValue
         showAsArtist?.selectedSegmentIndex = conf.artistDisplay.rawValue

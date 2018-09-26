@@ -10,23 +10,28 @@ import Foundation
 import WatchConnectivity
 
 class WatchSessionHandler: NSObject, WCSessionDelegate, JrkPlayerDelegate, InfoRetrieverDelegate {
-    static let shared = WatchSessionHandler()
-    
     private let session = WCSession.default
-    private let jrkPlayer = JrkPlayer.shared
+    private let infoRetriever: InfoRetriever
+    private let jrkPlayer: JrkPlayer
     
-    override init() {
+    init(streamContext: StreamContext) {
+        self.jrkPlayer = streamContext.jrkPlayer
+        self.infoRetriever = streamContext.infoRetriever
+        
         super.init()
         
         if (isSupported()) {
+            print("Activating WCSession!")
             session.delegate = self
             session.activate()
-            
-            InfoRetriever.shared.addDelegate(self)
-            JrkPlayer.shared.addDelegate(self)
+            infoRetriever.addDelegate(self)
+            jrkPlayer.addDelegate(self)
         }
-        
-        print("isPaired?: \(session.isPaired), isWatchAppInstalled?: \(session.isWatchAppInstalled)")
+    }
+    
+    func deactivate() {
+        print("EXPERIMENTAL DEACTIVATION OF WCSESSION")
+        session.delegate = nil
     }
     
     func isSupported() -> Bool {
@@ -34,8 +39,8 @@ class WatchSessionHandler: NSObject, WCSessionDelegate, JrkPlayerDelegate, InfoR
     }
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        episodeInfoChanged(InfoRetriever.shared.episodeInfo)
-        jrkPlayerStateChanged(state: JrkPlayer.shared.state)
+        episodeInfoChanged(self.infoRetriever.episodeInfo)
+        jrkPlayerStateChanged(state: self.jrkPlayer.state)
     }
     
     func sessionDidBecomeInactive(_ session: WCSession) {}
@@ -63,8 +68,8 @@ class WatchSessionHandler: NSObject, WCSessionDelegate, JrkPlayerDelegate, InfoR
     }
     
     private func handleNowPlayingRequest() -> [String: Any] {
-        let info = InfoRetriever.shared.episodeInfo
-        let state = JrkPlayer.shared.state
+        let info = infoRetriever.episodeInfo
+        let state = jrkPlayer.state
         return [
             "status": "ok",
             "title": info?.name as Any,

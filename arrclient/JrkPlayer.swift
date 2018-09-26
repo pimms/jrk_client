@@ -33,9 +33,7 @@ import SwiftEventBus
 }
 
 class JrkPlayer: NSObject, AudioPlayerDelegate {
-    static let shared = JrkPlayer()
-    
-    private var delegates: [JrkPlayerDelegate] = []
+    private var delegates: [WeakRef<JrkPlayerDelegate>] = []
     
     private var player: AudioPlayer
     private var audioItem: AudioItem
@@ -53,9 +51,11 @@ class JrkPlayer: NSObject, AudioPlayerDelegate {
     }
     
     
-    override init() {
+    init(streamConfig: StreamConfig) {
         player = AudioPlayer()
-        audioItem = AudioItem(highQualitySoundURL: URLProvider.streamURL())!
+        
+        let urlProvider = URLProvider(streamConfig: streamConfig)
+        audioItem = AudioItem(highQualitySoundURL: urlProvider.streamURL())!
         
         super.init()
         player.delegate = self
@@ -133,12 +133,12 @@ class JrkPlayer: NSObject, AudioPlayerDelegate {
     }
     
     func addDelegate(_ delegate: JrkPlayerDelegate) {
-        delegates.append(delegate)
+        delegates.append(WeakRef(value: delegate))
         delegate.jrkPlayerStateChanged(state: playerState)
     }
     
     func removeDelegate(_ delegate: JrkPlayerDelegate) {
-        delegates = delegates.filter { $0 !== delegate }
+        delegates = delegates.filter { $0.value != nil && $0.value !== delegate }
     }
     
     func play() {
@@ -178,7 +178,7 @@ class JrkPlayer: NSObject, AudioPlayerDelegate {
     
     private func callDelegates() {
         delegates.forEach({ delegate in
-            delegate.jrkPlayerStateChanged(state: playerState)
+            delegate.value?.jrkPlayerStateChanged(state: playerState)
         })
     }
     

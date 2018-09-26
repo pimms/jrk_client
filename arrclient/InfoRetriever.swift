@@ -15,37 +15,27 @@ class EpisodeInfo: NSObject {
     }
 }
 
-func toMap(_ data: Data) -> [String: AnyObject] {
-    do {
-        let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: AnyObject]
-        return json
-    } catch let err {
-        print("failed to deserialize json: \(err)")
-        return [:]
-    }
-}
-
 @objc protocol InfoRetrieverDelegate {
     func episodeInfoChanged(_ episodeInfo: EpisodeInfo?)
 }
 
 class InfoRetriever: NSObject {
-    static let shared = InfoRetriever()
-    
     var episodeInfo: EpisodeInfo? {
         get {
             return info
         }
     }
     
-    private var delegates: [InfoRetrieverDelegate] = []
+    private let urlProvider: URLProvider
+    private var delegates: [WeakRef<InfoRetrieverDelegate>] = []
     
     private var info: EpisodeInfo? = nil
     private var shouldLoop = false
     private var task: URLSessionDataTask?
     
     
-    override init() {
+    init(streamConfig: StreamConfig) {
+        self.urlProvider = URLProvider(streamConfig: streamConfig)
         super.init()
         initializeAppLifecycleCallbacks()
     }
@@ -57,11 +47,12 @@ class InfoRetriever: NSObject {
     
     func addDelegate(_ delegate: InfoRetrieverDelegate) {
         removeDelegate(delegate)
-        delegates.append(delegate)
+        
+        delegates.append(WeakRef(value: delegate))
     }
     
     func removeDelegate(_ delegate: InfoRetrieverDelegate) {
-        delegates = delegates.filter { $0 !== delegate }
+        delegates = delegates.filter { $0.value != nil && $0.value !== delegate }
     }
     
     
@@ -80,7 +71,7 @@ class InfoRetriever: NSObject {
     
     
     private func startTask() {
-        let url = URLProvider.infoURL()
+        let url = urlProvider.infoURL()
         task = URLSession.shared.dataTask(with: url) {(data, response, error) in
             DispatchQueue.main.async {
                 self.handleResponse(data: data, error: error)
@@ -95,7 +86,7 @@ class InfoRetriever: NSObject {
             info = nil
             dispatchToDelegates()
         } else {
-            let new = EpisodeInfo(fromMap: toMap(data!))
+            let new = EpisodeInfo(fromMap: data!.toMap())
             if new.name != info?.name ?? nil {
                 info = new
                 dispatchToDelegates()
@@ -114,7 +105,7 @@ class InfoRetriever: NSObject {
     }
 
     private func dispatchToDelegates() {
-        delegates.forEach { $0.episodeInfoChanged(info) }
+        delegates.forEach { $0.value?.episodeInfoChanged(info) }
     }
     
     // -- app lifecycle -- //

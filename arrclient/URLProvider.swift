@@ -1,20 +1,19 @@
 import Foundation
 
 class URLProvider {
-    private static let instance: URLProvider = URLProvider()
-    private let appConfig = AppConfig()
+    private var streamConfig: StreamConfig
     
-    private func getRootURL() -> String {
-        return appConfig.jrkServerURL()
+    init(streamConfig: StreamConfig) {
+        self.streamConfig = streamConfig
     }
     
-    static func infoURL() -> URL {
-        let root = instance.getRootURL()
+    func infoURL() -> URL {
+        let root = streamConfig.rootURL
         return URL(string: root + "/live/nowPlaying")!
     }
     
-    static func streamURL() -> URL {
-        let root = instance.getRootURL()
+    func streamURL() -> URL {
+        let root = streamConfig.rootURL
         return URL(string: root + "/live/playlist.m3u8")!
     }
 }
