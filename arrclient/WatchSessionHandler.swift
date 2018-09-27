@@ -84,7 +84,7 @@ class WatchSessionHandler: NSObject, WCSessionDelegate, JrkPlayerDelegate, InfoR
                 "jrkState": state.toString()
             ]
         } else {
-            return createNotConfiguredPayload().merging(["fallback": "false"], uniquingKeysWith: {_,_ in print("lol")})
+            return createNotConfiguredPayload()
         }
     }
     
@@ -107,17 +107,21 @@ class WatchSessionHandler: NSObject, WCSessionDelegate, JrkPlayerDelegate, InfoR
                 streamContext?.jrkPlayer.togglePlayPause()
             }
             
+            let payload = createPlayStatusPayload()
             replyHandler(createPlayStatusPayload())
+            lastSentPayload = payload
         }
     }
     
     func sessionDidDeactivate(_ session: WCSession) {
-        // Who has more than one watch?
+        lastSentPayload = nil
         activeSession = false
         session.activate()
     }
     
-    func sessionDidBecomeInactive(_ session: WCSession) {}
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        lastSentPayload = nil
+    }
     
     // -- InfoRetrieverDelegate -- //
     func episodeInfoChanged(_ episodeInfo: EpisodeInfo?) {

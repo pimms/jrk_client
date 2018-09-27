@@ -38,6 +38,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         if (WCSession.isSupported()) {
             session.delegate = self
             session.activate()
+            requestNowPlayingInfo()
         }
     }
     
