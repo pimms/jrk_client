@@ -176,15 +176,17 @@ class JrkPlayer: NSObject, AudioPlayerDelegate {
     }
     
     private func callDelegates() {
-        delegates.forEach({ delegate in
-            delegate.value?.jrkPlayerStateChanged(state: playerState)
-        })
+        DispatchQueue.main.async {
+            self.delegates.forEach({ delegate in
+                delegate.value?.jrkPlayerStateChanged(state: self.playerState)
+            })
+        }
     }
     
     
     // -- app lifecycle -- //
     private func initializeAppLifecycleCallbacks() {
-        NotificationCenter.default.addObserver(self, selector:#selector(appDidEnterBackground),
+        NotificationCenter.default.addObserver(self, selector: #selector(appDidEnterBackground),
                                                name: NSNotification.Name.UIApplicationDidEnterBackground,
                                                object: nil)
     }

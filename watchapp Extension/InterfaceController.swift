@@ -10,6 +10,8 @@ import WatchKit
 import Foundation
 import WatchConnectivity
 
+typealias Payload = [String: Any]
+
 
 class InterfaceController: WKInterfaceController, WCSessionDelegate {
     private let session = WCSession.default
@@ -39,30 +41,15 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         }
     }
     
-    override func didDeactivate() {
-        super.didDeactivate()
-    }
-    
-    
     func requestNowPlayingInfo() {
-        send(request: "status") { response in
-            self.handleNowPlayingResponse(response)
-            self.handleJrkStateResponse(response)
-        }
+        send(request: "status")
     }
+
     
-    
-    private func handleNowPlayingResponse(_ response: [String: Any]) {
-        titleLabel?.setText(response["title"] as? String ?? "")
-        subTitleLabel?.setText(response["subtitle"] as? String ?? "")
-    }
-    
-    private func handleJrkStateResponse(_ response: [String: Any]) {
-        playPauseButton?.setEnabled(true)
-        if let state = response["state"] as? String {
-            isPlaying = (state == "playing" || state == "buffering")
-            updateButtonState(playing: isPlaying, assumed: false)
-        }
+    @IBAction
+    func playButtonClicked() {
+        send(request: "togglePlay") { r in }
+        updateButtonState(playing: !isPlaying, assumed: true)
     }
     
     private func updateButtonState(playing: Bool, assumed: Bool) {
@@ -71,20 +58,20 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         
         
         let font = assumed
-                ? UIFont.italicSystemFont(ofSize: 15.0)
-                : UIFont.systemFont(ofSize: 15.0)
+            ? UIFont.italicSystemFont(ofSize: 15.0)
+            : UIFont.systemFont(ofSize: 15.0)
         let attrString = NSAttributedString(string: title, attributes: [.font : font, .foregroundColor: UIColor.white])
         playPauseButton?.setAttributedTitle(attrString)
     }
+
     
-    
-    @IBAction
-    func playButtonClicked() {
-        send(request: "togglePlay") { r in }
-        updateButtonState(playing: !isPlaying, assumed: true)
+    private func send(request: String) {
+        send(request: request) { response in
+            self.handleMessage(response)
+        }
     }
     
-    private func send(request: String, replyHandler: @escaping ([String : Any]) -> Void) {
+    private func send(request: String, replyHandler: @escaping (Payload) -> Void) {
         if session.isReachable {
             print("[WATCH] Requesting '\(request)'")
             session.sendMessage(["request": request], replyHandler: {(response) in
@@ -98,27 +85,71 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         }
     }
     
+    
+    
+    private func handleMessage(_ message: Payload) {
+        if let status = message["status"] as? String {
+            switch (status) {
+            case "configured":
+                handleConfiguredMessage(message)
+                break
+            case "notConfigured":
+                handleNotConfiguredMessage(message)
+                break
+            default:
+                print("[WATCH] Unable to handle message of status \(status)")
+                break
+            }
+        }
+    }
+    
+    
+    private func handleConfiguredMessage(_ message: Payload) {
+        if let type = message["type"] as? String {
+            switch (type) {
+            case "playerStatus":
+                updatePlayerStatus(message)
+                break
+            default:
+                print("[WATCH] Unable to handle message of type '\(type)'")
+                break
+            }
+        }
+    }
+    
+    private func updatePlayerStatus(_ message: Payload) {
+        titleLabel?.setText(message["title"] as? String ?? "")
+        subTitleLabel?.setText(message["subtitle"] as? String ?? "")
+        playPauseButton?.setEnabled(true)
+        
+        if let state = message["jrkState"] as? String {
+            isPlaying = (state == "playing" || state == "buffering")
+            updateButtonState(playing: isPlaying, assumed: false)
+        }
+    }
+    
+    
+    private func handleNotConfiguredMessage(_ message: Payload) {
+        titleLabel?.setText("Not configured")
+        subTitleLabel?.setText("Setup JRK on iPhone")
+        playPauseButton?.setEnabled(false)
+    }
+    
+    
+    
     // -- WCSessionDelegate -- //
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        // The iOS app sends us this information when it receives the same signal
         print("[WATCH] Session activated")
         requestNowPlayingInfo()
     }
     
-    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
+        print("[WATCH] Received message (w/rh) \(message)")
+        handleMessage(message)
+    }
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {
         print("[WATCH] Received message: \(message)")
-        
-        if let type = message["type"] as? String {
-            switch (type) {
-            case "nowPlaying":
-                handleNowPlayingResponse(message)
-                break
-            case "jrkState":
-                handleJrkStateResponse(message)
-                break
-            default:
-                print("[WATCH] Unable to handle message of type '\(type)'")
-            }
-        }
+        handleMessage(message)
     }
 }

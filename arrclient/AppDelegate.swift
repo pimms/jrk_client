@@ -11,12 +11,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         AppDelegate.singleton = self
-        watchHandler = WatchSessionHandler()
         
         if let streamConfig = try? StreamConfig() {
             // Do note that there's literally no point in broadcasting (.streamContextChangedEvent) this change, as none of the
             // potential recipients are alive yet.
             streamContext = StreamContext(streamConfig: streamConfig)
+            watchHandler = WatchSessionHandler(withContext: streamContext!)
+        } else {
+            watchHandler = WatchSessionHandler()
         }
         
         SwiftEventBus.on(self, name: .streamContextChangedEvent, queue: nil, handler: {notif in
