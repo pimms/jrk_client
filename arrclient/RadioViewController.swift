@@ -5,7 +5,7 @@ import MediaPlayer
 import VBFPopFlatButton
 
 class RadioViewController: UIViewController, JrkPlayerDelegate, PlayButtonDelegate, InfoRetrieverDelegate {
-    var streamContext: StreamContext?
+    weak var streamContext: StreamContext?
     
     @IBOutlet
     var imageView: UIImageView?

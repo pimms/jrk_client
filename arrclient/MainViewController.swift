@@ -8,9 +8,14 @@
 
 import Foundation
 import LGSideMenuController
+import SwiftEventBus
 
 class MainViewController : LGSideMenuController {
     var streamContext: StreamContext? = nil
+    
+    deinit {
+        SwiftEventBus.unregister(self)
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -23,6 +28,16 @@ class MainViewController : LGSideMenuController {
         rootViewScaleForLeftView = CGFloat(1.2)
         
         prepareContext()
+        
+        SwiftEventBus.onMainThread(self, name: .streamConfigResetRequestedEvent, handler: {_ in
+            guard self.streamContext != nil else {
+                return
+            }
+            self.streamContext!.resetConfiguration()
+            self.streamContext = nil
+            AppDelegate.singleton?.setActiveStreamContext(nil)
+            self.dismiss(animated: true, completion: nil)
+        })
     }
     
     private func prepareContext() {

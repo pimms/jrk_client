@@ -25,13 +25,14 @@ class NowPlayingConfiguration {
     let albumDisplay: NowPlayingConfigurationValue
     let artistDisplay: NowPlayingConfigurationValue
     
-    init(fromConfig config: AppConfig) {
-        let rawTrack = config.integer(forKey: NowPlayingConfigurationKey.showAsTrack.rawValue,
-                                      default: NowPlayingConfigurationValue.episodeDate.rawValue)
-        let rawAlbum = config.integer(forKey: NowPlayingConfigurationKey.showAsAlbum.rawValue,
-                                      default: NowPlayingConfigurationValue.season.rawValue)
-        let rawArtist = config.integer(forKey: NowPlayingConfigurationKey.showAsArtist.rawValue,
-                                       default: NowPlayingConfigurationValue.streamTitle.rawValue)
+    init() {
+        let defaults = UserDefaults.standard
+        let rawTrack = defaults.integer(forKey: NowPlayingConfigurationKey.showAsTrack.rawValue,
+                                       default: NowPlayingConfigurationValue.episodeDate.rawValue)
+        let rawAlbum = defaults.integer(forKey: NowPlayingConfigurationKey.showAsAlbum.rawValue,
+                                       default: NowPlayingConfigurationValue.season.rawValue)
+        let rawArtist = defaults.integer(forKey: NowPlayingConfigurationKey.showAsArtist.rawValue,
+                                        default: NowPlayingConfigurationValue.streamTitle.rawValue)
         
         trackDisplay = NowPlayingConfigurationValue.init(rawValue: rawTrack)!
         albumDisplay = NowPlayingConfigurationValue.init(rawValue: rawAlbum)!

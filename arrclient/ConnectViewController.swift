@@ -75,6 +75,11 @@ class ConnectViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let main = segue.destination as? MainViewController {
             main.streamContext = streamContext
+            
+            // We need to release our retain here, there can't exist more than one instance
+            // of the StreamContext class simultaneously, and that will happen if the user
+            // deletes the configuration.
+            self.streamContext = nil
         }
     }
     

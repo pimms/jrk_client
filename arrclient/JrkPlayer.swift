@@ -116,8 +116,7 @@ class JrkPlayer: NSObject, AudioPlayerDelegate {
     
     private func updateNowPlayingInformation() {
         if let info = episodeInfo {
-            let appConfig = AppConfig()
-            let nowPlayingData = NowPlayingData(withConfig: appConfig, episodeInfo: info)
+            let nowPlayingData = NowPlayingData(episodeInfo: info)
             
             nowPlaying.nowPlayingInfo = [
                 MPMediaItemPropertyTitle: nowPlayingData.trackDisplay,

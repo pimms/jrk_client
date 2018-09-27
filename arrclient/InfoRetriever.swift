@@ -4,6 +4,9 @@ class EpisodeInfo: NSObject {
     var name: String?
     var season: String?
     
+    // Channel is populated from the StreamConfig
+    var channel: String?
+    
     init(fromMap map: [String: AnyObject]) {
         if let name = map["name"] as? String {
             self.name = name
@@ -26,6 +29,7 @@ class InfoRetriever: NSObject {
         }
     }
     
+    private let streamConfig: StreamConfig
     private let urlProvider: URLProvider
     private var delegates: [WeakRef<InfoRetrieverDelegate>] = []
     
@@ -35,6 +39,7 @@ class InfoRetriever: NSObject {
     
     
     init(streamConfig: StreamConfig) {
+        self.streamConfig = streamConfig
         self.urlProvider = URLProvider(streamConfig: streamConfig)
         super.init()
         initializeAppLifecycleCallbacks()
@@ -88,6 +93,7 @@ class InfoRetriever: NSObject {
         } else {
             let new = EpisodeInfo(fromMap: data!.toMap())
             if new.name != info?.name ?? nil {
+                new.channel = streamConfig.streamName
                 info = new
                 dispatchToDelegates()
             }

@@ -21,13 +21,13 @@ enum StreamConfigError: Error {
 }
 
 class StreamConfig {
-    private let STREAM_CONFIG_FILE = "JrkStreamConfig.plist"
-    private let STREAM_IMAGE_FILE = "JrkStreamMain.png"
+    private static let STREAM_CONFIG_FILE = "JrkStreamConfig.plist"
+    private static let STREAM_IMAGE_FILE = "JrkStreamMain.png"
     
-    private let STREAM_ROOT_URL_KEY = "rootURL"
-    private let STREAM_NAME_KEY = "streamName"
-    private let STREAM_URL_KEY = "streamURL"
-    private let MAIN_IMAGE_URL_KEY = "streamPictureURL"
+    private static let STREAM_ROOT_URL_KEY = "rootURL"
+    private static let STREAM_NAME_KEY = "streamName"
+    private static let STREAM_URL_KEY = "streamURL"
+    private static let MAIN_IMAGE_URL_KEY = "streamPictureURL"
     
     static func construct(fromURL streamURL: String, callback: @escaping (StreamConfig?,Error?) -> Void) {
         guard let url = URL(string: streamURL) else {
@@ -73,6 +73,22 @@ class StreamConfig {
         return UIImage(data: data!)
     }
     
+    static func deleteConfiguration() {
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
+        let documentsDirectory = paths.object(at: 0) as! NSString
+        let streamConfigPath = documentsDirectory.appendingPathComponent(StreamConfig.STREAM_CONFIG_FILE)
+        let mainImagePath = documentsDirectory.appendingPathComponent(StreamConfig.STREAM_IMAGE_FILE)
+        
+        let fileManager = FileManager.default
+        if fileManager.isDeletableFile(atPath: streamConfigPath) {
+            try? fileManager.removeItem(atPath: streamConfigPath)
+        }
+        
+        if fileManager.isDeletableFile(atPath: mainImagePath) {
+            try? fileManager.removeItem(atPath: mainImagePath)
+        }
+    }
+    
     let rootURL: String
     let streamName: String
     let streamURL: String
@@ -100,8 +116,8 @@ class StreamConfig {
         // Time to save this sheiß
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
         let documentsDirectory = paths.object(at: 0) as! NSString
-        let streamConfigPath = documentsDirectory.appendingPathComponent(STREAM_CONFIG_FILE)
-        let mainImagePath = documentsDirectory.appendingPathComponent(STREAM_IMAGE_FILE)
+        let streamConfigPath = documentsDirectory.appendingPathComponent(StreamConfig.STREAM_CONFIG_FILE)
+        let mainImagePath = documentsDirectory.appendingPathComponent(StreamConfig.STREAM_IMAGE_FILE)
         
         // Save the image
         guard let pngData = UIImagePNGRepresentation(self.mainImage) else {
@@ -111,10 +127,10 @@ class StreamConfig {
         
         // Save the config
         let config = NSDictionary(dictionary: [
-            STREAM_ROOT_URL_KEY: self.rootURL,
-            STREAM_NAME_KEY: self.streamName,
-            STREAM_URL_KEY: self.streamURL,
-            MAIN_IMAGE_URL_KEY: self.streamPictureURL
+            StreamConfig.STREAM_ROOT_URL_KEY: self.rootURL,
+            StreamConfig.STREAM_NAME_KEY: self.streamName,
+            StreamConfig.STREAM_URL_KEY: self.streamURL,
+            StreamConfig.MAIN_IMAGE_URL_KEY: self.streamPictureURL
         ])
         config.write(toFile: streamConfigPath, atomically: true)
     }
@@ -122,7 +138,7 @@ class StreamConfig {
     init() throws {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
         let documentsDirectory = paths.object(at: 0) as! NSString
-        let streamConfigPath = documentsDirectory.appendingPathComponent(STREAM_CONFIG_FILE)
+        let streamConfigPath = documentsDirectory.appendingPathComponent(StreamConfig.STREAM_CONFIG_FILE)
         
         let fileManager = FileManager.default
         if (!fileManager.fileExists(atPath: streamConfigPath)) {
@@ -130,12 +146,12 @@ class StreamConfig {
         }
         
         let configDict = NSDictionary(contentsOfFile: streamConfigPath)
-        let imagePath = documentsDirectory.appendingPathComponent(STREAM_IMAGE_FILE)
+        let imagePath = documentsDirectory.appendingPathComponent(StreamConfig.STREAM_IMAGE_FILE)
         
-        guard let streamURL = configDict?.object(forKey: STREAM_URL_KEY) as? String,
-              let streamName = configDict?.object(forKey: STREAM_NAME_KEY) as? String,
-              let rootURL = configDict?.object(forKey: STREAM_ROOT_URL_KEY) as? String,
-              let streamPictureURL = configDict?.object(forKey: MAIN_IMAGE_URL_KEY) as? String,
+        guard let streamURL = configDict?.object(forKey: StreamConfig.STREAM_URL_KEY) as? String,
+              let streamName = configDict?.object(forKey: StreamConfig.STREAM_NAME_KEY) as? String,
+              let rootURL = configDict?.object(forKey: StreamConfig.STREAM_ROOT_URL_KEY) as? String,
+              let streamPictureURL = configDict?.object(forKey: StreamConfig.MAIN_IMAGE_URL_KEY) as? String,
               let mainImage = UIImage(contentsOfFile: imagePath) else {
             throw StreamConfigError.InvalidConfig
         }

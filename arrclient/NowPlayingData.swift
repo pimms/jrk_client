@@ -15,8 +15,8 @@ class NowPlayingData {
     let albumDisplay: String
     let artistDisplay: String
 
-    init(withConfig config: AppConfig, episodeInfo: EpisodeInfo) {
-        let np = NowPlayingConfiguration(fromConfig: config)
+    init(episodeInfo: EpisodeInfo) {
+        let np = NowPlayingConfiguration()
         
         trackDisplay = NowPlayingData.configAttribute(forConfigValue: np.trackDisplay, episode: episodeInfo)
                             ?? NowPlayingData.DEFAULT_VALUE
@@ -33,7 +33,7 @@ class NowPlayingData {
         case .season:
             return episode.season
         case .streamTitle:
-            return "TODO! :)"
+            return episode.channel
         }
     }
 }

@@ -14,7 +14,6 @@ class StreamContext {
     static var livingInstances = 0
     
     let streamConfig: StreamConfig
-    let appConfig: AppConfig
     let infoRetriever: InfoRetriever
     let jrkPlayer: JrkPlayer
 
@@ -23,12 +22,17 @@ class StreamContext {
         StreamContext.livingInstances += 1
         
         self.streamConfig = streamConfig
-        self.appConfig = AppConfig()
         self.infoRetriever = InfoRetriever(streamConfig: streamConfig)
         self.jrkPlayer = JrkPlayer(streamConfig: streamConfig)
     }
     
     deinit {
         StreamContext.livingInstances -= 1
+    }
+    
+    func resetConfiguration() {
+        jrkPlayer.stop()
+        infoRetriever.stopRetrievalLoop()
+        StreamConfig.deleteConfiguration()
     }
 }
