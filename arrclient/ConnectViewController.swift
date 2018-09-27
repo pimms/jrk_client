@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SwiftEventBus
 
 class ConnectViewController: UIViewController {
     private enum HelpLabelType {
@@ -92,7 +93,7 @@ class ConnectViewController: UIViewController {
             StreamConfig.construct(fromURL: url, callback: {conf, err in
                 if conf != nil {
                     self.streamContext = StreamContext(streamConfig: conf!)
-                    AppDelegate.singleton?.setActiveStreamContext(self.streamContext)
+                    SwiftEventBus.post(.streamContextChangedEvent, sender: self.streamContext)
                     self.performMainSegue()
                 } else if err != nil {
                     self.handleConfigurationError(err: err!)

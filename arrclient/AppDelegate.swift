@@ -11,11 +11,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         AppDelegate.singleton = self
+        watchHandler = WatchSessionHandler()
         
         if let streamConfig = try? StreamConfig() {
+            // Do note that there's literally no point in broadcasting (.streamContextChangedEvent) this change, as none of the
+            // potential recipients are alive yet.
             streamContext = StreamContext(streamConfig: streamConfig)
-            watchHandler = WatchSessionHandler(streamContext: streamContext!)
         }
+        
+        SwiftEventBus.on(self, name: .streamContextChangedEvent, queue: nil, handler: {notif in
+            let context = notif?.object as? StreamContext
+            self.streamContext = context
+            self.watchHandler?.setStreamContext(context)
+        })
         
         return true
     }
@@ -24,18 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         streamContext?.jrkPlayer.play()
         return true
     }
-
-    func setActiveStreamContext(_ streamContext: StreamContext?) {
-        self.streamContext = streamContext
-        
-        if streamContext == nil {
-            watchHandler?.deactivate()
-            watchHandler = nil
-        } else {
-            watchHandler = WatchSessionHandler(streamContext: streamContext!)
-        }
-    }
-    
     
     
     func applicationWillResignActive(_ application: UIApplication) {

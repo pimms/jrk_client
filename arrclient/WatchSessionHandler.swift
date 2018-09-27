@@ -11,36 +11,32 @@ import WatchConnectivity
 
 class WatchSessionHandler: NSObject, WCSessionDelegate, JrkPlayerDelegate, InfoRetrieverDelegate {
     private let session = WCSession.default
-    private let infoRetriever: InfoRetriever
-    private let jrkPlayer: JrkPlayer
+    weak private var streamContext: StreamContext? = nil
     
-    init(streamContext: StreamContext) {
-        self.jrkPlayer = streamContext.jrkPlayer
-        self.infoRetriever = streamContext.infoRetriever
-        
+    override init() {
         super.init()
         
-        if (isSupported()) {
+        if (WCSession.isSupported()) {
             print("Activating WCSession!")
             session.delegate = self
             session.activate()
-            infoRetriever.addDelegate(self)
-            jrkPlayer.addDelegate(self)
         }
     }
     
-    func deactivate() {
-        print("EXPERIMENTAL DEACTIVATION OF WCSESSION")
-        session.delegate = nil
+    func setStreamContext(_ streamContext: StreamContext?) {
+        self.streamContext = streamContext
+        if self.streamContext != nil {
+            self.streamContext?.jrkPlayer.addDelegate(self)
+            self.streamContext?.infoRetriever.addDelegate(self)
+        }
     }
     
-    func isSupported() -> Bool {
-        return WCSession.isSupported()
-    }
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        episodeInfoChanged(self.infoRetriever.episodeInfo)
-        jrkPlayerStateChanged(state: self.jrkPlayer.state)
+        if let streamContext = self.streamContext {
+            episodeInfoChanged(streamContext.infoRetriever.episodeInfo)
+            jrkPlayerStateChanged(state: streamContext.jrkPlayer.state)
+        }
     }
     
     func sessionDidBecomeInactive(_ session: WCSession) {}
@@ -51,13 +47,13 @@ class WatchSessionHandler: NSObject, WCSessionDelegate, JrkPlayerDelegate, InfoR
         if let request = message["request"] as? String {
             print("Received watch-action request '\(request)'")
             if (request == "play") {
-                jrkPlayer.play()
+                streamContext?.jrkPlayer.play()
                 replyHandler(["status": "ok"])
             } else if (request == "pause") {
-                jrkPlayer.pause()
+                streamContext?.jrkPlayer.pause()
                 replyHandler(["status": "ok"])
             } else if (request == "togglePlay") {
-                jrkPlayer.togglePlayPause()
+                streamContext?.jrkPlayer.togglePlayPause()
                 replyHandler(["status": "ok"])
             } else if (request == "status") {
                 replyHandler(handleNowPlayingRequest())
@@ -68,13 +64,13 @@ class WatchSessionHandler: NSObject, WCSessionDelegate, JrkPlayerDelegate, InfoR
     }
     
     private func handleNowPlayingRequest() -> [String: Any] {
-        let info = infoRetriever.episodeInfo
-        let state = jrkPlayer.state
+        let info = streamContext?.infoRetriever.episodeInfo
+        let state = streamContext?.jrkPlayer.state
         return [
             "status": "ok",
             "title": info?.name as Any,
             "subtitle": info?.season as Any,
-            "state": state.toString()
+            "state": state!.toString()
         ]
     }
     

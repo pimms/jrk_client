@@ -35,7 +35,7 @@ class MainViewController : LGSideMenuController {
             }
             self.streamContext!.resetConfiguration()
             self.streamContext = nil
-            AppDelegate.singleton?.setActiveStreamContext(nil)
+            SwiftEventBus.post(.streamContextChangedEvent, sender: nil)
             self.dismiss(animated: true, completion: nil)
         })
     }
