@@ -122,6 +122,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         titleLabel?.setText(message["title"] as? String ?? "")
         subTitleLabel?.setText(message["subtitle"] as? String ?? "")
         playPauseButton?.setEnabled(true)
+        playPauseButton?.setHidden(false)
         
         if let state = message["jrkState"] as? String {
             isPlaying = (state == "playing" || state == "buffering")
@@ -134,6 +135,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         titleLabel?.setText("Not configured")
         subTitleLabel?.setText("Setup JRK on iPhone")
         playPauseButton?.setEnabled(false)
+        playPauseButton?.setHidden(true)
     }
     
     

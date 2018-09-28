@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14313.18" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
-    <device id="watch42" orientation="portrait">
+    <device id="watch44" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -13,9 +13,12 @@
             <objects>
                 <controller fullScreen="YES" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="watchapp" customModuleProvider="target">
                     <items>
-                        <group height="51" alignment="left" id="FkW-Nt-EBx" userLabel="Group - Logo">
+                        <group width="1" alignment="left" layout="overlap" id="FkW-Nt-EBx" userLabel="Group - Logo">
                             <items>
-                                <imageView width="1" height="40" alignment="center" verticalAlignment="bottom" image="jrk-white" contentMode="scaleAspectFit" id="h1d-Li-feP"/>
+                                <imageView width="78" height="35" alignment="left" verticalAlignment="center" image="jrk-white" contentMode="scaleAspectFit" id="h1d-Li-feP">
+                                    <variation key="device=watch44mm" alignment="center"/>
+                                </imageView>
+                                <volumeControlView alignment="right" controlsLocalVolume="NO" id="qIT-rd-msz"/>
                             </items>
                         </group>
                         <group width="1" alignment="left" verticalAlignment="center" layout="vertical" id="76E-OA-SnN" userLabel="Group - Labels">
