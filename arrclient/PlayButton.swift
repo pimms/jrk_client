@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import DottedProgressBar
 import DynamicButton
 
 @objc protocol PlayButtonDelegate {
@@ -18,9 +17,10 @@ import DynamicButton
 @objc class PlayButton: UIControl, JrkPlayerDelegate {
     @IBOutlet
     var delegate: PlayButtonDelegate?
+    @IBOutlet
+    var activityIndicator: UIActivityIndicatorView?
     
     private var playPauseButton: DynamicButton?
-    private var progressView: BufferIndicatorView?
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -35,7 +35,11 @@ import DynamicButton
     
     private func initSubviews() {
         initButton()
-        initProgressBar()
+        
+        if let indicator = activityIndicator {
+            indicator.isHidden = true
+            bringSubview(toFront: indicator)
+        }
     }
     
     private func initButton() {
@@ -49,16 +53,10 @@ import DynamicButton
         playPauseButton?.addTarget(self, action: #selector(playButtonClicked), for: .touchUpInside)
         playPauseButton?.backgroundColor = UIColor.darkGray
         playPauseButton?.strokeColor = UIColor.white
+        playPauseButton?.layer.cornerRadius = subFrame.width / 2.0
+        playPauseButton?.clipsToBounds = true
         addSubview(playPauseButton!)
-    }
-    
-    private func initProgressBar() {
-        let subFrame = CGRect(x: frame.width / 4,
-                              y: frame.height/2-10,
-                              width: frame.width / 2,
-                              height: 20)
-        progressView = BufferIndicatorView(frame: subFrame)
-        addSubview(progressView!)
+        sendSubview(toBack: playPauseButton!)
     }
     
     
@@ -74,7 +72,7 @@ import DynamicButton
             playPauseButton?.setStyle(.pause, animated: true)
             break
         case .buffering:
-            playPauseButton?.setStyle(.dot, animated: true)
+            playPauseButton?.setStyle(.none, animated: true)
             break
         case .paused, .stopped:
             playPauseButton?.setStyle(.play, animated: true)
@@ -83,11 +81,13 @@ import DynamicButton
             playPauseButton?.setStyle(.close, animated: true)
             break
         }
-
-        if (state == .buffering) {
-            progressView?.show()
+        
+        if state == .buffering {
+            activityIndicator?.startAnimating()
+            activityIndicator?.isHidden = false
         } else {
-            progressView?.hide()
+            activityIndicator?.stopAnimating()
+            activityIndicator?.isHidden = true
         }
     }
 }

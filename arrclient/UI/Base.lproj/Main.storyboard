@@ -43,12 +43,20 @@
                             </label>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aSy-xp-Qbj" userLabel="PlayButton" customClass="PlayButton" customModule="jrkclient" customModuleProvider="target">
                                 <rect key="frame" x="112.66666666666669" y="455" width="150" height="150"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="7Jy-rX-pgV">
+                                        <rect key="frame" x="64.999999999999986" y="65" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="5qC-oN-dCl"/>
                                     <constraint firstAttribute="width" constant="150" id="EyW-dO-bEd"/>
+                                    <constraint firstItem="7Jy-rX-pgV" firstAttribute="centerY" secondItem="aSy-xp-Qbj" secondAttribute="centerY" id="QI5-ST-3nO"/>
+                                    <constraint firstItem="7Jy-rX-pgV" firstAttribute="centerX" secondItem="aSy-xp-Qbj" secondAttribute="centerX" id="Toz-wk-hZo"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="activityIndicator" destination="7Jy-rX-pgV" id="DVO-ps-j01"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="hz9-NZ-eWQ"/>
                                 </connections>
                             </view>
