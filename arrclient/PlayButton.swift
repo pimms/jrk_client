@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import DottedProgressBar
-import VBFPopFlatButton
+import DynamicButton
 
 @objc protocol PlayButtonDelegate {
     @objc func playButtonClicked(_ playButton: PlayButton)
@@ -19,7 +19,7 @@ import VBFPopFlatButton
     @IBOutlet
     var delegate: PlayButtonDelegate?
     
-    private var playPauseButton: VBFPopFlatButton?
+    private var playPauseButton: DynamicButton?
     private var progressView: BufferIndicatorView?
     
     required init(coder aDecoder: NSCoder) {
@@ -44,16 +44,11 @@ import VBFPopFlatButton
                            width: frame.width / 2,
                            height: frame.height / 2)
         
-        playPauseButton = VBFPopFlatButton.init(frame: subFrame,
-                                                buttonType: FlatButtonType.buttonCloseType,
-                                                buttonStyle: .buttonRoundedStyle,
-                                                animateToInitialState: true)
-        playPauseButton?.roundBackgroundColor = UIColor.darkGray
-        playPauseButton?.lineRadius = 4.0
-        playPauseButton?.lineThickness = 4.0
-        playPauseButton?.setTintColor(UIColor.white, for: .normal)
-        playPauseButton?.setTintColor(UIColor.gray, for: .highlighted)
+        playPauseButton = DynamicButton(style: .none)
+        playPauseButton?.frame = subFrame
         playPauseButton?.addTarget(self, action: #selector(playButtonClicked), for: .touchUpInside)
+        playPauseButton?.backgroundColor = UIColor.darkGray
+        playPauseButton?.strokeColor = UIColor.white
         addSubview(playPauseButton!)
     }
     
@@ -76,27 +71,23 @@ import VBFPopFlatButton
     func jrkPlayerStateChanged(state: JrkPlayerState) {
         switch state {
         case .playing:
-            playPauseButton?.animate(to: .buttonPausedType)
+            playPauseButton?.setStyle(.pause, animated: true)
             break
         case .buffering:
-            playPauseButton?.animate(to: .buttonMinusType)
+            playPauseButton?.setStyle(.dot, animated: true)
             break
         case .paused, .stopped:
-            playPauseButton?.animate(to: .buttonForwardType)
+            playPauseButton?.setStyle(.play, animated: true)
             break
         case .unableToPlay:
-            playPauseButton?.animate(to: .buttonCloseType)
+            playPauseButton?.setStyle(.close, animated: true)
             break
         }
 
         if (state == .buffering) {
             progressView?.show()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
-                self.playPauseButton?.lineThickness = 0.0
-            })
         } else {
             progressView?.hide()
-            self.playPauseButton?.lineThickness = 4.0
         }
     }
 }

@@ -2,8 +2,6 @@ import UIKit
 import AVKit
 import MediaPlayer
 
-import VBFPopFlatButton
-
 class RadioViewController: UIViewController, JrkPlayerDelegate, PlayButtonDelegate, InfoRetrieverDelegate {
     weak var streamContext: StreamContext?
     
