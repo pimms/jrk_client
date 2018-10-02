@@ -15,7 +15,7 @@
                     <items>
                         <group width="1" alignment="left" layout="overlap" id="FkW-Nt-EBx" userLabel="Group - Logo">
                             <items>
-                                <imageView width="78" height="35" alignment="left" verticalAlignment="center" image="jrk-white" contentMode="scaleAspectFit" id="h1d-Li-feP">
+                                <imageView width="78" height="35" alignment="left" verticalAlignment="center" image="roi-light" contentMode="scaleAspectFit" id="h1d-Li-feP">
                                     <variation key="device=watch44mm" alignment="center"/>
                                 </imageView>
                                 <volumeControlView alignment="right" controlsLocalVolume="NO" id="qIT-rd-msz"/>
