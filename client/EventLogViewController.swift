@@ -79,10 +79,6 @@ class EventLogViewController: UITableViewController {
         eventCell!.updateViews(withEvent: events[indexPath.row])
         return eventCell!
     }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 104.0
-    }
 }
 
 
