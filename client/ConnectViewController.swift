@@ -53,7 +53,9 @@ class ConnectViewController: UIViewController {
     }
     
     private func showAllViews() {
-        view.subviews.forEach {v in v.isHidden = false}
+        view.subviews
+            .filter { v in v != activityIndicator }
+            .forEach {v in v.isHidden = false}
     }
     
     override func viewDidAppear(_ animated: Bool) {
