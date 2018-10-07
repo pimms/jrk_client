@@ -593,13 +593,14 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="kkH-fy-tUA"/>
                     </navigationItem>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RWq-Gw-keo">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                     </tabBar>
                     <connections>
-                        <segue destination="sB0-h3-og2" kind="relationship" relationship="viewControllers" id="HV5-vX-mbp"/>
                         <segue destination="nGe-4g-8BO" kind="relationship" relationship="viewControllers" id="EWP-JY-93B"/>
+                        <segue destination="sB0-h3-og2" kind="relationship" relationship="viewControllers" id="zdN-S1-pEt"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bPP-cq-X60" userLabel="First Responder" sceneMemberID="firstResponder"/>
