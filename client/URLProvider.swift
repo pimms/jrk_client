@@ -21,4 +21,9 @@ class URLProvider {
         let root = streamConfig.rootURL
         return URL(string: root + "/logs/events")!
     }
+    
+    func episodeLogURL() -> URL {
+        let root = streamConfig.rootURL
+        return URL(string: root + "/logs/episodes")!
+    }
 }

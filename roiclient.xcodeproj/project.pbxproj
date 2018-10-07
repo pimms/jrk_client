@@ -11,9 +11,8 @@
 		1915514C214ECA620029AC79 /* NowPlayingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1915514B214ECA620029AC79 /* NowPlayingData.swift */; };
 		1915514E214ED2160029AC79 /* EventIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1915514D214ED2160029AC79 /* EventIDs.swift */; };
 		1920491F215658500093352C /* WatchSessionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1920491E215658500093352C /* WatchSessionHandler.swift */; };
-		193656322168BD9300470BC7 /* EventLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193656312168BD9300470BC7 /* EventLog.swift */; };
-		193656342168C57D00470BC7 /* EventLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193656332168C57D00470BC7 /* EventLogViewController.swift */; };
-		19365636216915E800470BC7 /* PlayHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19365635216915E800470BC7 /* PlayHistoryViewController.swift */; };
+		193656322168BD9300470BC7 /* ServerLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193656312168BD9300470BC7 /* ServerLog.swift */; };
+		193656342168C57D00470BC7 /* ServerLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193656332168C57D00470BC7 /* ServerLogController.swift */; };
 		19365638216A403100470BC7 /* DismissableRootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19365637216A403100470BC7 /* DismissableRootNavigationController.swift */; };
 		1938985D21260CD20043B4B5 /* InfoRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1938985C21260CD20043B4B5 /* InfoRetriever.swift */; };
 		1938985F21260F020043B4B5 /* NSObject+jsonInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1938985E21260F020043B4B5 /* NSObject+jsonInit.swift */; };
@@ -104,9 +103,8 @@
 		1915514B214ECA620029AC79 /* NowPlayingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingData.swift; sourceTree = "<group>"; };
 		1915514D214ED2160029AC79 /* EventIDs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventIDs.swift; sourceTree = "<group>"; };
 		1920491E215658500093352C /* WatchSessionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionHandler.swift; sourceTree = "<group>"; };
-		193656312168BD9300470BC7 /* EventLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLog.swift; sourceTree = "<group>"; };
-		193656332168C57D00470BC7 /* EventLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLogViewController.swift; sourceTree = "<group>"; };
-		19365635216915E800470BC7 /* PlayHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayHistoryViewController.swift; sourceTree = "<group>"; };
+		193656312168BD9300470BC7 /* ServerLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerLog.swift; sourceTree = "<group>"; };
+		193656332168C57D00470BC7 /* ServerLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerLogController.swift; sourceTree = "<group>"; };
 		19365637216A403100470BC7 /* DismissableRootNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissableRootNavigationController.swift; sourceTree = "<group>"; };
 		1938985C21260CD20043B4B5 /* InfoRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoRetriever.swift; sourceTree = "<group>"; };
 		1938985E21260F020043B4B5 /* NSObject+jsonInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+jsonInit.swift"; sourceTree = "<group>"; };
@@ -269,7 +267,7 @@
 				1915514B214ECA620029AC79 /* NowPlayingData.swift */,
 				195A875A21595C8700C8F74D /* StreamContext.swift */,
 				195A875C2159641700C8F74D /* StreamConfig.swift */,
-				193656312168BD9300470BC7 /* EventLog.swift */,
+				193656312168BD9300470BC7 /* ServerLog.swift */,
 			);
 			name = stream;
 			sourceTree = "<group>";
@@ -300,8 +298,7 @@
 				19BF64FC214E9813004DD3C9 /* MainViewController.swift */,
 				19BF6500214EA22D004DD3C9 /* ConfigViewController.swift */,
 				195A8756215817A400C8F74D /* ConnectViewController.swift */,
-				193656332168C57D00470BC7 /* EventLogViewController.swift */,
-				19365635216915E800470BC7 /* PlayHistoryViewController.swift */,
+				193656332168C57D00470BC7 /* ServerLogController.swift */,
 				19365637216A403100470BC7 /* DismissableRootNavigationController.swift */,
 			);
 			name = viewcontroller;
@@ -568,7 +565,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				19365638216A403100470BC7 /* DismissableRootNavigationController.swift in Sources */,
-				193656342168C57D00470BC7 /* EventLogViewController.swift in Sources */,
+				193656342168C57D00470BC7 /* ServerLogController.swift in Sources */,
 				195A8757215817A400C8F74D /* ConnectViewController.swift in Sources */,
 				195A87622159755B00C8F74D /* URLSession+synchronous.swift in Sources */,
 				1938985D21260CD20043B4B5 /* InfoRetriever.swift in Sources */,
@@ -585,8 +582,7 @@
 				19E986AB212C71A4006A6976 /* AppConfig.swift in Sources */,
 				197E8E71215AD30300154A23 /* WeakRef.swift in Sources */,
 				195A875B21595C8700C8F74D /* StreamContext.swift in Sources */,
-				19365636216915E800470BC7 /* PlayHistoryViewController.swift in Sources */,
-				193656322168BD9300470BC7 /* EventLog.swift in Sources */,
+				193656322168BD9300470BC7 /* ServerLog.swift in Sources */,
 				194CC9F62146FF9F00BF1381 /* AVPlayer+isPlaying.swift in Sources */,
 				19E986B1212C75B0006A6976 /* URLProvider.swift in Sources */,
 				19C81F18211F527F00BD920E /* RadioViewController.swift in Sources */,

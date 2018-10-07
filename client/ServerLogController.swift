@@ -9,9 +9,36 @@
 import Foundation
 import UIKit
 
-class EventLogViewController: UITableViewController {
+
+class EventCell: UITableViewCell {
+    @IBOutlet var titleLabel: UILabel?
+    @IBOutlet var descriptionLabel: UILabel?
+    @IBOutlet var timestampLabel: UILabel?
+    
+    func updateViews(withEntry entry: LogEntry) {
+        titleLabel?.text = entry.title
+        descriptionLabel?.text = entry.description ?? "no description"
+        
+        let now = Date()
+        let components = Calendar.current.dateComponents([.hour, .minute], from: entry.timestamp, to: now)
+        
+        if components.hour! >= 1 {
+            timestampLabel?.text = "\(components.hour!)h"
+        } else if components.minute! >= 1 {
+            timestampLabel?.text = "\(components.minute!)m"
+        } else {
+            timestampLabel?.text = "now"
+        }
+    }
+}
+
+class ServerLogController: UITableViewController {
     var streamConfig: StreamConfig?
-    var events: [Event] = []
+    var logEntries: [LogEntry] = []
+    
+    func serverLogDataURL() -> URL {
+        preconditionFailure("Override me!")
+    }
 
     override func viewDidLoad() {
         tableView.tableFooterView = UIView()
@@ -21,10 +48,11 @@ class EventLogViewController: UITableViewController {
             preconditionFailure("streamConfig must be defined")
         }
         
-        let eventLog = EventLog(streamConfig: streamConfig!)
-        eventLog.fetchLogs() {(events, error) in
-            if events != nil {
-                self.events = events!
+        let serverLog = ServerLog(streamConfig: streamConfig!)
+        let url = serverLogDataURL()
+        serverLog.fetchLogs(fromUrl: url) {(entries, error) in
+            if entries != nil {
+                self.logEntries = entries!
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -35,7 +63,7 @@ class EventLogViewController: UITableViewController {
     }
     
     private func showFailureDialog(_ err: Error?) {
-        let msg = "Could not retrieve server event logs. \(err?.localizedDescription ?? "")"
+        let msg = "Could not retrieve server logs. \(err?.localizedDescription ?? "")"
         let alert = UIAlertController(title: "Failed to get logs", message: msg, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default)
         alert.addAction(okAction)
@@ -51,7 +79,7 @@ class EventLogViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return events.count
+        return logEntries.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -63,30 +91,20 @@ class EventLogViewController: UITableViewController {
             eventCell = EventCell()
         }
         
-        eventCell!.updateViews(withEvent: events[indexPath.row])
+        eventCell!.updateViews(withEntry: logEntries[indexPath.row])
         return eventCell!
     }
 }
 
 
-class EventCell: UITableViewCell {
-    @IBOutlet var titleLabel: UILabel?
-    @IBOutlet var descriptionLabel: UILabel?
-    @IBOutlet var timestampLabel: UILabel?
-    
-    func updateViews(withEvent event: Event) {
-        titleLabel?.text = event.title
-        descriptionLabel?.text = event.description ?? "no description"
-        
-        let now = Date()
-        let components = Calendar.current.dateComponents([.hour, .minute], from: event.timestamp, to: now)
-        
-        if components.hour! >= 1 {
-            timestampLabel?.text = "\(components.hour!)h"
-        } else if components.minute! >= 1 {
-            timestampLabel?.text = "\(components.minute!)m"
-        } else {
-            timestampLabel?.text = "now"
-        }
+class ServerEventLogsController: ServerLogController {
+    override func serverLogDataURL() -> URL {
+        return URLProvider(streamConfig: streamConfig!).eventLogURL()
+    }
+}
+
+class EpisodeHistoryController: ServerLogController {
+    override func serverLogDataURL() -> URL {
+        return URLProvider(streamConfig: streamConfig!).episodeLogURL()
     }
 }

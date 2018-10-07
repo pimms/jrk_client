@@ -402,19 +402,62 @@
         <!--Episodes-->
         <scene sceneID="0fB-oo-Z0Z">
             <objects>
-                <tableViewController id="nGe-4g-8BO" customClass="PlayHistoryViewController" customModule="roiclient" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="nGe-4g-8BO" customClass="EpisodeHistoryController" customModule="roiclient" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="men-sd-5T9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="anJ-xd-mwy">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="eventCell" rowHeight="66" id="xWd-WD-K7v" customClass="EventCell" customModule="roiclient" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="anJ-xd-mwy" id="2ri-V1-fKg">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="eventCell" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xWd-WD-K7v" id="JlB-tq-Dmd">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="65.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bef-cn-8bI">
+                                            <rect key="frame" x="16" y="11" width="281" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ts" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGO-bW-vTB">
+                                            <rect key="frame" x="305" y="12" width="54" height="18"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="54" id="l0n-y8-HEx"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="92V-Y1-Q6R">
+                                            <rect key="frame" x="16" y="38" width="343" height="16"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="16" id="zlm-Ja-QvR"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="13"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="92V-Y1-Q6R" firstAttribute="top" secondItem="Bef-cn-8bI" secondAttribute="bottom" constant="6" id="0pQ-R6-w2m"/>
+                                        <constraint firstItem="rGO-bW-vTB" firstAttribute="top" secondItem="JlB-tq-Dmd" secondAttribute="top" constant="12" id="1nl-nt-x0S"/>
+                                        <constraint firstItem="Bef-cn-8bI" firstAttribute="leading" secondItem="JlB-tq-Dmd" secondAttribute="leading" constant="16" id="4KD-c8-Qqj"/>
+                                        <constraint firstAttribute="trailing" secondItem="rGO-bW-vTB" secondAttribute="trailing" constant="16" id="7LF-2W-dfM"/>
+                                        <constraint firstItem="rGO-bW-vTB" firstAttribute="leading" secondItem="Bef-cn-8bI" secondAttribute="trailing" constant="8" id="Aww-do-fSK"/>
+                                        <constraint firstItem="Bef-cn-8bI" firstAttribute="top" secondItem="JlB-tq-Dmd" secondAttribute="top" constant="11" id="EeF-VP-1QB"/>
+                                        <constraint firstItem="92V-Y1-Q6R" firstAttribute="leading" secondItem="JlB-tq-Dmd" secondAttribute="leading" constant="16" id="jEs-X1-Eor"/>
+                                        <constraint firstAttribute="bottom" secondItem="92V-Y1-Q6R" secondAttribute="bottom" constant="11.666666666666671" id="mRt-pM-WV8"/>
+                                        <constraint firstAttribute="trailing" secondItem="92V-Y1-Q6R" secondAttribute="trailing" constant="16" id="mi8-74-YW1"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                <connections>
+                                    <outlet property="descriptionLabel" destination="92V-Y1-Q6R" id="oHw-I9-a1O"/>
+                                    <outlet property="timestampLabel" destination="rGO-bW-vTB" id="OZD-um-4Hc"/>
+                                    <outlet property="titleLabel" destination="Bef-cn-8bI" id="JTg-df-KPq"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -426,12 +469,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lsc-rk-kGn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1841" y="1114"/>
+            <point key="canvasLocation" x="1840.8" y="1112.807881773399"/>
         </scene>
         <!--Events-->
         <scene sceneID="GZM-kM-tVc">
             <objects>
-                <tableViewController id="sB0-h3-og2" customClass="EventLogViewController" customModule="roiclient" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="sB0-h3-og2" customClass="ServerEventLogsController" customModule="roiclient" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="mY8-FV-378">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

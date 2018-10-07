@@ -9,8 +9,8 @@
 import Foundation
 
 
-class Event {
-    enum EventError: Error {
+class LogEntry {
+    enum LogEntryError: Error {
         case parseError(String)
     }
     
@@ -21,12 +21,12 @@ class Event {
     init(fromMap map: [String: AnyObject?]) throws {
         guard let title = map["title"] as? String,
               let timestamp = map["timestamp"] as? String else {
-            throw EventError.parseError("Failed to find required attributes 'title' or 'timestamp'")
+            throw LogEntryError.parseError("Failed to find required attributes 'title' or 'timestamp'")
         }
         
         let trimmedIsoString = timestamp.replacingOccurrences(of: "\\.\\d+", with: "", options: .regularExpression)
         guard let date = ISO8601DateFormatter().date(from: trimmedIsoString) else {
-            throw EventError.parseError("Date ('\(timestamp)') was not of expected ISO8601 format")
+            throw LogEntryError.parseError("Date ('\(timestamp)') was not of expected ISO8601 format")
         }
         
         self.title = title
@@ -35,8 +35,8 @@ class Event {
     }
 }
 
-class EventLog {
-    enum EventLogError: Error {
+class ServerLog {
+    enum ServerLogError: Error {
         case httpError(String)
     }
     
@@ -46,18 +46,17 @@ class EventLog {
         self.streamConfig = streamConfig
     }
     
-    func fetchLogs(completionHandler: @escaping ([Event]?, Error?) -> Void) {
-        let url = URLProvider(streamConfig: streamConfig).eventLogURL()
+    func fetchLogs(fromUrl url: URL, completionHandler: @escaping ([LogEntry]?, Error?) -> Void) {
         let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
             if let json = data?.deserializeAsJson() as? [[String:AnyObject]] {
-                let events = json
+                let entries = json
                     .reversed()
-                    .map {(m) in try? Event(fromMap: m) }
+                    .map {(m) in try? LogEntry(fromMap: m) }
                     .filter { e in e != nil }
                     .map { e in e! }
-                completionHandler(events, nil)
+                completionHandler(entries, nil)
             } else {
-                completionHandler(nil, error ?? EventLogError.httpError("Server returned no content"))
+                completionHandler(nil, error ?? ServerLogError.httpError("Server returned no content"))
             }
         }
         task.resume()
