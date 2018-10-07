@@ -36,6 +36,12 @@ class ServerLogController: UITableViewController {
     var streamConfig: StreamConfig?
     var logEntries: [LogEntry] = []
     
+    /*lazy var refreshControl: UIRefreshControl = {
+        let control = UIRefreshControl()
+        control.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
+        return control!
+    }()*/
+    
     func serverLogDataURL() -> URL {
         preconditionFailure("Override me!")
     }
@@ -48,8 +54,15 @@ class ServerLogController: UITableViewController {
             preconditionFailure("streamConfig must be defined")
         }
         
+        refreshControl = UIRefreshControl()
+        refreshControl!.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
+        refreshContent()
+    }
+    
+    @objc private func refreshContent() {
         let serverLog = ServerLog(streamConfig: streamConfig!)
         let url = serverLogDataURL()
+
         serverLog.fetchLogs(fromUrl: url) {(entries, error) in
             if entries != nil {
                 self.logEntries = entries!
@@ -58,6 +71,14 @@ class ServerLogController: UITableViewController {
                 }
             } else {
                 self.showFailureDialog(error)
+            }
+            
+            // We get this weird behavior where the ActivityIndicator lingers over
+            // the top row if we dismiss is immediately, so sleep for a wee bit
+            // before actually dismissing it.
+            usleep(500 * 1000)
+            DispatchQueue.main.async {
+                self.refreshControl?.endRefreshing()
             }
         }
     }

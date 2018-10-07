@@ -440,6 +440,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                     <constraints>
                                         <constraint firstItem="92V-Y1-Q6R" firstAttribute="top" secondItem="Bef-cn-8bI" secondAttribute="bottom" constant="6" id="0pQ-R6-w2m"/>
                                         <constraint firstItem="rGO-bW-vTB" firstAttribute="top" secondItem="JlB-tq-Dmd" secondAttribute="top" constant="12" id="1nl-nt-x0S"/>
@@ -514,6 +515,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="CCm-IZ-hLO" secondAttribute="bottom" constant="11.666666666666671" id="0Kq-cK-MZb"/>
                                         <constraint firstAttribute="trailing" secondItem="CCm-IZ-hLO" secondAttribute="trailing" constant="16" id="9fD-Ac-f26"/>
