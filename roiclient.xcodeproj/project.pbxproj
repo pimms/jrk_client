@@ -14,6 +14,7 @@
 		193656322168BD9300470BC7 /* EventLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193656312168BD9300470BC7 /* EventLog.swift */; };
 		193656342168C57D00470BC7 /* EventLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193656332168C57D00470BC7 /* EventLogViewController.swift */; };
 		19365636216915E800470BC7 /* PlayHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19365635216915E800470BC7 /* PlayHistoryViewController.swift */; };
+		19365638216A403100470BC7 /* DismissableRootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19365637216A403100470BC7 /* DismissableRootNavigationController.swift */; };
 		1938985D21260CD20043B4B5 /* InfoRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1938985C21260CD20043B4B5 /* InfoRetriever.swift */; };
 		1938985F21260F020043B4B5 /* NSObject+jsonInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1938985E21260F020043B4B5 /* NSObject+jsonInit.swift */; };
 		1938986121261A050043B4B5 /* jrk.png in Resources */ = {isa = PBXBuildFile; fileRef = 1938986021261A050043B4B5 /* jrk.png */; };
@@ -106,6 +107,7 @@
 		193656312168BD9300470BC7 /* EventLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLog.swift; sourceTree = "<group>"; };
 		193656332168C57D00470BC7 /* EventLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLogViewController.swift; sourceTree = "<group>"; };
 		19365635216915E800470BC7 /* PlayHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayHistoryViewController.swift; sourceTree = "<group>"; };
+		19365637216A403100470BC7 /* DismissableRootNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissableRootNavigationController.swift; sourceTree = "<group>"; };
 		1938985C21260CD20043B4B5 /* InfoRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoRetriever.swift; sourceTree = "<group>"; };
 		1938985E21260F020043B4B5 /* NSObject+jsonInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+jsonInit.swift"; sourceTree = "<group>"; };
 		1938986021261A050043B4B5 /* jrk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jrk.png; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 				195A8756215817A400C8F74D /* ConnectViewController.swift */,
 				193656332168C57D00470BC7 /* EventLogViewController.swift */,
 				19365635216915E800470BC7 /* PlayHistoryViewController.swift */,
+				19365637216A403100470BC7 /* DismissableRootNavigationController.swift */,
 			);
 			name = viewcontroller;
 			sourceTree = "<group>";
@@ -564,6 +567,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19365638216A403100470BC7 /* DismissableRootNavigationController.swift in Sources */,
 				193656342168C57D00470BC7 /* EventLogViewController.swift in Sources */,
 				195A8757215817A400C8F74D /* ConnectViewController.swift in Sources */,
 				195A87622159755B00C8F74D /* URLSession+synchronous.swift in Sources */,

@@ -12,13 +12,8 @@ import UIKit
 class EventLogViewController: UITableViewController {
     var streamConfig: StreamConfig?
     var events: [Event] = []
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
+
     override func viewDidLoad() {
-        createNavigationBackButtonIfNeeded()
         tableView.tableFooterView = UIView()
         
         streamConfig = AppDelegate.singleton?.streamContext?.streamConfig
@@ -37,14 +32,6 @@ class EventLogViewController: UITableViewController {
                 self.showFailureDialog(error)
             }
         }
-    }
-    
-    private func createNavigationBackButtonIfNeeded() {
-        navigationController?.navigationBar.topItem?.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .done, target: self, action: #selector(backButtonClicked))
-    }
-    
-    @objc private func backButtonClicked() {
-        dismiss(animated: true, completion: nil)
     }
     
     private func showFailureDialog(_ err: Error?) {

@@ -522,10 +522,10 @@
             </objects>
             <point key="canvasLocation" x="-751" y="33"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Dismissable Root Navigation Controller-->
         <scene sceneID="n7V-zK-mws">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qYv-nr-3ZQ" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qYv-nr-3ZQ" customClass="DismissableRootNavigationController" customModule="roiclient" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="f3i-j4-rDj">
