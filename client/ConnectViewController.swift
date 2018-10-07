@@ -43,13 +43,17 @@ class ConnectViewController: UIViewController {
         
         if streamContext != nil {
             hideAllViews()
+        } else {
+            showAllViews()
         }
     }
     
     private func hideAllViews() {
-        for subview in self.view.subviews {
-            subview.isHidden = true
-        }
+        view.subviews.forEach {v in v.isHidden = true}
+    }
+    
+    private func showAllViews() {
+        view.subviews.forEach {v in v.isHidden = false}
     }
     
     override func viewDidAppear(_ animated: Bool) {
