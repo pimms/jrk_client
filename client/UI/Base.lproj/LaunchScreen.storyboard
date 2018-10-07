@@ -17,29 +17,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roi-light" translatesAutoresizingMaskIntoConstraints="NO" id="AAb-1m-QMF">
-                                <rect key="frame" x="107" y="353" width="200" height="200"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="5wQ-t6-bso"/>
-                                    <constraint firstAttribute="width" secondItem="AAb-1m-QMF" secondAttribute="height" multiplier="1:1" id="biW-wI-aMX"/>
-                                    <constraint firstAttribute="width" constant="200" id="zI2-De-Qt7"/>
-                                </constraints>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roi-splash-split-l.png" translatesAutoresizingMaskIntoConstraints="NO" id="3re-Fp-Wyt">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roi-splash-split-r.png" translatesAutoresizingMaskIntoConstraints="NO" id="FKJ-hy-T0k">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="AAb-1m-QMF" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="k1D-Ni-S0q"/>
-                            <constraint firstItem="AAb-1m-QMF" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="yFO-pP-GAQ"/>
+                            <constraint firstAttribute="bottom" secondItem="3re-Fp-Wyt" secondAttribute="bottom" id="0qs-cS-Irj"/>
+                            <constraint firstItem="3re-Fp-Wyt" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="Hph-mN-the"/>
+                            <constraint firstItem="FKJ-hy-T0k" firstAttribute="centerY" secondItem="3re-Fp-Wyt" secondAttribute="centerY" id="Wn6-cA-Hrz"/>
+                            <constraint firstItem="FKJ-hy-T0k" firstAttribute="centerX" secondItem="3re-Fp-Wyt" secondAttribute="centerX" id="XEI-q4-Gyx"/>
+                            <constraint firstItem="FKJ-hy-T0k" firstAttribute="width" secondItem="3re-Fp-Wyt" secondAttribute="width" id="YUX-Ch-1DX"/>
+                            <constraint firstItem="FKJ-hy-T0k" firstAttribute="height" secondItem="3re-Fp-Wyt" secondAttribute="height" id="ffR-Bx-E6P"/>
+                            <constraint firstAttribute="trailing" secondItem="3re-Fp-Wyt" secondAttribute="trailing" id="jbI-N7-MnF"/>
+                            <constraint firstItem="3re-Fp-Wyt" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="xuy-dr-UkD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="50.724637681159422" y="374.18478260869568"/>
+            <point key="canvasLocation" x="50.724637681159422" y="373.66071428571428"/>
         </scene>
     </scenes>
     <resources>
-        <image name="roi-light" width="400" height="175"/>
+        <image name="roi-splash-split-l.png" width="1242" height="2688"/>
+        <image name="roi-splash-split-r.png" width="1242" height="2688"/>
     </resources>
 </document>

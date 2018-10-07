@@ -16,10 +16,6 @@ class RadioViewController: UIViewController, RoiPlayerDelegate, PlayButtonDelega
     @IBOutlet
     var playButton: PlayButton?
     
-    override func loadView() {
-        super.loadView()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.infoLabel?.text = nil
@@ -33,13 +29,9 @@ class RadioViewController: UIViewController, RoiPlayerDelegate, PlayButtonDelega
         imageView?.image = streamContext?.streamConfig.mainImage
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupSiriActivity()
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        setupSiriActivity()
     }
     
     

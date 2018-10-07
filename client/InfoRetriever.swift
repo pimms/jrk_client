@@ -86,17 +86,17 @@ class InfoRetriever: NSObject {
     }
     
     private func handleResponse(data: Data?, error: Error?) {
-        if (error != nil || data == nil) {
-            print("failed to get info :( \(String(describing: error))")
-            info = nil
-            dispatchToDelegates()
-        } else {
-            let new = EpisodeInfo(fromMap: data!.toMap())
+        if let map = data?.deserializeAsJson() as? [String:AnyObject] {
+            let new = EpisodeInfo(fromMap: map)
             if new.name != info?.name ?? nil {
                 new.channel = streamConfig.streamName
                 info = new
                 dispatchToDelegates()
             }
+        } else {
+            print("failed to get nowPlaying-info: \(String(describing: error))")
+            info = nil
+            dispatchToDelegates()
         }
         
         if (shouldLoop) {

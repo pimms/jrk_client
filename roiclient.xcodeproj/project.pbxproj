@@ -11,8 +11,9 @@
 		1915514C214ECA620029AC79 /* NowPlayingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1915514B214ECA620029AC79 /* NowPlayingData.swift */; };
 		1915514E214ED2160029AC79 /* EventIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1915514D214ED2160029AC79 /* EventIDs.swift */; };
 		1920491F215658500093352C /* WatchSessionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1920491E215658500093352C /* WatchSessionHandler.swift */; };
-		193898592125FF900043B4B5 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 193898582125FF900043B4B5 /* play.png */; };
-		1938985B2125FF970043B4B5 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 1938985A2125FF960043B4B5 /* pause.png */; };
+		193656322168BD9300470BC7 /* EventLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193656312168BD9300470BC7 /* EventLog.swift */; };
+		193656342168C57D00470BC7 /* EventLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193656332168C57D00470BC7 /* EventLogViewController.swift */; };
+		19365636216915E800470BC7 /* PlayHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19365635216915E800470BC7 /* PlayHistoryViewController.swift */; };
 		1938985D21260CD20043B4B5 /* InfoRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1938985C21260CD20043B4B5 /* InfoRetriever.swift */; };
 		1938985F21260F020043B4B5 /* NSObject+jsonInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1938985E21260F020043B4B5 /* NSObject+jsonInit.swift */; };
 		1938986121261A050043B4B5 /* jrk.png in Resources */ = {isa = PBXBuildFile; fileRef = 1938986021261A050043B4B5 /* jrk.png */; };
@@ -28,6 +29,9 @@
 		19488D282156278900E79ED1 /* watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 19488D0C2156278600E79ED1 /* watch.app */; };
 		194CC9F12145937A00BF1381 /* JrkPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194CC9F02145937A00BF1381 /* JrkPlayer.swift */; };
 		194CC9F62146FF9F00BF1381 /* AVPlayer+isPlaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194CC9F52146FF9F00BF1381 /* AVPlayer+isPlaying.swift */; };
+		1951E5D92163C84100637ECD /* roi-splash-split-l.png in Resources */ = {isa = PBXBuildFile; fileRef = 1951E5D82163C84100637ECD /* roi-splash-split-l.png */; };
+		1951E5DB2163C84A00637ECD /* roi-splash-split-r.png in Resources */ = {isa = PBXBuildFile; fileRef = 1951E5DA2163C84A00637ECD /* roi-splash-split-r.png */; };
+		1951E5DD2163EDE200637ECD /* SplitSplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1951E5DC2163EDE200637ECD /* SplitSplashView.swift */; };
 		195A8757215817A400C8F74D /* ConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A8756215817A400C8F74D /* ConnectViewController.swift */; };
 		195A875B21595C8700C8F74D /* StreamContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A875A21595C8700C8F74D /* StreamContext.swift */; };
 		195A875D2159641700C8F74D /* StreamConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A875C2159641700C8F74D /* StreamConfig.swift */; };
@@ -99,8 +103,9 @@
 		1915514B214ECA620029AC79 /* NowPlayingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingData.swift; sourceTree = "<group>"; };
 		1915514D214ED2160029AC79 /* EventIDs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventIDs.swift; sourceTree = "<group>"; };
 		1920491E215658500093352C /* WatchSessionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionHandler.swift; sourceTree = "<group>"; };
-		193898582125FF900043B4B5 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = play.png; path = ../../../../../Downloads/play.png; sourceTree = "<group>"; };
-		1938985A2125FF960043B4B5 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pause.png; path = ../../../../../Downloads/pause.png; sourceTree = "<group>"; };
+		193656312168BD9300470BC7 /* EventLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLog.swift; sourceTree = "<group>"; };
+		193656332168C57D00470BC7 /* EventLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLogViewController.swift; sourceTree = "<group>"; };
+		19365635216915E800470BC7 /* PlayHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayHistoryViewController.swift; sourceTree = "<group>"; };
 		1938985C21260CD20043B4B5 /* InfoRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoRetriever.swift; sourceTree = "<group>"; };
 		1938985E21260F020043B4B5 /* NSObject+jsonInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+jsonInit.swift"; sourceTree = "<group>"; };
 		1938986021261A050043B4B5 /* jrk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jrk.png; sourceTree = "<group>"; };
@@ -119,6 +124,9 @@
 		19488D252156278900E79ED1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		194CC9F02145937A00BF1381 /* JrkPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JrkPlayer.swift; sourceTree = "<group>"; };
 		194CC9F52146FF9F00BF1381 /* AVPlayer+isPlaying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayer+isPlaying.swift"; sourceTree = "<group>"; };
+		1951E5D82163C84100637ECD /* roi-splash-split-l.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roi-splash-split-l.png"; sourceTree = "<group>"; };
+		1951E5DA2163C84A00637ECD /* roi-splash-split-r.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roi-splash-split-r.png"; sourceTree = "<group>"; };
+		1951E5DC2163EDE200637ECD /* SplitSplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitSplashView.swift; sourceTree = "<group>"; };
 		195A8756215817A400C8F74D /* ConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectViewController.swift; sourceTree = "<group>"; };
 		195A875A21595C8700C8F74D /* StreamContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamContext.swift; sourceTree = "<group>"; };
 		195A875C2159641700C8F74D /* StreamConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamConfig.swift; sourceTree = "<group>"; };
@@ -179,9 +187,9 @@
 		193898512125F5A10043B4B5 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				1951E5D82163C84100637ECD /* roi-splash-split-l.png */,
+				1951E5DA2163C84A00637ECD /* roi-splash-split-r.png */,
 				1938986021261A050043B4B5 /* jrk.png */,
-				1938985A2125FF960043B4B5 /* pause.png */,
-				193898582125FF900043B4B5 /* play.png */,
 			);
 			path = assets;
 			sourceTree = "<group>";
@@ -259,6 +267,7 @@
 				1915514B214ECA620029AC79 /* NowPlayingData.swift */,
 				195A875A21595C8700C8F74D /* StreamContext.swift */,
 				195A875C2159641700C8F74D /* StreamConfig.swift */,
+				193656312168BD9300470BC7 /* EventLog.swift */,
 			);
 			name = stream;
 			sourceTree = "<group>";
@@ -277,6 +286,7 @@
 			children = (
 				19BA9DA2214AEA4200BD31D6 /* BufferIndicatorView.swift */,
 				19BA9DA4214AEDA600BD31D6 /* PlayButton.swift */,
+				1951E5DC2163EDE200637ECD /* SplitSplashView.swift */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -288,6 +298,8 @@
 				19BF64FC214E9813004DD3C9 /* MainViewController.swift */,
 				19BF6500214EA22D004DD3C9 /* ConfigViewController.swift */,
 				195A8756215817A400C8F74D /* ConnectViewController.swift */,
+				193656332168C57D00470BC7 /* EventLogViewController.swift */,
+				19365635216915E800470BC7 /* PlayHistoryViewController.swift */,
 			);
 			name = viewcontroller;
 			sourceTree = "<group>";
@@ -471,12 +483,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				193898592125FF900043B4B5 /* play.png in Resources */,
 				19C81F20211F528000BD920E /* LaunchScreen.storyboard in Resources */,
-				1938985B2125FF970043B4B5 /* pause.png in Resources */,
 				19C81F1D211F528000BD920E /* Assets.xcassets in Resources */,
+				1951E5D92163C84100637ECD /* roi-splash-split-l.png in Resources */,
 				19C81F1B211F527F00BD920E /* Main.storyboard in Resources */,
 				1938986121261A050043B4B5 /* jrk.png in Resources */,
+				1951E5DB2163C84A00637ECD /* roi-splash-split-r.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,6 +564,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				193656342168C57D00470BC7 /* EventLogViewController.swift in Sources */,
 				195A8757215817A400C8F74D /* ConnectViewController.swift in Sources */,
 				195A87622159755B00C8F74D /* URLSession+synchronous.swift in Sources */,
 				1938985D21260CD20043B4B5 /* InfoRetriever.swift in Sources */,
@@ -562,11 +575,14 @@
 				195A876021596E4D00C8F74D /* Data+toMap.swift in Sources */,
 				1915514C214ECA620029AC79 /* NowPlayingData.swift in Sources */,
 				19BA9DA5214AEDA600BD31D6 /* PlayButton.swift in Sources */,
+				1951E5DD2163EDE200637ECD /* SplitSplashView.swift in Sources */,
 				197AD012215C1894009BF079 /* UserDefaults+integer.swift in Sources */,
 				1915514A214EBE4C0029AC79 /* NowPlayingConfiguration.swift in Sources */,
 				19E986AB212C71A4006A6976 /* AppConfig.swift in Sources */,
 				197E8E71215AD30300154A23 /* WeakRef.swift in Sources */,
 				195A875B21595C8700C8F74D /* StreamContext.swift in Sources */,
+				19365636216915E800470BC7 /* PlayHistoryViewController.swift in Sources */,
+				193656322168BD9300470BC7 /* EventLog.swift in Sources */,
 				194CC9F62146FF9F00BF1381 /* AVPlayer+isPlaying.swift in Sources */,
 				19E986B1212C75B0006A6976 /* URLProvider.swift in Sources */,
 				19C81F18211F527F00BD920E /* RadioViewController.swift in Sources */,

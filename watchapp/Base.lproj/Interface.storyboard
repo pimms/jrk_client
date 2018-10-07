@@ -11,7 +11,7 @@
         <!--Interface Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller fullScreen="YES" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="watchapp" customModuleProvider="target">
+                <controller fullScreen="YES" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="watch_extension">
                     <items>
                         <group width="1" alignment="left" layout="overlap" id="FkW-Nt-EBx" userLabel="Group - Logo">
                             <items>

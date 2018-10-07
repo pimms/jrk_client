@@ -10,14 +10,14 @@ import Foundation
 import UIKit
 
 enum StreamConfigError: Error {
-    case ConfigFileNotFound
-    case InvalidConfig
+    case configFileNotFound
+    case invalidConfig
     
-    case UnparseableServerResponse
-    case FailedToDownloadImage
-    case PersistenceFailure
-    case InitializationError
-    case InvalidURL
+    case unparseableServerResponse
+    case failedToDownloadImage
+    case persistenceFailure
+    case initializationError
+    case invalidURL
 }
 
 class StreamConfig {
@@ -31,7 +31,7 @@ class StreamConfig {
     
     static func construct(fromURL streamURL: String, callback: @escaping (StreamConfig?,Error?) -> Void) {
         guard let url = URL(string: streamURL) else {
-            callback(nil, StreamConfigError.InvalidURL)
+            callback(nil, StreamConfigError.invalidURL)
             return
         }
         
@@ -46,9 +46,12 @@ class StreamConfig {
             // need to invoke the calls within its' own discrete background-task.
             DispatchQueue.global(qos: .background).async {
                 do {
-                    let map = data!.toMap()
-                    let config = try StreamConfig(withRootURL: streamURL, andMetaResponse: map)
-                    DispatchQueue.main.async { callback(config, nil) }
+                    if let map = data?.deserializeAsJson() as? [String:AnyObject] {
+                        let config = try StreamConfig(withRootURL: streamURL, andMetaResponse: map)
+                        DispatchQueue.main.async { callback(config, nil) }
+                    } else {
+                        DispatchQueue.main.async { callback(nil, StreamConfigError.unparseableServerResponse) }
+                    }
                 } catch let err {
                     print("Failed to construct StreamConfig from ROI root URL: \(err.localizedDescription)")
                     DispatchQueue.main.async { callback(nil, err) }
@@ -101,11 +104,11 @@ class StreamConfig {
         guard let streamName = metaMap["streamName"] as? String,
               let playlistURL = metaMap["playlistURL"] as? String,
               let streamPictureURL = metaMap["streamPictureURL"] as? String else {
-            throw StreamConfigError.UnparseableServerResponse
+            throw StreamConfigError.unparseableServerResponse
         }
         
         guard let mainImage = StreamConfig.downloadImageSync(imageURL: URL(string: streamPictureURL)!) else {
-            throw StreamConfigError.FailedToDownloadImage
+            throw StreamConfigError.failedToDownloadImage
         }
         
         self.streamName = streamName
@@ -121,7 +124,7 @@ class StreamConfig {
         
         // Save the image
         guard let pngData = UIImagePNGRepresentation(self.mainImage) else {
-            throw StreamConfigError.PersistenceFailure
+            throw StreamConfigError.persistenceFailure
         }
         try pngData.write(to: URL(fileURLWithPath: mainImagePath), options: .atomic)
         
@@ -142,7 +145,7 @@ class StreamConfig {
         
         let fileManager = FileManager.default
         if (!fileManager.fileExists(atPath: streamConfigPath)) {
-            throw StreamConfigError.ConfigFileNotFound
+            throw StreamConfigError.configFileNotFound
         }
         
         let configDict = NSDictionary(contentsOfFile: streamConfigPath)
@@ -153,7 +156,7 @@ class StreamConfig {
               let rootURL = configDict?.object(forKey: StreamConfig.STREAM_ROOT_URL_KEY) as? String,
               let streamPictureURL = configDict?.object(forKey: StreamConfig.MAIN_IMAGE_URL_KEY) as? String,
               let mainImage = UIImage(contentsOfFile: imagePath) else {
-            throw StreamConfigError.InvalidConfig
+            throw StreamConfigError.invalidConfig
         }
         
         self.streamURL = streamURL

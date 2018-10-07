@@ -58,7 +58,17 @@ class ConfigViewController: UIViewController {
     }
     
     @IBAction func deleteConfigButtonClicked() {
-        SwiftEventBus.post(.streamConfigResetRequestedEvent)
+        let alert = UIAlertController(title: "Disconncet from channel?",
+                                      message: "Are you sure you want to disconnect from?", preferredStyle: .alert)
+        let clearAction = UIAlertAction(title: "Disconnect", style: .destructive) { (alert: UIAlertAction!) -> Void in
+            SwiftEventBus.post(.streamConfigResetRequestedEvent)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default)
+        
+        alert.addAction(clearAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion:nil)
     }
     
     private func getDefaultsKey(forControl control: UISegmentedControl) -> NowPlayingConfigurationKey? {

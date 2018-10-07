@@ -16,4 +16,9 @@ class URLProvider {
         let root = streamConfig.rootURL
         return URL(string: root + "/live/playlist.m3u8")!
     }
+    
+    func eventLogURL() -> URL {
+        let root = streamConfig.rootURL
+        return URL(string: root + "/live/eventlog")!
+    }
 }

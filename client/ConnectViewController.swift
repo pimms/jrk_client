@@ -17,6 +17,7 @@ class ConnectViewController: UIViewController {
     }
     
     private var streamContext: StreamContext? = nil
+    private var splashView: SplitSplashView?
     
     @IBOutlet
     var textInput: UITextField?
@@ -27,11 +28,22 @@ class ConnectViewController: UIViewController {
     @IBOutlet
     var activityIndicator: UIActivityIndicatorView?
     
+    override func viewDidLoad() {
+        if let context = AppDelegate.singleton?.streamContext {
+            streamContext = context
+        } else {
+            splashView = SplitSplashView()
+            view.addSubview(splashView!)
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         activityIndicator?.isHidden = true
         helpLabel?.text = nil
         
-        hideAllViews()
+        if streamContext != nil {
+            hideAllViews()
+        }
     }
     
     private func hideAllViews() {
@@ -40,24 +52,15 @@ class ConnectViewController: UIViewController {
         }
     }
     
-    private func showAllViews() {
-        UIView.animate(withDuration: 0.2, animations: {
-            for subview in self.view.subviews {
-                if subview !== self.activityIndicator {
-                    subview.isHidden = false
-                }
-            }
-        })
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         // If a stream is configured, the AppDelegate will instantiate it for us.
-        if let context = AppDelegate.singleton?.streamContext {
-            streamContext = context
+        if streamContext != nil {
             performMainSegue()
         } else {
-            showAllViews()
-            textInput?.becomeFirstResponder()
+            splashView?.startAnimation(completionHandler: {
+                self.textInput?.becomeFirstResponder()
+                self.splashView = nil
+            })
         }
     }
     
@@ -109,16 +112,16 @@ class ConnectViewController: UIViewController {
     private func handleConfigurationError(err: Error) {
         if let streamErr = err as? StreamConfigError {
             switch (streamErr) {
-            case .InvalidURL:
+            case .invalidURL:
                 setLabelText("Not a valid URL", type: .error)
                 break
-            case .UnparseableServerResponse:
+            case .unparseableServerResponse:
                 setLabelText("Illegible response from server", type: .error)
                 break
-            case .FailedToDownloadImage:
+            case .failedToDownloadImage:
                 setLabelText("Failed to download stream image", type: .error)
                 break
-            case .PersistenceFailure:
+            case .persistenceFailure:
                 setLabelText("Faile to persist configuration", type: .error)
                 break
             default:
