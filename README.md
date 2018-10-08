@@ -3,7 +3,7 @@ Putting radio on the internet. Again.
 
 
 ### Significant Features
-- Live streaming from any_(*)_ ROI-server
+- Live streaming from any* ROI-server
 - Background play
 - Watch companion app _(that mostly works pretty well)_
 
