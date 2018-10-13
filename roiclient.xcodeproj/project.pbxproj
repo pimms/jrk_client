@@ -27,7 +27,7 @@
 		19488D222156278900E79ED1 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19488D212156278900E79ED1 /* ComplicationController.swift */; };
 		19488D242156278900E79ED1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19488D232156278900E79ED1 /* Assets.xcassets */; };
 		19488D282156278900E79ED1 /* watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 19488D0C2156278600E79ED1 /* watch.app */; };
-		194CC9F12145937A00BF1381 /* JrkPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194CC9F02145937A00BF1381 /* JrkPlayer.swift */; };
+		194CC9F12145937A00BF1381 /* RoiPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194CC9F02145937A00BF1381 /* RoiPlayer.swift */; };
 		194CC9F62146FF9F00BF1381 /* AVPlayer+isPlaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194CC9F52146FF9F00BF1381 /* AVPlayer+isPlaying.swift */; };
 		1951E5D92163C84100637ECD /* roi-splash-split-l.png in Resources */ = {isa = PBXBuildFile; fileRef = 1951E5D82163C84100637ECD /* roi-splash-split-l.png */; };
 		1951E5DB2163C84A00637ECD /* roi-splash-split-r.png in Resources */ = {isa = PBXBuildFile; fileRef = 1951E5DA2163C84A00637ECD /* roi-splash-split-r.png */; };
@@ -122,7 +122,7 @@
 		19488D212156278900E79ED1 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		19488D232156278900E79ED1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		19488D252156278900E79ED1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		194CC9F02145937A00BF1381 /* JrkPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JrkPlayer.swift; sourceTree = "<group>"; };
+		194CC9F02145937A00BF1381 /* RoiPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoiPlayer.swift; sourceTree = "<group>"; };
 		194CC9F52146FF9F00BF1381 /* AVPlayer+isPlaying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayer+isPlaying.swift"; sourceTree = "<group>"; };
 		1951E5D82163C84100637ECD /* roi-splash-split-l.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roi-splash-split-l.png"; sourceTree = "<group>"; };
 		1951E5DA2163C84A00637ECD /* roi-splash-split-r.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roi-splash-split-r.png"; sourceTree = "<group>"; };
@@ -262,7 +262,7 @@
 				1938985C21260CD20043B4B5 /* InfoRetriever.swift */,
 				19E986AA212C71A4006A6976 /* AppConfig.swift */,
 				19E986B0212C75B0006A6976 /* URLProvider.swift */,
-				194CC9F02145937A00BF1381 /* JrkPlayer.swift */,
+				194CC9F02145937A00BF1381 /* RoiPlayer.swift */,
 				19155149214EBE4C0029AC79 /* NowPlayingConfiguration.swift */,
 				1915514B214ECA620029AC79 /* NowPlayingData.swift */,
 				195A875A21595C8700C8F74D /* StreamContext.swift */,
@@ -590,7 +590,7 @@
 				1938985F21260F020043B4B5 /* NSObject+jsonInit.swift in Sources */,
 				1920491F215658500093352C /* WatchSessionHandler.swift in Sources */,
 				19BA9DA3214AEA4200BD31D6 /* BufferIndicatorView.swift in Sources */,
-				194CC9F12145937A00BF1381 /* JrkPlayer.swift in Sources */,
+				194CC9F12145937A00BF1381 /* RoiPlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
