@@ -43,10 +43,10 @@ import DynamicButton
     }
     
     private func initButton() {
-        let subFrame = CGRect(x: frame.height / 4,
-                           y: frame.height / 4,
-                           width: frame.width / 2,
-                           height: frame.height / 2)
+        let subFrame = CGRect(x: 10,
+                           y: 10,
+                           width: frame.width - 20,
+                           height: frame.height - 20)
         
         playPauseButton = DynamicButton(style: .none)
         playPauseButton?.frame = subFrame
