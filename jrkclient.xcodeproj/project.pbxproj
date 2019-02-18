@@ -643,7 +643,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = no.jstien.jrk.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = no.jstien.jrk.wk.wke;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -666,7 +666,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = no.jstien.jrk.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = no.jstien.jrk.wk.wke;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -687,7 +687,7 @@
 				INFOPLIST_FILE = watchapp/Info.plist;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = no.jstien.jrk.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = no.jstien.jrk.wk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -707,7 +707,7 @@
 				IBSC_MODULE = watchapp_Extension;
 				INFOPLIST_FILE = watchapp/Info.plist;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = no.jstien.jrk.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = no.jstien.jrk.wk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
