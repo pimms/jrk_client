@@ -1,17 +1,9 @@
-//
-//  WatchSessionHandler.swift
-//  roiclient
-//
-//  Created by pimms on 22/09/2018.
-//  Copyright © 2018 pimms. All rights reserved.
-//
-
 import Foundation
 import WatchConnectivity
 
 typealias Payload = [String: Any]
 
-class WatchSessionHandler: NSObject, WCSessionDelegate, RoiPlayerDelegate, InfoRetrieverDelegate {
+class WatchSessionHandler: NSObject, WCSessionDelegate, JrkPlayerDelegate, InfoRetrieverDelegate {
     private let session = WCSession.default
     weak private var streamContext: StreamContext? = nil
     
@@ -42,7 +34,7 @@ class WatchSessionHandler: NSObject, WCSessionDelegate, RoiPlayerDelegate, InfoR
     
     func setStreamContext(_ streamContext: StreamContext?) {
         self.streamContext = streamContext
-        self.streamContext?.roiPlayer.addDelegate(self)
+        self.streamContext?.jrkPlayer.addDelegate(self)
         self.streamContext?.infoRetriever.addDelegate(self)
         send(message: createPlayStatusPayload())
     }
@@ -53,7 +45,7 @@ class WatchSessionHandler: NSObject, WCSessionDelegate, RoiPlayerDelegate, InfoR
         
         if let streamContext = self.streamContext {
             episodeInfoChanged(streamContext.infoRetriever.episodeInfo)
-            roiPlayerStateChanged(state: streamContext.roiPlayer.state)
+            jrkPlayerStateChanged(state: streamContext.jrkPlayer.state)
         }
     }
     
@@ -75,13 +67,13 @@ class WatchSessionHandler: NSObject, WCSessionDelegate, RoiPlayerDelegate, InfoR
     private func createPlayStatusPayload() -> Payload {
         if let context = streamContext {
             let info = context.infoRetriever.episodeInfo
-            let state = context.roiPlayer.state
+            let state = context.jrkPlayer.state
             return [
                 "status": "configured",
                 "type": "playerStatus",
                 "title": info?.name as Any,
                 "subtitle": info?.season as Any,
-                "roiState": state.toString()
+                "jrkState": state.toString()
             ]
         } else {
             return createNotConfiguredPayload()
@@ -100,11 +92,11 @@ class WatchSessionHandler: NSObject, WCSessionDelegate, RoiPlayerDelegate, InfoR
         if let request = message["request"] as? String {
             print("Received watch-action request '\(request)'")
             if (request == "play") {
-                streamContext?.roiPlayer.play()
+                streamContext?.jrkPlayer.play()
             } else if (request == "pause") {
-                streamContext?.roiPlayer.pause()
+                streamContext?.jrkPlayer.pause()
             } else if (request == "togglePlay") {
-                streamContext?.roiPlayer.togglePlayPause()
+                streamContext?.jrkPlayer.togglePlayPause()
             }
             
             let payload = createPlayStatusPayload()
@@ -128,8 +120,8 @@ class WatchSessionHandler: NSObject, WCSessionDelegate, RoiPlayerDelegate, InfoR
         send(message: createPlayStatusPayload())
     }
     
-    // -- RoiPlayerDelegate -- //
-    func roiPlayerStateChanged(state: RoiPlayerState) {
+    // -- JrkPlayerDelegate -- //
+    func jrkPlayerStateChanged(state: JrkPlayerState) {
         send(message: createPlayStatusPayload())
     }
 }

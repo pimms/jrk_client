@@ -1,11 +1,3 @@
-//
-//  StreamContext.swift
-//  roiclient
-//
-//  Created by pimms on 24/09/2018.
-//  Copyright © 2018 pimms. All rights reserved.
-//
-
 import Foundation
 
 class StreamContext {
@@ -15,7 +7,7 @@ class StreamContext {
     
     let streamConfig: StreamConfig
     let infoRetriever: InfoRetriever
-    let roiPlayer: RoiPlayer
+    let jrkPlayer: JrkPlayer
 
     init(streamConfig: StreamConfig) {
         assert(StreamContext.livingInstances == 0)
@@ -23,7 +15,7 @@ class StreamContext {
         
         self.streamConfig = streamConfig
         self.infoRetriever = InfoRetriever(streamConfig: streamConfig)
-        self.roiPlayer = RoiPlayer(streamConfig: streamConfig)
+        self.jrkPlayer = JrkPlayer(streamConfig: streamConfig)
     }
     
     deinit {
@@ -31,7 +23,7 @@ class StreamContext {
     }
     
     func resetConfiguration() {
-        roiPlayer.stop()
+        jrkPlayer.stop()
         infoRetriever.stopRetrievalLoop()
         StreamConfig.deleteConfiguration()
     }

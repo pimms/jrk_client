@@ -124,7 +124,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         playPauseButton?.setEnabled(true)
         playPauseButton?.setHidden(false)
         
-        if let state = message["roiState"] as? String {
+        if let state = message["jrkState"] as? String {
             isPlaying = (state == "playing" || state == "buffering")
             updateButtonState(playing: isPlaying, assumed: false)
         }
@@ -133,7 +133,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
     private func handleNotConfiguredMessage(_ message: Payload) {
         titleLabel?.setText("Not configured")
-        subTitleLabel?.setText("Setup ROI on iPhone")
+        subTitleLabel?.setText("Setup JRK on iPhone")
         playPauseButton?.setEnabled(false)
         playPauseButton?.setHidden(true)
     }

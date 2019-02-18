@@ -1,11 +1,3 @@
-//
-//  PlayButton.swift
-//  roiclient
-//
-//  Created by pimms on 13/09/2018.
-//  Copyright © 2018 pimms. All rights reserved.
-//
-
 import Foundation
 import UIKit
 import DynamicButton
@@ -14,7 +6,7 @@ import DynamicButton
     @objc func playButtonClicked(_ playButton: PlayButton)
 }
 
-@objc class PlayButton: UIControl, RoiPlayerDelegate {
+@objc class PlayButton: UIControl, JrkPlayerDelegate {
     @IBOutlet
     var delegate: PlayButtonDelegate?
     @IBOutlet
@@ -65,8 +57,8 @@ import DynamicButton
     }
     
     
-    // -- RoiPlayerDelegate -- //
-    func roiPlayerStateChanged(state: RoiPlayerState) {
+    // -- JrkPlayerDelegate -- //
+    func jrkPlayerStateChanged(state: JrkPlayerState) {
         switch state {
         case .playing:
             playPauseButton?.setStyle(.pause, animated: true)

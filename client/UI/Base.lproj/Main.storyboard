@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7C0-e9-hW3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7C0-e9-hW3">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,7 +12,7 @@
         <!--RadioViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" userLabel="RadioViewController" customClass="RadioViewController" customModule="roiclient" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" userLabel="RadioViewController" customClass="RadioViewController" customModule="jrkclient" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -41,7 +41,7 @@
                                 <color key="textColor" red="0.58480408031088082" green="0.58480408031088082" blue="0.58480408031088082" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aSy-xp-Qbj" userLabel="PlayButton" customClass="PlayButton" customModule="roiclient" customModuleProvider="target">
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aSy-xp-Qbj" userLabel="PlayButton" customClass="PlayButton" customModule="jrkclient" customModuleProvider="target">
                                 <rect key="frame" x="112.66666666666669" y="455" width="150" height="150"/>
                                 <subviews>
                                     <activityIndicatorView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="7Jy-rX-pgV">
@@ -107,18 +107,18 @@
         <!--Connect View Controller-->
         <scene sceneID="CqH-SF-SNs">
             <objects>
-                <viewController id="7C0-e9-hW3" customClass="ConnectViewController" customModule="roiclient" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7C0-e9-hW3" customClass="ConnectViewController" customModule="jrkclient" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="y9K-eL-WBb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roi-light" translatesAutoresizingMaskIntoConstraints="NO" id="oAi-Eg-BTb">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jrk-light" translatesAutoresizingMaskIntoConstraints="NO" id="oAi-Eg-BTb">
                                 <rect key="frame" x="87" y="44" width="201" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="oAi-Eg-BTb" secondAttribute="height" multiplier="149:95" id="VfY-8E-7eS"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter ROI server URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="do1-se-7mi">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter JRK server URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="do1-se-7mi">
                                 <rect key="frame" x="70" y="255" width="235" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -193,7 +193,7 @@
         <!--Config View Controller-->
         <scene sceneID="wgI-pr-wq9">
             <objects>
-                <viewController id="QXc-jz-SHR" customClass="ConfigViewController" customModule="roiclient" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="QXc-jz-SHR" customClass="ConfigViewController" customModule="jrkclient" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WMv-Ts-OZF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -330,7 +330,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="cool.roi.url.com/sweet-ass-stream-yo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="1DJ-sX-MQ5">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="cool.jrk.url.com/sweet-ass-stream-yo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="1DJ-sX-MQ5">
                                 <rect key="frame" x="16" y="669" width="343" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
@@ -402,13 +402,13 @@
         <!--Episodes-->
         <scene sceneID="0fB-oo-Z0Z">
             <objects>
-                <tableViewController id="nGe-4g-8BO" customClass="EpisodeHistoryController" customModule="roiclient" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="nGe-4g-8BO" customClass="EpisodeHistoryController" customModule="jrkclient" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="men-sd-5T9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="eventCell" rowHeight="66" id="xWd-WD-K7v" customClass="EventCell" customModule="roiclient" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="eventCell" rowHeight="66" id="xWd-WD-K7v" customClass="EventCell" customModule="jrkclient" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="eventCell" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xWd-WD-K7v" id="JlB-tq-Dmd">
@@ -475,7 +475,7 @@
         <!--Events-->
         <scene sceneID="GZM-kM-tVc">
             <objects>
-                <tableViewController id="sB0-h3-og2" customClass="ServerEventLogsController" customModule="roiclient" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="sB0-h3-og2" customClass="ServerEventLogsController" customModule="jrkclient" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="mY8-FV-378">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -483,7 +483,7 @@
                         <color key="sectionIndexBackgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexTrackingBackgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="eventCell" rowHeight="66" id="te9-Iw-Bqr" customClass="EventCell" customModule="roiclient" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="eventCell" rowHeight="66" id="te9-Iw-Bqr" customClass="EventCell" customModule="jrkclient" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="eventCell" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="te9-Iw-Bqr" id="vvd-9O-qWZ">
@@ -551,7 +551,7 @@
         <!--Main View Controller-->
         <scene sceneID="dL0-ba-Ufm">
             <objects>
-                <viewController id="q2F-Wt-1hd" customClass="MainViewController" customModule="roiclient" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="q2F-Wt-1hd" customClass="MainViewController" customModule="jrkclient" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1zm-0U-pfF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -570,7 +570,7 @@
         <!--Dismissable Root Navigation Controller-->
         <scene sceneID="n7V-zK-mws">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qYv-nr-3ZQ" customClass="DismissableRootNavigationController" customModule="roiclient" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qYv-nr-3ZQ" customClass="DismissableRootNavigationController" customModule="jrkclient" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="f3i-j4-rDj">
@@ -611,8 +611,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="jrk-light" width="391" height="186"/>
         <image name="note" width="64" height="64"/>
-        <image name="roi-light" width="400" height="175"/>
         <image name="wrench" width="64" height="64"/>
     </resources>
 </document>

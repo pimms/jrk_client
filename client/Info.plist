@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>ROI</string>
+	<string>JRK</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -24,7 +24,7 @@
 	<true/>
 	<key>NSUserActivityTypes</key>
 	<array>
-		<string>no.jstien.roi.siri.playRoi</string>
+		<string>no.jstien.jrk.siri.playJrk</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

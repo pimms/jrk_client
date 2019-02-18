@@ -1,11 +1,3 @@
-//
-//  File.swift
-//  roiclient
-//
-//  Created by pimms on 24/09/2018.
-//  Copyright © 2018 pimms. All rights reserved.
-//
-
 import Foundation
 import UIKit
 
@@ -21,8 +13,8 @@ enum StreamConfigError: Error {
 }
 
 class StreamConfig {
-    private static let STREAM_CONFIG_FILE = "RoiStreamConfig.plist"
-    private static let STREAM_IMAGE_FILE = "RoiStreamMain.png"
+    private static let STREAM_CONFIG_FILE = "JrkStreamConfig.plist"
+    private static let STREAM_IMAGE_FILE = "JrkStreamMain.png"
     
     private static let STREAM_ROOT_URL_KEY = "rootURL"
     private static let STREAM_NAME_KEY = "streamName"
@@ -53,7 +45,7 @@ class StreamConfig {
                         DispatchQueue.main.async { callback(nil, StreamConfigError.unparseableServerResponse) }
                     }
                 } catch let err {
-                    print("Failed to construct StreamConfig from ROI root URL: \(err.localizedDescription)")
+                    print("Failed to construct StreamConfig from JRK root URL: \(err.localizedDescription)")
                     DispatchQueue.main.async { callback(nil, err) }
                 }
             }

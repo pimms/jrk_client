@@ -2,7 +2,7 @@ import UIKit
 import AVKit
 import MediaPlayer
 
-class RadioViewController: UIViewController, RoiPlayerDelegate, PlayButtonDelegate, InfoRetrieverDelegate {
+class RadioViewController: UIViewController, JrkPlayerDelegate, PlayButtonDelegate, InfoRetrieverDelegate {
     weak var streamContext: StreamContext?
     
     @IBOutlet
@@ -21,8 +21,8 @@ class RadioViewController: UIViewController, RoiPlayerDelegate, PlayButtonDelega
         self.infoLabel?.text = nil
         self.seasonLabel?.text = nil
         
-        streamContext?.roiPlayer.addDelegate(self)
-        streamContext?.roiPlayer.addDelegate(playButton!)
+        streamContext?.jrkPlayer.addDelegate(self)
+        streamContext?.jrkPlayer.addDelegate(playButton!)
         streamContext?.infoRetriever.addDelegate(self)
         streamContext?.infoRetriever.startRetrievalLoop()
         
@@ -34,31 +34,30 @@ class RadioViewController: UIViewController, RoiPlayerDelegate, PlayButtonDelega
         setupSiriActivity()
     }
     
-    
     private func setupSiriActivity() {
-        let activity = NSUserActivity(activityType: "no.jstien.roi.siri.playRoi")
-        activity.title = "Play ROI"
+        let activity = NSUserActivity(activityType: "no.jstien.jrk.siri.playJrk")
+        activity.title = "Play JRK"
         activity.isEligibleForSearch = true
         activity.isEligibleForPrediction = true
-        activity.persistentIdentifier = NSUserActivityPersistentIdentifier("no.jstien.roi.siri.playRoi")
+        activity.persistentIdentifier = NSUserActivityPersistentIdentifier("no.jstien.jrk.siri.playJrk")
         view.userActivity = activity
         activity.becomeCurrent()
     }
     
     // -- InfoRetrieverDelegate -- //
     func episodeInfoChanged(_ episodeInfo: EpisodeInfo?) {
-        streamContext?.roiPlayer.setNowPlaying(episodeInfo)
+        streamContext?.jrkPlayer.setNowPlaying(episodeInfo)
         self.infoLabel?.text = episodeInfo?.name
         self.seasonLabel?.text = episodeInfo?.season
     }
     
     // -- PlayButtonDelegate -- //
     func playButtonClicked(_ playButton: PlayButton) {
-        streamContext?.roiPlayer.togglePlayPause()
+        streamContext?.jrkPlayer.togglePlayPause()
     }
     
-    // -- RoiPlayerDelegate -- //
-    func roiPlayerStateChanged(state: RoiPlayerState) {
+    // -- JrkPlayerDelegate -- //
+    func jrkPlayerStateChanged(state: JrkPlayerState) {
         debugLabel?.text = state.toString()
     }
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14313.18" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14460.31" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
     <device id="watch44" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14238.10"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14460.16"/>
     </dependencies>
     <scenes>
         <!--Interface Controller-->
@@ -15,7 +15,7 @@
                     <items>
                         <group width="1" alignment="left" layout="overlap" id="FkW-Nt-EBx" userLabel="Group - Logo">
                             <items>
-                                <imageView width="78" height="35" alignment="left" verticalAlignment="center" image="roi-light" contentMode="scaleAspectFit" id="h1d-Li-feP">
+                                <imageView width="78" height="35" alignment="left" verticalAlignment="center" image="jrk-light" contentMode="scaleAspectFit" id="h1d-Li-feP">
                                     <variation key="device=watch44mm" alignment="center"/>
                                 </imageView>
                                 <volumeControlView alignment="right" controlsLocalVolume="NO" id="qIT-rd-msz"/>

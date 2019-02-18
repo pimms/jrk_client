@@ -1,11 +1,3 @@
-//
-//  ConnectViewController.swift
-//  roiclient
-//
-//  Created by pimms on 23/09/2018.
-//  Copyright © 2018 pimms. All rights reserved.
-//
-
 import Foundation
 import UIKit
 import SwiftEventBus
@@ -17,8 +9,7 @@ class ConnectViewController: UIViewController {
     }
     
     private var streamContext: StreamContext? = nil
-    private var splashView: SplitSplashView?
-    
+
     @IBOutlet
     var textInput: UITextField?
     @IBOutlet
@@ -31,9 +22,6 @@ class ConnectViewController: UIViewController {
     override func viewDidLoad() {
         if let context = AppDelegate.singleton?.streamContext {
             streamContext = context
-        } else {
-            splashView = SplitSplashView()
-            view.addSubview(splashView!)
         }
     }
     
@@ -63,10 +51,7 @@ class ConnectViewController: UIViewController {
         if streamContext != nil {
             performMainSegue()
         } else {
-            splashView?.startAnimation(completionHandler: {
-                self.textInput?.becomeFirstResponder()
-                self.splashView = nil
-            })
+            self.textInput?.becomeFirstResponder()
         }
     }
     

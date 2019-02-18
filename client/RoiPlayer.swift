@@ -5,7 +5,7 @@ import KDEAudioPlayer
 import SwiftEventBus
 
 
-@objc enum RoiPlayerState: Int {
+@objc enum JrkPlayerState: Int {
     case buffering
     case stopped
     case unableToPlay
@@ -28,12 +28,12 @@ import SwiftEventBus
     }
 }
 
-@objc protocol RoiPlayerDelegate {
-    func roiPlayerStateChanged(state: RoiPlayerState)
+@objc protocol JrkPlayerDelegate {
+    func jrkPlayerStateChanged(state: JrkPlayerState)
 }
 
-class RoiPlayer: NSObject, AudioPlayerDelegate {
-    private var delegates: [WeakRef<RoiPlayerDelegate>] = []
+class JrkPlayer: NSObject, AudioPlayerDelegate {
+    private var delegates: [WeakRef<JrkPlayerDelegate>] = []
     
     private var player: AudioPlayer
     private var audioItem: AudioItem
@@ -43,8 +43,8 @@ class RoiPlayer: NSObject, AudioPlayerDelegate {
     private let commandCenter = MPRemoteCommandCenter.shared()
     private let nowPlaying = MPNowPlayingInfoCenter.default()
     
-    private var playerState: RoiPlayerState = .stopped
-    var state: RoiPlayerState {
+    private var playerState: JrkPlayerState = .stopped
+    var state: JrkPlayerState {
         get {
             return playerState
         }
@@ -63,7 +63,6 @@ class RoiPlayer: NSObject, AudioPlayerDelegate {
         initializeAudioSessionCategory()
         initializeCommandCenter()
         initializeAppLifecycleCallbacks()
-        initializeDelegateKVO()
         
         SwiftEventBus.onMainThread(self, name: .nowPlayingConfigChangedEvent) { event in
             self.updateNowPlayingInformation()
@@ -99,16 +98,6 @@ class RoiPlayer: NSObject, AudioPlayerDelegate {
         }
     }
     
-    private func initializeDelegateKVO() {
-        self.addObserver(self, forKeyPath: "delegate1", options: [], context: nil)
-        self.addObserver(self, forKeyPath: "delegate2", options: [], context: nil)
-    }
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        callDelegates()
-    }
-    
-    
     func setNowPlaying(_ info: EpisodeInfo?) {
         episodeInfo = info
         updateNowPlayingInformation()
@@ -118,25 +107,25 @@ class RoiPlayer: NSObject, AudioPlayerDelegate {
         if let info = episodeInfo {
             let nowPlayingData = NowPlayingData(episodeInfo: info)
             
+            audioItem.artist = nowPlayingData.artistDisplay
+            audioItem.album = nowPlayingData.albumDisplay
+            audioItem.title = nowPlayingData.trackDisplay
+            
             nowPlaying.nowPlayingInfo = [
                 MPMediaItemPropertyTitle: nowPlayingData.trackDisplay,
                 MPMediaItemPropertyArtist: nowPlayingData.artistDisplay,
                 MPMediaItemPropertyAlbumTitle: nowPlayingData.albumDisplay,
                 MPNowPlayingInfoPropertyIsLiveStream: true
             ]
-            
-            audioItem.artist = nowPlayingData.artistDisplay
-            audioItem.album = nowPlayingData.albumDisplay
-            audioItem.title = nowPlayingData.trackDisplay
         }
     }
     
-    func addDelegate(_ delegate: RoiPlayerDelegate) {
+    func addDelegate(_ delegate: JrkPlayerDelegate) {
         delegates.append(WeakRef(value: delegate))
-        delegate.roiPlayerStateChanged(state: playerState)
+        delegate.jrkPlayerStateChanged(state: playerState)
     }
     
-    func removeDelegate(_ delegate: RoiPlayerDelegate) {
+    func removeDelegate(_ delegate: JrkPlayerDelegate) {
         delegates = delegates.filter { $0.value != nil && $0.value !== delegate }
     }
     
@@ -168,7 +157,7 @@ class RoiPlayer: NSObject, AudioPlayerDelegate {
         }
     }
 
-    private func setPlayerState(_ state: RoiPlayerState) {
+    private func setPlayerState(_ state: JrkPlayerState) {
         if (state != playerState) {
             playerState = state
             callDelegates()
@@ -178,7 +167,7 @@ class RoiPlayer: NSObject, AudioPlayerDelegate {
     private func callDelegates() {
         DispatchQueue.main.async {
             self.delegates.forEach({ delegate in
-                delegate.value?.roiPlayerStateChanged(state: self.playerState)
+                delegate.value?.jrkPlayerStateChanged(state: self.playerState)
             })
         }
     }

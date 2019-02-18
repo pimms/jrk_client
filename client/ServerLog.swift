@@ -1,13 +1,4 @@
-//
-//  EventLog.swift
-//  roiclient
-//
-//  Created by pimms on 06/10/2018.
-//  Copyright © 2018 pimms. All rights reserved.
-//
-
 import Foundation
-
 
 class LogEntry {
     enum LogEntryError: Error {
